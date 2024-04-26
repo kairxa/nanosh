@@ -1,3 +1,4 @@
+import { INVALID_NOT_ENOUGH_AP } from '@nanosh/messages/errors'
 import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
 import { describe, expect, it } from 'bun:test'
@@ -28,5 +29,23 @@ describe('action.bridge.command.prime', () => {
     expect(
       newState!.characters.get('Solas Mercer')!.cycleActions.get(123),
     ).toBe('action.bridge.command.prime')
+  })
+
+  it('should invalidate request due to not enough AP', () => {
+    let newState: Game | null
+    let error: Error | null
+    newState = structuredClone(gameState)
+    newState?.characters.set('Solas Mercer', { ...solasMercer!, ap: 0 })
+    ;[newState, error] = prime({
+      characterID: 'Solas Mercer',
+      start: {
+        cycle: 1,
+        day: 1,
+      },
+      state: newState!,
+      invokeTime: 123,
+    })
+    expect(newState).toBeNull()
+    expect(error?.message).toBe(INVALID_NOT_ENOUGH_AP)
   })
 })

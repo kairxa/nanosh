@@ -81,7 +81,7 @@ describe('action.bridge.command.liberate', () => {
       gameID: 'liberate-outposts',
       characterID: 'Solas Mercer',
     })
-    expect(error).toBe(null)
+    expect(error).toBeNull()
     expect(newState?.nanosh.outposts.size).toBe(4)
     expect(newState?.subsectors.empty.has('Bali, Indonesia')).toBe(true)
     expect(newState?.subsectors.empty.has('Pontianak, Indonesia')).toBe(true)
@@ -128,7 +128,7 @@ describe('action.bridge.command.liberate', () => {
       gameID: 'liberate-auxbase',
       characterID: 'Solas Mercer',
     })
-    expect(error).toBe(null)
+    expect(error).toBeNull()
     expect(newState?.nanosh.auxBase.has('SEA Bloc')).toBe(false)
     expect(newState?.sectors.get('SEA Bloc')?.hp).toBe(0)
   })
@@ -144,7 +144,7 @@ describe('action.bridge.command.liberate', () => {
       gameID: 'liberate-invalid-location',
       characterID: 'Solas Mercer',
     })
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(FATAL_SHIP_LOCATION_STORE_MISMATCH)
   })
 
@@ -159,7 +159,7 @@ describe('action.bridge.command.liberate', () => {
       gameID: 'liberate-empty-libpo',
       characterID: 'Solas Mercer',
     })
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_LIBERATE_NO_LIBPO)
   })
 
@@ -177,7 +177,7 @@ describe('action.bridge.command.liberate', () => {
       gameID: 'liberate-not-enough-ap',
       characterID: 'Solas Mercer',
     })
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_NOT_ENOUGH_AP)
   })
 
@@ -192,7 +192,7 @@ describe('action.bridge.command.liberate', () => {
       gameID: 'liberate-invalid-subsector-advances',
       characterID: 'Solas Mercer',
     })
-    // expect(newState).toBe(null)
+    // expect(newState).toBeNull()
     expect(error?.message).toBe(
       `${FATAL_LIBERATE_REDUCE_ADVANCE_SUBSECTOR_NAME_MISMATCH}: Singapore, Singapore`,
     )

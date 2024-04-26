@@ -26,7 +26,7 @@ describe('action.bridge.command.reinforce', () => {
       characterID: 'Solas Mercer',
       state: gameState!,
     })
-    expect(error).toBe(null)
+    expect(error).toBeNull()
     expect(newState!.ship.supplies).toBe(200)
     expect(newState!.sectors.get('Jakarta, Indonesia')?.hp).toBe(5)
     expect(newState!.ship.praetorians).toBe(5)
@@ -39,7 +39,7 @@ describe('action.bridge.command.reinforce', () => {
       characterID: 'Solas Mercer',
       state: gameState!,
     })
-    expect(error).toBe(null)
+    expect(error).toBeNull()
     expect(newState!.ship.supplies).toBe(240)
     expect(newState!.sectors.get('Jakarta, Indonesia')?.hp).toBe(5)
     expect(newState!.ship.praetorians).toBe(3)
@@ -52,7 +52,7 @@ describe('action.bridge.command.reinforce', () => {
       characterID: 'Solas Mercer',
       state: gameState!,
     })
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_SHIP_LOCATION)
   })
   it('should return error not a liberation point', () => {
@@ -63,7 +63,7 @@ describe('action.bridge.command.reinforce', () => {
       characterID: 'Solas Mercer',
       state: gameState!,
     })
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_REINFORCE_TARGET)
   })
   it('should return error not enough AP', () => {
@@ -76,7 +76,7 @@ describe('action.bridge.command.reinforce', () => {
       characterID: 'Solas Mercer',
       state: notEnoughAPState!,
     })
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_NOT_ENOUGH_AP)
   })
   it('should return error not enough supplies', () => {
@@ -89,7 +89,7 @@ describe('action.bridge.command.reinforce', () => {
       characterID: 'Solas Mercer',
       state: notEnoughSuppliesState!,
     })
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_REINFORCE_NOT_ENOUGH_RESOURCES)
   })
   it('should return error not enough praetorians', () => {
@@ -102,7 +102,7 @@ describe('action.bridge.command.reinforce', () => {
       characterID: 'Solas Mercer',
       state: notEnoughSuppliesState!,
     })
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_REINFORCE_NOT_ENOUGH_RESOURCES)
   })
 })

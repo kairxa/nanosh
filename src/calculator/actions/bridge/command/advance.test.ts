@@ -1,4 +1,7 @@
-import { INVALID_NOT_ENOUGH_AP, INVALID_NOT_ENOUGH_ECELLS } from '@nanosh/messages/errors'
+import {
+  INVALID_NOT_ENOUGH_AP,
+  INVALID_NOT_ENOUGH_ECELLS,
+} from '@nanosh/messages/errors'
 import type { Character } from '@nanosh/types/character'
 import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
@@ -21,7 +24,11 @@ describe('action.bridge.command.advance', () => {
       targetSupersectorID: 'European Federation',
       invokeTime: 123,
     })
-    expect(error).toBe(null)
+    expect(error).toBeNull()
+    expect(newState?.shipLocation).toBe('European Federation')
+    expect(
+      newState?.characters.get('Solas Mercer')?.cycleActions.get(123),
+    ).toBe('action.bridge.command.advance')
     expect(newState?.ship.eCells).toBe(80) // initial ship location was 2,0, we travel to 0,0. 2 distance.
     expect(newState?.characters.get('Solas Mercer')?.ap).toBe(2)
   })
@@ -34,6 +41,7 @@ describe('action.bridge.command.advance', () => {
       targetSupersectorID: 'Oceanian Front',
       invokeTime: 123,
     })
+    expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_NOT_ENOUGH_ECELLS)
   })
 
@@ -45,6 +53,7 @@ describe('action.bridge.command.advance', () => {
       targetSupersectorID: 'Oceanian Front',
       invokeTime: 123,
     })
+    expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_NOT_ENOUGH_AP)
   })
 })

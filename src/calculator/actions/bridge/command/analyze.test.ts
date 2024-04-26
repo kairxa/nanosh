@@ -22,7 +22,7 @@ describe('action.bridge.command.analyze', () => {
       state: gameState!,
     })
 
-    expect(error).toBe(null)
+    expect(error).toBeNull()
     expect(newState?.characters.get('Solas Mercer')?.ap).toBe(7)
     expect(newState?.intel.basic).toBe(1)
     expect(newState?.intel.critical).toBe(1)

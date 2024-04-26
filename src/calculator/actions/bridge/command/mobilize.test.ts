@@ -25,7 +25,7 @@ describe('action.bridge.command.mobilize', () => {
       characterID: 'Solas Mercer',
       targetSubsectorID: 'Jakarta, Indonesia',
     })
-    expect(error).toBe(null)
+    expect(error).toBeNull()
     expect(
       newState?.anyMap.get('testing-mobilize-Solas Mercer-mobilize'),
     ).toEqual({
@@ -74,7 +74,7 @@ describe('action.bridge.command.mobilize', () => {
       characterID: 'Solas Mercer',
       targetSubsectorID: 'Omsk, Russia',
     })
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_SHIP_LOCATION)
   })
 
@@ -95,7 +95,7 @@ describe('action.bridge.command.mobilize', () => {
       gameID: 'testing-mobilize',
     })
 
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_MOBILIZE_TARGET)
   })
 
@@ -116,7 +116,7 @@ describe('action.bridge.command.mobilize', () => {
       invokeTime: 123,
       state: newState!,
     })
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_NOT_ENOUGH_AP)
   })
 
@@ -137,7 +137,7 @@ describe('action.bridge.command.mobilize', () => {
       invokeTime: 123,
       state: newState!,
     })
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(
       `${INVALID_MOBILIZE_NOT_ENOUGH_RESOURCES} - Requested: supplies with amount 35`,
     )
@@ -153,7 +153,7 @@ describe('action.bridge.command.mobilize', () => {
       characterID: 'Solas Mercer',
       targetSubsectorID: 'Jakarta, Indonesia',
     })
-    expect(error).toBe(null)
+    expect(error).toBeNull()
     expect(
       newState?.anyMap.get('testing-mobilize-Solas Mercer-mobilize'),
     ).toEqual({
@@ -183,14 +183,14 @@ describe('action.bridge.command.mobilize', () => {
       characterID: 'Solas Mercer',
       targetSubsectorID: 'Jakarta, Indonesia',
     })
-    expect(error).toBe(null)
+    expect(error).toBeNull()
     newState!.ship.supplies = 10
     ;[newState, error] = mobilizeConfirm({
       state: newState!,
       characterID: 'Solas Mercer',
       gameID: 'testing-mobilize',
     })
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
     expect(error?.message).toBe(
       `${INVALID_MOBILIZE_NOT_ENOUGH_RESOURCES} - Requested: supplies with amount 35`,
     )

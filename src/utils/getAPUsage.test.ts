@@ -21,7 +21,7 @@ describe('getAPUsage', () => {
       2,
       1,
     )
-    expect(error).toBe(null)
+    expect(error).toBeNull()
     expect(apUsed).toBe(1)
     ;[apUsed, error] = getAPUsage(
       teal,

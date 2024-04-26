@@ -14,7 +14,7 @@ describe('Create initial game', () => {
 
   it('should generate initial game', () => {
     const [game, error] = GetInitialGame()
-    expect(error).toBe(null)
+    expect(error).toBeNull()
 
     expect(game?.shipLocation).toBe('SEA Bloc')
     expect(game?.nanosh.mainBase).not.toBe(game?.shipLocation) // 10% chance to get shipLocation.

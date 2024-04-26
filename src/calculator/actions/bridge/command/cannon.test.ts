@@ -41,7 +41,7 @@ describe('action.bridge.command.cannon', () => {
       targetSupersectorID: gameState?.nanosh.mainBase as SupersectorNames,
       invokeTime: 111,
     }) as [Game, null]
-    expect(error).toBe(null)
+    expect(error).toBeNull()
 
     expect(newState.characters.get('Solas Mercer')?.ap).toBe(6) // advancing once
     expect(newState.ship.eCells).toBe(80)
@@ -53,15 +53,10 @@ describe('action.bridge.command.cannon', () => {
       targetID: gameState?.nanosh.mainBase as SupersectorNames,
     }) as [Game, null]
 
-    const characterCycleActions = newState.characters
-      .get('Solas Mercer')
-      ?.cycleActions.values()
-    expect(characterCycleActions?.next().value).toBe(
-      'action.bridge.command.advance',
-    )
-    expect(characterCycleActions?.next().value).toBe(
-      'action.bridge.command.cannon',
-    )
+    const newCycleActions =
+      newState.characters.get('Solas Mercer')?.cycleActions
+    expect(newCycleActions?.get(111)).toBe('action.bridge.command.advance')
+    expect(newCycleActions?.get(120)).toBe('action.bridge.command.cannon')
     expect(newState.characters.get('Solas Mercer')?.ap).toBe(6) // still same
     expect(newState.ship.eCells).toBe(80) // still same, cannon-prime
     expect(
@@ -98,7 +93,7 @@ describe('action.bridge.command.cannon', () => {
     expect(
       newState.sectors.get(gameState.nanosh.mainBase as SupersectorNames)?.hp,
     ).toBe(0)
-    expect(newState.nanosh.mainBase).toBe(null)
+    expect(newState.nanosh.mainBase).toBeNull()
     expect(newState.characters.get('Solas Mercer')?.cycleActions.size).toBe(4) // shouldn't be possible, as max action per cycle is 3. But for the sake of testing.
   })
 
@@ -120,7 +115,7 @@ describe('action.bridge.command.cannon', () => {
       targetID: 'North American Union',
     })
 
-    expect(error).toBe(null)
+    expect(error).toBeNull()
     expect(newState!.nanosh.auxBase.has('North American Union')).toBe(false)
     expect(newState!.sectors.get('North American Union')!.hp).toBe(0)
   })
@@ -143,7 +138,7 @@ describe('action.bridge.command.cannon', () => {
       targetID: 'Wellington, New Zealand',
     })
 
-    expect(error).toBe(null)
+    expect(error).toBeNull()
     expect(newState!.nanosh.outposts.has('Wellington, New Zealand')).toBe(false)
     expect(newState!.subsectors.empty.has('Wellington, New Zealand')).toBe(true)
     expect(newState!.sectors.get('Wellington, New Zealand')!.hp).toBe(0)
@@ -188,6 +183,6 @@ describe('action.bridge.command.cannon', () => {
       targetID: 'Wellington, New Zealand',
     })
     expect(error?.message).toBe(INVALID_SHIP_LOCATION)
-    expect(newState).toBe(null)
+    expect(newState).toBeNull()
   })
 })
