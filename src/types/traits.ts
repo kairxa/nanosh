@@ -1,0 +1,10 @@
+export type Traits =
+  | 'trait.amorous'
+  | 'trait.defender'
+  | 'trait.driven'
+  | 'trait.droid'
+  | 'trait.gung-ho'
+  | 'trait.hardworking'
+  | 'trait.legatus-legionis'
+  | 'trait.meticulous'
+  | 'trait.popular'
