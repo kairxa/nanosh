@@ -10,10 +10,11 @@ export type CharacterNames =
   | 'Momo Tzigane'
   | 'Val'
   | 'Brianne "Bree" Cheeseworth'
-  | 'Dr. Niral'
+  | 'Niral Pierce'
   | `Tee'elise "Teal" Qing`
   | 'X7-Gastronia "Gass" Petalnova'
   | 'Ysara Mercer'
+  | 'Soren Koda'
   | 'Alisa Huang'
 
 export interface Character {

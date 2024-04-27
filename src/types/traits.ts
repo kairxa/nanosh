@@ -3,6 +3,7 @@ export type Traits =
   | 'trait.defender'
   | 'trait.driven'
   | 'trait.droid'
+  | 'trait.dutiful'
   | 'trait.gung-ho'
   | 'trait.hardworking'
   | 'trait.legatus-legionis'

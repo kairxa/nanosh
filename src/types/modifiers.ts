@@ -1,60 +1,60 @@
 export type ModifiersShip =
-  // ship.day.change.general.mobilization
+  // ship.day-change.general.mobilization
   //  +1 self: action.bridge.comms.mobilize
   //  day change: +4-8 ship.civitates
   //  remove: day change
-  | 'ship.day.change.bridge.comms.mobilization'
-  // ship.day.change.bridge.comms.onair
+  | 'ship.day-change.bridge.comms.mobilization'
+  // ship.day-change.bridge.comms.onair
   //   +1 self: action.bridge.comms.onair
   //   day change: 0.5x crew morale loss from supersector.state.aux
   //   remove: day change
-  | 'ship.day.change.bridge.comms.onair'
-  // ship.day.change.garden.forage
+  | 'ship.day-change.bridge.comms.onair'
+  // ship.day-change.garden.forage
   //   +1 self: action.garden.forage
-  //   day change: +1 ship.day.persistent.garden.sapped
+  //   day change: +1 ship.persistent.garden.sapped
   //   remove: day change
-  | 'ship.day.change.garden.forage'
-  // ship.day.change.garden.grow
+  | 'ship.day-change.garden.forage'
+  // ship.day-change.garden.grow
   //   +1 self: action.garden.grow
-  //   day change: +1 ship.day.persistent.garden.bountiful
+  //   day change: +1 ship.persistent.garden.bountiful
   //   remove: day change
-  | 'ship.day.change.garden.grow'
-  // ship.day.change.general.overcrowded
+  | 'ship.day-change.garden.grow'
+  // ship.day-change.general.overcrowded
   //   +1 self: cycle change population > max population
   //   day change: -1 crew morale
   //   remove: cycle change population <= max population
-  | 'ship.day.change.general.overcrowded'
-  // ship.day.change.supersector.hearthbeat
+  | 'ship.day-change.general.overcrowded'
+  // ship.day-change.supersector.hearthbeat
   //   +1 self: trigger.supersector.event.utadazoey-live-jazz-bar
   //   remove: day change
   //   day change: +1 AP for 1 random character
-  | 'ship.day.change.supersector.hearthbeat'
-  // ship.day.persistent.garden.bountiful
-  //   +1 self: day change if ship.day.change.garden.grow == 1
+  | 'ship.day-change.supersector.hearthbeat'
+  // ship.persistent.garden.bountiful
+  //   +1 self: day change if ship.day-change.garden.grow == 1
   //   remove: action.garden.harvest
   //   action.garden.harvest: 150% rations harvest
-  | 'ship.day.persistent.garden.bountiful'
-  // ship.day.persistent.garden.sapped
-  //   +1 self: day change if ship.day.change.garden.forage == 1
+  | 'ship.persistent.garden.bountiful'
+  // ship.persistent.garden.sapped
+  //   +1 self: day change if ship.day-change.garden.forage == 1
   //   remove: action.garden.harvest
   //   action.garden.harvest: 50% rations harvest
-  | 'ship.day.persistent.garden.sapped'
-  // ship.day.persistent.buzzard.optimized
+  | 'ship.persistent.garden.sapped'
+  // ship.persistent.buzzard.optimized
   //   +1 self: action.buzzard.calibrate
   //   remove: day change
   //   action.buzzard.command[any]: 50% eCells usage
-  | 'ship.day.persistent.buzzard.optimized'
-  // ship.day.persistent.engine.optimized
+  | 'ship.persistent.buzzard.optimized'
+  // ship.persistent.engine.optimized
   //   +1 self: action.engine.calibrate
   //   remove: day change
   //   action.bridge.command[any]: 50% eCells usage
-  | 'ship.day.persistent.engine.optimized'
-  // ship.day.persistent.weapon.optimized
+  | 'ship.persistent.engine.optimized'
+  // ship.persistent.weapon.optimized
   //   +1 self: action.weapon.calibrate
   //   remove: day change
   //   action.flak-turret.shoot: 50% eCells usage
   //   action.laser-turret.shoot: 50% eCells usage
-  | 'ship.day.persistent.weapon.optimized'
+  | 'ship.persistent.weapon.optimized'
   // ship.cycle.life-support.broken
   //   +1 self: trigger.ship.room.life-support.broken
   //   remove: trigger.ship.room.life-support.fix
@@ -129,7 +129,7 @@ export type ModifiersCharacter =
   //     action.medlab.surgery
   | 'character.cycle.dirty'
   // character.cycle.hungry
-  //   +1 self day change: if character.day.change.eat == 0
+  //   +1 self day change: if character.day-change.eat == 0
   //   cycle change: 5% chance +1 character.persistent.sick
   //   remove:
   //     action.refectory.breakfast
@@ -143,41 +143,41 @@ export type ModifiersCharacter =
   | 'character.cycle.hungry'
   // character.cycle.tired
   //   +1 self: consumable.meds.vigorisk
-  //   +1 self day change: if character.day.change.sleep == 0
+  //   +1 self day change: if character.day-change.sleep == 0
   //   +2 self: consumable.meds.somnoxa
   //   cycle change: 5% chance +1 character.persistent.sick
   //   remove: action.private-quarters.sleep
   | 'character.cycle.tired'
-  // character.day.change.eat
+  // character.day-change.eat
   //   +1 self:
   //     action.refectory.breakfast
   //     action.refectory.lunch
   //     action.refectory.dinner
   //     action.inventory.eat
   //   day change: +1 character.cycle.hungry
-  | 'character.day.change.eat'
-  // character.day.change.sleep
+  | 'character.day-change.eat'
+  // character.day-change.sleep
   //   +1 self: action.private-quarters.sleep
   //   day change:
   //     +1 character.cycle.tired
   //     -1 40% character.persistent.sick
-  | 'character.day.change.sleep'
-  // character.day.change.uplifted
+  | 'character.day-change.sleep'
+  // character.day-change.uplifted
   //   +1 self: consumable.food.gourmet-pack
   //   day change: +1 AP
   //   does not stack
   //   remove: day change
-  | 'character.day.change.uplifted'
-  // character.day.persistent.seggs
+  | 'character.day-change.uplifted'
+  // character.persistent.seggs
   //   +1 self: action.private-quarters.seggs
   //   remove: day change
   //   blocking: action.private-quarters.seggs
   //   character.cycle.deprived: remove
-  | 'character.day.persistent.seggs'
-  // character.day.persistent.socialize
+  | 'character.persistent.seggs'
+  // character.persistent.socialize
   //   +1 self: action.common-room.socialize
   //   remove: day change
-  | 'character.day.persistent.socialize'
+  | 'character.persistent.socialize'
   // character.persistent.drunk
   //   +2 self:
   //     consumable.meds.blissbloom
@@ -207,7 +207,7 @@ export type ModifiersCharacter =
   //     expedition.supersector.event.barrier-reef-maze
   //   remove: consumable.food.voidplum
   //   remove partial:
-  //     -1 40% character.day.change.sleep
+  //     -1 40% character.day-change.sleep
   //     -1 consumable.meds.solacil
   //     -2 consumable.meds.duarin
   //     -3 consumable.meds.trivagex
@@ -221,5 +221,8 @@ export interface ModifierTracker {
     day: number
     cycle: number
   }
-  expiry: number
+  expiry: {
+    day: number
+    cycle: number
+  }
 }

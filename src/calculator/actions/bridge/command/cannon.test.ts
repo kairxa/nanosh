@@ -23,7 +23,7 @@ describe('action.bridge.command.cannon', () => {
     amount: 1,
     expiry: -1,
   })
-  gameState.ship.modifiers.set('ship.day.persistent.engine.optimized', {
+  gameState.ship.modifiers.set('ship.persistent.engine.optimized', {
     start: {
       cycle: 1,
       day: 1,
@@ -78,7 +78,7 @@ describe('action.bridge.command.cannon', () => {
     expect(
       newState.sectors.get(gameState.nanosh.mainBase as SupersectorNames)?.hp,
     ).toBe(39)
-    newState.ship.modifiers.delete('ship.day.persistent.engine.optimized') // remove engine optimized
+    newState.ship.modifiers.delete('ship.persistent.engine.optimized') // remove engine optimized
     // Emulate destroying main base
     newState.sectors.get(gameState.nanosh.mainBase as SupersectorNames)!.hp = 5
     ;[newState, error] = cannon({

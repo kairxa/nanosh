@@ -69,7 +69,7 @@ export default function ({
   if (error !== null) return [null, error]
   let eCellsUsage = CANNON_DEFAULT_ECELLS_USAGE
   // If engine is optimized, reduce AP usage by multiplier value
-  if (stateCopy.ship.modifiers.has('ship.day.persistent.engine.optimized')) {
+  if (stateCopy.ship.modifiers.has('ship.persistent.engine.optimized')) {
     eCellsUsage = Math.ceil(
       eCellsUsage * MODIFIER_ENGINE_OPTIMIZED_ECELLS_USAGE_MULTIPLIER,
     )

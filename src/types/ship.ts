@@ -59,63 +59,63 @@ export interface ShipModifierDetails {
 
 export const ShipModifierDetails = new Map<ModifiersShip, ShipModifierDetails>([
   [
-    'ship.day.change.bridge.comms.mobilization',
+    'ship.day-change.bridge.comms.mobilization',
     {
       title: 'Mobilization',
       description: 'Gain 4-8 Civitates the next day.',
     },
   ],
   [
-    'ship.day.change.garden.forage',
+    'ship.day-change.garden.forage',
     {
       title: 'Garden: Foraging',
       description: 'Gives sapped status to the garden next day.',
     },
   ],
   [
-    'ship.day.change.garden.grow',
+    'ship.day-change.garden.grow',
     {
       title: 'Garden: Growing',
       description: 'Gives bountiful status to the garden next day',
     },
   ],
   [
-    'ship.day.change.supersector.hearthbeat',
+    'ship.day-change.supersector.hearthbeat',
     {
       title: 'Supersector: Hearthbeat',
       description: 'Gain 1 AP the next day for one random character.',
     },
   ],
   [
-    'ship.day.persistent.garden.bountiful',
+    'ship.persistent.garden.bountiful',
     {
       title: 'Garden: Bountiful',
       description: '150% harvest result.',
     },
   ],
   [
-    'ship.day.persistent.buzzard.optimized',
+    'ship.persistent.buzzard.optimized',
     {
       title: 'Buzzard Optimized',
       description: '50% eCells usage for all buzzard bay actions.',
     },
   ],
   [
-    'ship.day.persistent.engine.optimized',
+    'ship.persistent.engine.optimized',
     {
       title: 'Engine Optimized',
       description: '50% eCells usage for all command terminal actions.',
     },
   ],
   [
-    'ship.day.persistent.weapon.optimized',
+    'ship.persistent.weapon.optimized',
     {
       title: 'Weapon Optimized',
       description: '50% eCells usage for all turret systems actions.',
     },
   ],
   [
-    'ship.day.persistent.garden.sapped',
+    'ship.persistent.garden.sapped',
     {
       title: 'Garden: Sapped',
       description: '50% harvest result.',

@@ -1,6 +1,8 @@
 import type { CharacterNames } from './character'
 import type { Game } from './game'
 
+export const MAX_CYCLE_PER_DAY = 4
+
 export const TOTAL_SUPERSECTORS = 12
 export const DEFAULT_ANTARCTICA_SUPERSECTOR_ID = 12
 export const DEFAULT_SUBSECTORS_SIZE = 10

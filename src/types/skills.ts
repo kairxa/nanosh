@@ -1,4 +1,5 @@
 export type Skills =
+  | 'skill.adaptable'
   | 'skill.agile'
   | 'skill.artisan'
   | 'skill.aviator'
@@ -11,6 +12,7 @@ export type Skills =
   | 'skill.diligent'
   | 'skill.engineer'
   | 'skill.experienced-commander'
+  | 'skill.guns-fundamental'
   | 'skill.logistician'
   | 'skill.mechpilot'
   | 'skill.persuasion'
@@ -23,6 +25,7 @@ export type Skills =
   | 'skill.savant'
   | 'skill.shooter'
   | 'skill.silver'
+  | 'skill.sniper'
   | 'skill.stalwart'
   | 'skill.surgeon'
   | 'skill.tactician'

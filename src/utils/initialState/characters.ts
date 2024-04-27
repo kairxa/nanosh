@@ -87,7 +87,7 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
       },
     ],
     [
-      'Dr. Niral',
+      'Niral Pierce',
       {
         ap: 0,
         maxAP: MAX_AP,
@@ -174,6 +174,25 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
           'skill.persuasion',
           'skill.logistician',
           'skill.cook',
+        ]),
+        wounds: [],
+        modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
+        playerID: '',
+        cycleActions: new Map<number, Actions>(),
+      },
+    ],
+    [
+      'Soren Koda',
+      {
+        ap: 0,
+        maxAP: MAX_AP,
+        dead: false,
+        trait: new Set<Traits>(['trait.dutiful']),
+        skills: new Set<Skills>([
+          'skill.sniper',
+          'skill.guns-fundamental',
+          'skill.diligent',
+          'skill.adaptable',
         ]),
         wounds: [],
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
