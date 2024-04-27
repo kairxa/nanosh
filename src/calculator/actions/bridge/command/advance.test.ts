@@ -9,7 +9,7 @@ import { describe, expect, it } from 'bun:test'
 import advance from './advance'
 
 describe('action.bridge.command.advance', () => {
-  const [gameState, _] = GetInitialGame() as [Game, null]
+  const [gameState, _] = GetInitialGame('initial-state-game-test', 1715619600000) as [Game, null]
   const solasMercer = gameState.characters.get('Solas Mercer') as Character
   solasMercer.playerID = 'my-current-player'
   solasMercer.ap = 3

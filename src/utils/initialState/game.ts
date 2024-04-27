@@ -25,10 +25,10 @@ import {
 } from './sectors'
 import { GetInitialShip } from './ship'
 
-export const GetInitialGame = (): [Game | null, Error | null] => {
-  const gameID = uuidv7()
-  const invokeTime = new Date().getTime()
-
+export const GetInitialGame = (
+  gameID: string = uuidv7(),
+  invokeTime: number = new Date().getTime(),
+): [Game | null, Error | null] => {
   // TODO: LOG GAME INIT
 
   const prng = seedrandom(`${gameID}-${invokeTime}`)

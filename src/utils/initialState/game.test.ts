@@ -1,19 +1,12 @@
-import { beforeAll, describe, expect, it, mock, setSystemTime } from 'bun:test'
+import { describe, expect, it } from 'bun:test'
 import { GetInitialGame } from './game'
 
-// Wow this mock covers all other tests. BE CAREFUL. WOW.
-mock.module('uuidv7', () => ({
-  uuidv7: () => 'initial-state-game-test',
-}))
-
 describe('Create initial game', () => {
-  // THAT WARNING ALSO APPLIES TO THIS. WOW.
-  beforeAll(() => {
-    setSystemTime(new Date(2024, 4, 14))
-  })
-
   it('should generate initial game', () => {
-    const [game, error] = GetInitialGame()
+    const [game, error] = GetInitialGame(
+      'initial-state-game-test',
+      1715619600000, // magic number from previous dev env lol. Some tests inside calculator/command needs this number
+    )
     expect(error).toBeNull()
 
     expect(game?.shipLocation).toBe('SEA Bloc')

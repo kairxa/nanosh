@@ -11,7 +11,7 @@ import advance from './advance'
 import cannon from './cannon'
 
 describe('action.bridge.command.cannon', () => {
-  const [gameState, _] = GetInitialGame() as [Game, null]
+  const [gameState, _] = GetInitialGame('initial-state-game-test', 1715619600000) as [Game, null]
   const solasMercer = gameState.characters.get('Solas Mercer') as Character
   solasMercer.ap = 7
   solasMercer.playerID = 'my-current-player'

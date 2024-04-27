@@ -9,7 +9,7 @@ import { describe, expect, it } from 'bun:test'
 import reinforce from './reinforce'
 
 describe('action.bridge.command.reinforce', () => {
-  const [gameState, _] = GetInitialGame()
+  const [gameState, _] = GetInitialGame('initial-state-game-test', 1715619600000)
   const solasMercer = gameState!.characters.get('Solas Mercer')
   solasMercer!.ap = 7
   gameState!.nanosh.liberationPoints.add('Jakarta, Indonesia')

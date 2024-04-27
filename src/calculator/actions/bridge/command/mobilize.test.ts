@@ -11,7 +11,7 @@ import advance from './advance'
 import mobilize, { mobilizeConfirm, mobilizeRefuse } from './mobilize'
 
 describe('action.bridge.command.mobilize', () => {
-  const [gameState, _] = GetInitialGame()
+  const [gameState, _] = GetInitialGame('initial-state-game-test', 1715619600000)
   const solasMercer = gameState!.characters.get('Solas Mercer')
   solasMercer!.ap = 7
   it('should mobilize and generate required resources and then confirm', () => {

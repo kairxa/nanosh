@@ -12,7 +12,7 @@ import { describe, expect, it } from 'bun:test'
 import liberate from './liberate'
 
 describe('action.bridge.command.liberate', () => {
-  const [gameState, _] = GetInitialGame()
+  const [gameState, _] = GetInitialGame('initial-state-game-test', 1715619600000)
   const solasMercer = gameState!.characters.get('Solas Mercer')
   solasMercer!.ap = 7
   gameState!.sectors.set('Jakarta, Indonesia', {
