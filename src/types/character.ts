@@ -14,6 +14,7 @@ export type CharacterNames =
   | `Tee'elise "Teal" Qing`
   | 'X7-Gastronia "Gass" Petalnova'
   | 'Ysara Mercer'
+  | 'Alisa Huang'
 
 export interface Character {
   playerID: string

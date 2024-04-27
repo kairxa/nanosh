@@ -162,5 +162,24 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
         cycleActions: new Map<number, Actions>(),
       },
     ],
+    [
+      'Alisa Huang',
+      {
+        ap: 0,
+        maxAP: MAX_AP,
+        dead: false,
+        trait: new Set<Traits>(['trait.popular']),
+        skills: new Set<Skills>([
+          'skill.comms-savvy',
+          'skill.persuasion',
+          'skill.logistician',
+          'skill.cook',
+        ]),
+        wounds: [],
+        modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
+        playerID: '',
+        cycleActions: new Map<number, Actions>(),
+      },
+    ],
   ])
 }

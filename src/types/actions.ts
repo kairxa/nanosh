@@ -1,7 +1,4 @@
 export type Actions =
-  // action.command.advance
-  //   ship.eCells -= 20 * distance
-  //   character.ap -= 2
   | 'action.bridge.command.advance'
   | 'action.bridge.command.cannon'
   | 'action.bridge.command.prime'
@@ -9,6 +6,12 @@ export type Actions =
   | 'action.bridge.command.reinforce'
   | 'action.bridge.command.liberate'
   | 'action.bridge.command.analyze'
+  | 'action.bridge.comms.propa'
+  | 'action.bridge.comms.music'
+  | 'action.bridge.comms.onair'
+  | 'action.bridge.comms.rally'
+  | 'action.bridge.comms.hail'
+  | 'action.bridge.comms.interceptsignal'
   | 'action.private-quarters.sleep'
   | 'action.private-quarters.seggs'
   | 'action.private-quarters.shower'
