@@ -1,6 +1,6 @@
 import {
-  INVALID_MOBILIZE_NOT_ENOUGH_RESOURCES,
   INVALID_MOBILIZE_CONFIRM,
+  INVALID_MOBILIZE_NOT_ENOUGH_RESOURCES,
   INVALID_MOBILIZE_TARGET,
   INVALID_SHIP_LOCATION,
 } from '@nanosh/messages/errors'
@@ -11,6 +11,7 @@ import type {
 import type { Subsector, SubsectorNames } from '@nanosh/types/sectors'
 import getAPUsage from '@nanosh/utils/getAPUsage'
 import { GetRandomArray } from '@nanosh/utils/getRandomArray'
+import getRandomNumber from '@nanosh/utils/getRandomNumber'
 import seedrandom from 'seedrandom'
 import skillModifiers, { SKILL_AP_REDUCE } from './skillModifiers'
 
@@ -23,6 +24,12 @@ interface BridgeCommandMobilizeParams
 }
 
 const MOBILIZE_DEFAULT_AP_USAGE = 2
+const MOBILIZE_MIN_CIVITATES = 6
+const MOBILIZE_MAX_CIVITATES = 15
+const MOBILIZE_MIN_SUPPLIES = 33
+const MOBILIZE_MAX_SUPPLIES = 67
+const MOBILIZE_MIN_ECELLS = 5
+const MOBILIZE_MAX_ECELLS = 9
 
 type PickedSacrifice = 'civitates' | 'supplies' | 'eCells'
 const collectionPickedSacrifices: PickedSacrifice[] = [
@@ -68,9 +75,17 @@ export default function mobilize({
     gameID,
     invokeTime,
   )[0] as PickedSacrifice
-  const civitates = Math.floor(prng() * 10) + 6
-  const supplies = Math.floor(prng() * 35) + 33
-  const eCells = Math.floor(prng() * 5) + 5
+  const civitates = getRandomNumber(
+    MOBILIZE_MIN_CIVITATES,
+    MOBILIZE_MAX_CIVITATES,
+    prng,
+  )
+  const supplies = getRandomNumber(
+    MOBILIZE_MIN_SUPPLIES,
+    MOBILIZE_MAX_SUPPLIES,
+    prng,
+  )
+  const eCells = getRandomNumber(MOBILIZE_MIN_ECELLS, MOBILIZE_MAX_ECELLS, prng)
   const savedMobilize = {
     pickedSacrifice,
     civitates,

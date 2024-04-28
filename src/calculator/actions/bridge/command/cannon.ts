@@ -13,6 +13,7 @@ import type {
   SupersectorNames,
 } from '@nanosh/types/sectors'
 import getAPUsage from '@nanosh/utils/getAPUsage'
+import getRandomNumber from '@nanosh/utils/getRandomNumber'
 import seedrandom from 'seedrandom'
 import skillModifiers, { SKILL_AP_REDUCE } from './skillModifiers'
 
@@ -26,6 +27,8 @@ interface BridgeCommandCannonParams
 
 const CANNON_DEFAULT_AP_USAGE = 2
 const CANNON_DEFAULT_ECELLS_USAGE = 10
+const CANNON_MIN_DAMAGE = 5
+const CANNON_MAX_DAMAGE = 8
 const MODIFIER_ENGINE_OPTIMIZED_ECELLS_USAGE_MULTIPLIER = 0.5
 
 export default function ({
@@ -84,7 +87,7 @@ export default function ({
   }
 
   const prng = seedrandom(`${gameID}-${invokeTime}`)
-  const damage = Math.floor(prng() * 4) + 5
+  const damage = getRandomNumber(CANNON_MIN_DAMAGE, CANNON_MAX_DAMAGE, prng)
 
   const sectorTarget = stateCopy.sectors.get(targetID)! // all guards have been written above.
 
