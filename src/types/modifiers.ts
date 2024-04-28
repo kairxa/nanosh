@@ -24,6 +24,11 @@ export type ModifiersShip =
   //   day change: -1 crew morale
   //   remove: cycle change population <= max population
   | 'ship.day-change.general.overcrowded'
+  // ship.day-change.general.rallied
+  //   +1 self: action.bridge.comms.rally
+  //   day change: +4-8 Civitates
+  //   remove: day change
+  | 'ship.day-change.general.rallied'
   // ship.day-change.supersector.hearthbeat
   //   +1 self: trigger.supersector.event.utadazoey-live-jazz-bar
   //   remove: day change

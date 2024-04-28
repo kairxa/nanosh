@@ -83,10 +83,10 @@ describe('action.bridge.command.liberate', () => {
     })
     expect(error).toBeNull()
     expect(newState?.nanosh.outposts.size).toBe(4)
-    expect(newState?.subsectors.empty.has('Bali, Indonesia')).toBe(true)
-    expect(newState?.subsectors.empty.has('Pontianak, Indonesia')).toBe(true)
-    expect(newState?.subsectors.empty.has('Phnom Penh, Cambodia')).toBe(true)
-    expect(newState?.subsectors.empty.has('Hanoi, Vietnam')).toBe(false)
+    expect(newState?.subsectors.empty.has('Bali, Indonesia')).toBeTrue()
+    expect(newState?.subsectors.empty.has('Pontianak, Indonesia')).toBeTrue()
+    expect(newState?.subsectors.empty.has('Phnom Penh, Cambodia')).toBeTrue()
+    expect(newState?.subsectors.empty.has('Hanoi, Vietnam')).toBeFalse()
     expect(newState?.sectors.get('Bali, Indonesia')?.hp).toBe(0)
     expect(newState?.sectors.get('Pontianak, Indonesia')?.hp).toBe(0)
     expect(newState?.sectors.get('Phnom Penh, Cambodia')?.hp).toBe(0)
@@ -96,10 +96,10 @@ describe('action.bridge.command.liberate', () => {
     )
     expect(
       newState?.nanosh.destroyed.outposts.has('Pontianak, Indonesia'),
-    ).toBe(true)
+    ).toBeTrue()
     expect(
       newState?.nanosh.destroyed.outposts.has('Phnom Penh, Cambodia'),
-    ).toBe(true)
+    ).toBeTrue()
     expect(newState?.nanosh.destroyed.outposts.has('Hanoi, Vietnam')).toBe(
       false,
     )
@@ -121,7 +121,7 @@ describe('action.bridge.command.liberate', () => {
       ...(newState.sectors.get('SEA Bloc') as Supersector),
       hp: 12,
     })
-    expect(newState.nanosh.auxBase.has('SEA Bloc')).toBe(true)
+    expect(newState.nanosh.auxBase.has('SEA Bloc')).toBeTrue()
     ;[newState, error] = liberate({
       state: newState,
       invokeTime: 123,
@@ -129,7 +129,7 @@ describe('action.bridge.command.liberate', () => {
       characterID: 'Solas Mercer',
     })
     expect(error).toBeNull()
-    expect(newState?.nanosh.auxBase.has('SEA Bloc')).toBe(false)
+    expect(newState?.nanosh.auxBase.has('SEA Bloc')).toBeFalse()
     expect(newState?.sectors.get('SEA Bloc')?.hp).toBe(0)
   })
 

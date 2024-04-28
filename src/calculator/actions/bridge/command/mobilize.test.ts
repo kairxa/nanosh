@@ -53,7 +53,7 @@ describe('action.bridge.command.mobilize', () => {
     expect(newSolasMercer!.cycleActions.size).toBe(1)
     expect(newSolasMercer!.ap).toBe(6)
     expect(newState?.ship.supplies).toBe(205)
-    expect(newState?.subsectors.empty.has('Jakarta, Indonesia')).toBe(false)
+    expect(newState?.subsectors.empty.has('Jakarta, Indonesia')).toBeFalse()
     expect(newState?.sectors.get('Jakarta, Indonesia')?.hp).toBe(3)
     expect(newState?.nanosh.liberationPoints.has('Jakarta, Indonesia')).toBe(
       true,

@@ -11,7 +11,7 @@ describe('action.bridge.command.prime', () => {
   it('should add cannon-primed modifier and reduce character ap', () => {
     expect(
       gameState!.ship.modifiers.has('ship.combat.bridge.command.cannon-primed'),
-    ).toBe(false)
+    ).toBeFalse()
     const [newState, _] = prime({
       characterID: 'Solas Mercer',
       start: {

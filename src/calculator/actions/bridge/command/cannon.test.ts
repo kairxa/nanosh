@@ -64,7 +64,7 @@ describe('action.bridge.command.cannon', () => {
     ).toBe(44) // random damage, cool
     expect(
       newState.ship.modifiers.has('ship.combat.bridge.command.cannon-primed'),
-    ).toBe(false)
+    ).toBeFalse()
     ;[newState, error] = cannon({
       gameID: 'cannon-test',
       state: newState,
@@ -116,7 +116,7 @@ describe('action.bridge.command.cannon', () => {
     })
 
     expect(error).toBeNull()
-    expect(newState!.nanosh.auxBase.has('North American Union')).toBe(false)
+    expect(newState!.nanosh.auxBase.has('North American Union')).toBeFalse()
     expect(newState!.sectors.get('North American Union')!.hp).toBe(0)
   })
 
@@ -139,8 +139,8 @@ describe('action.bridge.command.cannon', () => {
     })
 
     expect(error).toBeNull()
-    expect(newState!.nanosh.outposts.has('Wellington, New Zealand')).toBe(false)
-    expect(newState!.subsectors.empty.has('Wellington, New Zealand')).toBe(true)
+    expect(newState!.nanosh.outposts.has('Wellington, New Zealand')).toBeFalse()
+    expect(newState!.subsectors.empty.has('Wellington, New Zealand')).toBeTrue()
     expect(newState!.sectors.get('Wellington, New Zealand')!.hp).toBe(0)
   })
 
