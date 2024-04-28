@@ -1,3 +1,4 @@
+import { INVALID_NOT_ENOUGH_AP } from '@nanosh/messages/errors'
 import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
 import { describe, expect, it } from 'bun:test'
@@ -40,5 +41,20 @@ describe('action.bridge.comms.rally', () => {
     const newTeal = newState?.characters.get('Tee\'elise "Teal" Qing')
     expect(newTeal!.cycleActions.get(123)).toBe('action.bridge.comms.rally')
     expect(newTeal!.ap).toBe(5)
+  })
+
+  it('should invalidate request due to not enough AP', () => {
+    let newState: Game | null
+    let error: Error | null
+    newState = structuredClone(gameState)
+    newState!.characters.get('Tee\'elise "Teal" Qing')!.ap = 0
+    ;[newState, error] = rally({
+      invokeTime: 123,
+      state: newState!,
+      characterID: 'Tee\'elise "Teal" Qing',
+    })
+
+    expect(newState).toBeNull()
+    expect(error?.message).toBe(INVALID_NOT_ENOUGH_AP)
   })
 })
