@@ -6,13 +6,16 @@ import {
 } from '@nanosh/messages/errors'
 import type { Character } from '@nanosh/types/character'
 import type { Game } from '@nanosh/types/game'
-import type { Supersector } from '@nanosh/types/sectors'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
 import { describe, expect, it } from 'bun:test'
 import liberate from './liberate'
+import mobilize, { mobilizeConfirm } from './mobilize'
 
 describe('action.bridge.command.liberate', () => {
-  const [gameState, _] = GetInitialGame('initial-state-game-test', 1715619600000)
+  const [gameState, _] = GetInitialGame(
+    'initial-state-game-test',
+    1715619600000,
+  )
   const solasMercer = gameState!.characters.get('Solas Mercer')
   solasMercer!.ap = 7
   gameState!.sectors.set('Jakarta, Indonesia', {
@@ -83,26 +86,24 @@ describe('action.bridge.command.liberate', () => {
     })
     expect(error).toBeNull()
     expect(newState?.nanosh.outposts.size).toBe(4)
+    expect(newState?.subsectors.empty.has('Pontianak, Indonesia')).toBeFalse()
     expect(newState?.subsectors.empty.has('Bali, Indonesia')).toBeTrue()
-    expect(newState?.subsectors.empty.has('Pontianak, Indonesia')).toBeTrue()
     expect(newState?.subsectors.empty.has('Phnom Penh, Cambodia')).toBeTrue()
-    expect(newState?.subsectors.empty.has('Hanoi, Vietnam')).toBeFalse()
+    expect(newState?.subsectors.empty.has('Hanoi, Vietnam')).toBeTrue()
+    expect(newState?.sectors.get('Pontianak, Indonesia')?.hp).toBe(6)
     expect(newState?.sectors.get('Bali, Indonesia')?.hp).toBe(0)
-    expect(newState?.sectors.get('Pontianak, Indonesia')?.hp).toBe(0)
     expect(newState?.sectors.get('Phnom Penh, Cambodia')?.hp).toBe(0)
-    expect(newState?.sectors.get('Hanoi, Vietnam')?.hp).toBe(6)
-    expect(newState?.nanosh.destroyed.outposts.has('Bali, Indonesia')).toBe(
-      true,
-    )
+    expect(newState?.sectors.get('Hanoi, Vietnam')?.hp).toBe(0)
+    expect(newState?.nanosh.destroyed.outposts.has('Hanoi, Vietnam')).toBeTrue()
     expect(
       newState?.nanosh.destroyed.outposts.has('Pontianak, Indonesia'),
-    ).toBeTrue()
+    ).toBeFalse()
     expect(
       newState?.nanosh.destroyed.outposts.has('Phnom Penh, Cambodia'),
     ).toBeTrue()
-    expect(newState?.nanosh.destroyed.outposts.has('Hanoi, Vietnam')).toBe(
-      false,
-    )
+    expect(
+      newState?.nanosh.destroyed.outposts.has('Bali, Indonesia'),
+    ).toBeTrue()
     expect(
       newState?.characters.get('Solas Mercer')?.cycleActions.get(123),
     ).toBe('action.bridge.command.liberate')
@@ -116,21 +117,31 @@ describe('action.bridge.command.liberate', () => {
     let newState: Game | null
     let error: Error | null
     newState = structuredClone(gameState!)
-    newState.nanosh.auxBase.add('SEA Bloc')
-    newState.sectors.set('SEA Bloc', {
-      ...(newState.sectors.get('SEA Bloc') as Supersector),
-      hp: 12,
+    newState.shipLocation = 'North American Union'
+    ;[newState, error] = mobilize({
+      state: newState!,
+      invokeTime: 123,
+      gameID: 'mobilize-before-liberate',
+      characterID: 'Solas Mercer',
+      targetSubsectorID: 'Toronto, Canada',
     })
-    expect(newState.nanosh.auxBase.has('SEA Bloc')).toBeTrue()
+    ;[newState, error] = mobilizeConfirm({
+      gameID: 'mobilize-before-liberate',
+      characterID: 'Solas Mercer',
+      state: newState!,
+    })
     ;[newState, error] = liberate({
-      state: newState,
+      state: newState!,
       invokeTime: 123,
       gameID: 'liberate-auxbase',
       characterID: 'Solas Mercer',
     })
     expect(error).toBeNull()
-    expect(newState?.nanosh.auxBase.has('SEA Bloc')).toBeFalse()
-    expect(newState?.sectors.get('SEA Bloc')?.hp).toBe(0)
+    expect(newState?.nanosh.auxBase.has('North American Union')).toBeFalse()
+    expect(
+      newState?.nanosh.destroyed.auxBase.has('North American Union'),
+    ).toBeTrue()
+    expect(newState?.sectors.get('North American Union')?.hp).toBe(0)
   })
 
   it('should invalidate request due to ship location', () => {

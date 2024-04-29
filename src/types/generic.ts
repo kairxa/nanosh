@@ -1,6 +1,7 @@
 import type { CharacterNames } from './character'
 import type { Game } from './game'
 
+export const ITEM_ID_LENGTH = 8
 export const MAX_CYCLE_PER_DAY = 4
 
 export const TOTAL_SUPERSECTORS = 12

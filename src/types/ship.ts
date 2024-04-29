@@ -1,4 +1,5 @@
 import type { BrokenTypes } from './generic'
+import type { ItemName } from './item'
 import type { ModifierTracker, ModifiersShip } from './modifiers'
 
 export type FighterCraftTypes = 'buzzard'
@@ -150,12 +151,17 @@ export const ShipNames = new Map<ShipTypes, string>([
   ['griffin', 'GX-03 "Griffin Guardian"'],
 ])
 
+export interface ShipCargo {
+  id: string
+  itemName: ItemName
+}
+
 export interface Ship {
   type: ShipTypes
   health: number
   maxHealth: number
-  cargo: number
-  maxCargo: number
+  cargo: Set<ShipCargo>
+  maxCargoSize: number
   eCells: number
   supplies: number
   rations: number

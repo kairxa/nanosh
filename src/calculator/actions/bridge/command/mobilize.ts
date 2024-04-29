@@ -72,8 +72,7 @@ export default function mobilize({
   const pickedSacrifice = GetRandomArray(
     collectionPickedSacrifices,
     1,
-    gameID,
-    invokeTime,
+    prng,
   )[0] as PickedSacrifice
   const civitates = getRandomNumber(
     MOBILIZE_MIN_CIVITATES,

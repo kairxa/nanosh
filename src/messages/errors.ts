@@ -45,3 +45,5 @@ export const FATAL_LIBERATE_REDUCE_ADVANCE_SUBSECTOR_NAME_MISMATCH =
 
 // action.bridge.command.analyze Errors
 export const INVALID_ANALYZE_NOT_ENOUGH_BASIC_INTEL = 'Not enough basic intel.'
+
+// action.bridge.comms.hail Errors

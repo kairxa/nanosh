@@ -14,6 +14,7 @@ import {
 } from '@nanosh/types/sectors'
 import getAPUsage from '@nanosh/utils/getAPUsage'
 import { GetRandomSet } from '@nanosh/utils/getRandomArray'
+import seedrandom from 'seedrandom'
 import skillModifiers, { SKILL_AP_REDUCE } from './skillModifiers'
 
 interface BridgeCommandLiberateParams
@@ -66,11 +67,11 @@ export default function ({
   )
   const libPoSize = libPoVicinityList.size
   // Get randomized advances that will be removed by liberation points, according to libpo total
+  const prng = seedrandom(`${gameID}-${invokeTime}`)
   const removedAdvancesVicinityList = GetRandomSet(
     advancesVicinityList,
     libPoSize,
-    gameID,
-    invokeTime,
+    prng,
   ) as Set<SubsectorNames>
 
   let removeAdvancesError: Error | null = null
@@ -101,8 +102,7 @@ export default function ({
     const removedOutpostsVicinityList = GetRandomSet(
       outpostsVicinityList,
       libPoSize,
-      gameID,
-      invokeTime,
+      prng,
     ) as Set<SubsectorNames>
     removedOutpostsVicinityList.forEach((subsectorName) => {
       stateCopy.nanosh.outposts.delete(subsectorName)

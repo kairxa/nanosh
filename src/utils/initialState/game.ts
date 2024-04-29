@@ -16,7 +16,7 @@ import type {
 } from '@nanosh/types/sectors'
 import seedrandom from 'seedrandom'
 import { uuidv7 } from 'uuidv7'
-import { GetRandomArray } from '../getRandomArray'
+import { GetRandomArray, GetRandomSet } from '../getRandomArray'
 import { GetInitialCharacters } from './characters'
 import {
   GetSectors,
@@ -35,26 +35,48 @@ export const GetInitialGame = (
   const randomizedSupersectorNames = GetRandomArray(
     SupersectorNamesCollection,
     SupersectorNamesCollection.length + 1,
-    gameID,
-    invokeTime,
+    prng,
   ) as SupersectorNames[]
   const randomizedSubsectorNames = GetRandomArray(
     SubsectorNamesCollection,
     SubsectorNamesCollection.length + 1,
-    gameID,
-    invokeTime,
+    prng,
   ) as SubsectorNames[]
 
-  const nanoshMainBase =
-    prng() < 0.1 ? randomizedSupersectorNames[0] : randomizedSupersectorNames[1]
-  const nanoshAuxBaseInitial = randomizedSupersectorNames[2]
-  const nanoshOutposts = randomizedSubsectorNames.slice(0, 3)
   const sectors = GetSectors()
+  const nanoshMainBase = (
+    GetRandomArray(SupersectorNamesCollection, 1, prng) as SupersectorNames[]
+  )[0]
+  const nanoshAuxBaseInitial = randomizedSupersectorNames[2]
+  const nanoshOutpostSupersectors = GetRandomArray(
+    SupersectorNamesCollection,
+    3,
+    prng,
+  ) as SupersectorNames[]
+  const nanoshOutposts: SubsectorNames[] = []
+  nanoshOutpostSupersectors.forEach((supersectorName) => {
+    const subsectors = (sectors.get(supersectorName) as Supersector).subsectors
+    const outpostSubsector = GetRandomSet(
+      subsectors,
+      1,
+      prng,
+    ) as Set<SubsectorNames>
+    const outpostSubsectorName = outpostSubsector.values().next()
+      .value as SubsectorNames
+
+    nanoshOutposts.push(outpostSubsectorName)
+  })
   ;(sectors.get(nanoshMainBase) as Supersector).hp = HP_NANOSH_MAIN_BASE
   ;(sectors.get(nanoshAuxBaseInitial) as Supersector).hp = HP_NANOSH_AUX_BASE
   nanoshOutposts.forEach((outpost) => {
     ;(sectors.get(outpost) as Subsector).hp = HP_NANOSH_OUTPOST
   })
+  console.log(
+    nanoshMainBase,
+    nanoshAuxBaseInitial,
+    nanoshOutposts,
+    randomizedSupersectorNames,
+  )
 
   const initialGame: Game = {
     id: gameID,

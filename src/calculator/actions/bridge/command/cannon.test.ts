@@ -11,7 +11,10 @@ import advance from './advance'
 import cannon from './cannon'
 
 describe('action.bridge.command.cannon', () => {
-  const [gameState, _] = GetInitialGame('initial-state-game-test', 1715619600000) as [Game, null]
+  const [gameState, _] = GetInitialGame(
+    'initial-state-game-test',
+    12345678,
+  ) as [Game, null]
   const solasMercer = gameState.characters.get('Solas Mercer') as Character
   solasMercer.ap = 7
   solasMercer.playerID = 'my-current-player'
@@ -20,31 +23,29 @@ describe('action.bridge.command.cannon', () => {
       cycle: 1,
       day: 1,
     },
+    expiry: {
+      day: -1,
+      cycle: -1,
+    },
     amount: 1,
-    expiry: -1,
   })
   gameState.ship.modifiers.set('ship.persistent.engine.optimized', {
     start: {
       cycle: 1,
       day: 1,
     },
+    expiry: {
+      cycle: 4,
+      day: 2,
+    },
     amount: 1,
-    expiry: 8,
   })
 
   it('should fire cannon and damage a target', () => {
     let newState: Game
     let error: null
-    ;[newState, error] = advance({
-      state: gameState,
-      characterID: 'Solas Mercer',
-      targetSupersectorID: gameState?.nanosh.mainBase as SupersectorNames,
-      invokeTime: 111,
-    }) as [Game, null]
-    expect(error).toBeNull()
-
-    expect(newState.characters.get('Solas Mercer')?.ap).toBe(6) // advancing once
-    expect(newState.ship.eCells).toBe(80)
+    newState = structuredClone(gameState)
+    newState.shipLocation = 'Antarctic Pole'
     ;[newState, error] = cannon({
       gameID: 'cannon-test',
       state: newState,
@@ -55,10 +56,9 @@ describe('action.bridge.command.cannon', () => {
 
     const newCycleActions =
       newState.characters.get('Solas Mercer')?.cycleActions
-    expect(newCycleActions?.get(111)).toBe('action.bridge.command.advance')
     expect(newCycleActions?.get(120)).toBe('action.bridge.command.cannon')
-    expect(newState.characters.get('Solas Mercer')?.ap).toBe(6) // still same
-    expect(newState.ship.eCells).toBe(80) // still same, cannon-prime
+    expect(newState.characters.get('Solas Mercer')?.ap).toBe(7) // still same
+    expect(newState.ship.eCells).toBe(120) // still same, cannon-prime
     expect(
       newState.sectors.get(gameState.nanosh.mainBase as SupersectorNames)?.hp,
     ).toBe(44) // random damage, cool
@@ -73,8 +73,8 @@ describe('action.bridge.command.cannon', () => {
       targetID: gameState?.nanosh.mainBase as SupersectorNames,
     }) as [Game, null]
 
-    expect(newState.characters.get('Solas Mercer')?.ap).toBe(5)
-    expect(newState.ship.eCells).toBe(75) // only reduced 5, engine optimized
+    expect(newState.characters.get('Solas Mercer')?.ap).toBe(6)
+    expect(newState.ship.eCells).toBe(115) // only reduced 5, engine optimized
     expect(
       newState.sectors.get(gameState.nanosh.mainBase as SupersectorNames)?.hp,
     ).toBe(39)
@@ -89,59 +89,55 @@ describe('action.bridge.command.cannon', () => {
       targetID: gameState?.nanosh.mainBase as SupersectorNames,
     }) as [Game, null]
 
-    expect(newState.ship.eCells).toBe(65) // reduced by 10
+    expect(newState.ship.eCells).toBe(105) // reduced by 10
     expect(
       newState.sectors.get(gameState.nanosh.mainBase as SupersectorNames)?.hp,
     ).toBe(0)
     expect(newState.nanosh.mainBase).toBeNull()
-    expect(newState.characters.get('Solas Mercer')?.cycleActions.size).toBe(4) // shouldn't be possible, as max action per cycle is 3. But for the sake of testing.
+    expect(newState.characters.get('Solas Mercer')?.cycleActions.size).toBe(3)
   })
 
   it('should remove aux base', () => {
     let newState: Game | null
     let error: Error | null
-    ;[newState, error] = advance({
-      state: gameState,
-      characterID: 'Solas Mercer',
-      targetSupersectorID: 'North American Union',
-      invokeTime: 111,
-    })
-    newState!.sectors.get('North American Union')!.hp = 4
+    newState = structuredClone(gameState)
+    newState.shipLocation = 'RUSSE-CAN'
+    newState.sectors.get('RUSSE-CAN')!.hp = 4
     ;[newState, error] = cannon({
       gameID: 'cannon-test',
       state: newState!,
       characterID: 'Solas Mercer',
       invokeTime: 123,
-      targetID: 'North American Union',
+      targetID: 'RUSSE-CAN',
     })
 
     expect(error).toBeNull()
-    expect(newState!.nanosh.auxBase.has('North American Union')).toBeFalse()
-    expect(newState!.sectors.get('North American Union')!.hp).toBe(0)
+    expect(newState!.nanosh.auxBase.has('RUSSE-CAN')).toBeFalse()
+    expect(newState!.sectors.get('RUSSE-CAN')!.hp).toBe(0)
   })
 
   it('should remove outpost', () => {
     let newState: Game | null
     let error: Error | null
-    ;[newState, error] = advance({
-      state: gameState,
-      characterID: 'Solas Mercer',
-      targetSupersectorID: 'Oceanian Front',
-      invokeTime: 111,
-    })
-    newState!.sectors.get('Wellington, New Zealand')!.hp = 4
+    newState = structuredClone(gameState)
+    newState.shipLocation = 'Oceanian Front'
+    newState!.sectors.get('Port Moresby, Papua New Guinea')!.hp = 4
     ;[newState, error] = cannon({
       gameID: 'cannon-test',
       state: newState!,
       characterID: 'Solas Mercer',
       invokeTime: 123,
-      targetID: 'Wellington, New Zealand',
+      targetID: 'Port Moresby, Papua New Guinea',
     })
 
     expect(error).toBeNull()
-    expect(newState!.nanosh.outposts.has('Wellington, New Zealand')).toBeFalse()
-    expect(newState!.subsectors.empty.has('Wellington, New Zealand')).toBeTrue()
-    expect(newState!.sectors.get('Wellington, New Zealand')!.hp).toBe(0)
+    expect(
+      newState!.nanosh.outposts.has('Port Moresby, Papua New Guinea'),
+    ).toBeFalse()
+    expect(
+      newState!.subsectors.empty.has('Port Moresby, Papua New Guinea'),
+    ).toBeTrue()
+    expect(newState!.sectors.get('Port Moresby, Papua New Guinea')!.hp).toBe(0)
   })
 
   it('should return error invalid target not nanosh structure', () => {
@@ -180,7 +176,7 @@ describe('action.bridge.command.cannon', () => {
       state: gameState,
       characterID: 'Solas Mercer',
       invokeTime: 123,
-      targetID: 'Wellington, New Zealand',
+      targetID: 'Port Moresby, Papua New Guinea',
     })
     expect(error?.message).toBe(INVALID_SHIP_LOCATION)
     expect(newState).toBeNull()

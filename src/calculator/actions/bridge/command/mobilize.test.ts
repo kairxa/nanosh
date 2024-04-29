@@ -1,8 +1,8 @@
 import {
   INVALID_MOBILIZE_NOT_ENOUGH_RESOURCES,
   INVALID_MOBILIZE_TARGET,
-  INVALID_SHIP_LOCATION,
   INVALID_NOT_ENOUGH_AP,
+  INVALID_SHIP_LOCATION,
 } from '@nanosh/messages/errors'
 import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
@@ -11,7 +11,10 @@ import advance from './advance'
 import mobilize, { mobilizeConfirm, mobilizeRefuse } from './mobilize'
 
 describe('action.bridge.command.mobilize', () => {
-  const [gameState, _] = GetInitialGame('initial-state-game-test', 1715619600000)
+  const [gameState, _] = GetInitialGame(
+    'initial-state-game-test',
+    1715619600000,
+  )
   const solasMercer = gameState!.characters.get('Solas Mercer')
   solasMercer!.ap = 7
   it('should mobilize and generate required resources and then confirm', () => {
@@ -30,9 +33,9 @@ describe('action.bridge.command.mobilize', () => {
       newState?.anyMap.get('testing-mobilize-Solas Mercer-mobilize'),
     ).toEqual({
       pickedSacrifice: 'supplies',
-      supplies: 35,
-      eCells: 5,
-      civitates: 15,
+      supplies: 46,
+      eCells: 7,
+      civitates: 8,
       targetSubsectorID: 'Jakarta, Indonesia',
     })
     // expect character cycle actions are added
@@ -52,7 +55,7 @@ describe('action.bridge.command.mobilize', () => {
     newSolasMercer = newState!.characters.get('Solas Mercer')
     expect(newSolasMercer!.cycleActions.size).toBe(1)
     expect(newSolasMercer!.ap).toBe(6)
-    expect(newState?.ship.supplies).toBe(205)
+    expect(newState?.ship.supplies).toBe(194)
     expect(newState?.subsectors.empty.has('Jakarta, Indonesia')).toBeFalse()
     expect(newState?.sectors.get('Jakarta, Indonesia')?.hp).toBe(3)
     expect(newState?.nanosh.liberationPoints.has('Jakarta, Indonesia')).toBe(
@@ -85,13 +88,13 @@ describe('action.bridge.command.mobilize', () => {
       characterID: 'Solas Mercer',
       invokeTime: 121,
       state: gameState!,
-      targetSupersectorID: 'European Federation',
+      targetSupersectorID: 'East Asia Enclave',
     })
     ;[newState, error] = mobilize({
       state: newState!,
       invokeTime: 123,
       characterID: 'Solas Mercer',
-      targetSubsectorID: 'Berlin, Germany',
+      targetSubsectorID: 'Sapporo, Japan',
       gameID: 'testing-mobilize',
     })
 
@@ -139,7 +142,7 @@ describe('action.bridge.command.mobilize', () => {
     })
     expect(newState).toBeNull()
     expect(error?.message).toBe(
-      `${INVALID_MOBILIZE_NOT_ENOUGH_RESOURCES} - Requested: supplies with amount 35`,
+      `${INVALID_MOBILIZE_NOT_ENOUGH_RESOURCES} - Requested: supplies with amount 46`,
     )
   })
 
@@ -158,9 +161,9 @@ describe('action.bridge.command.mobilize', () => {
       newState?.anyMap.get('testing-mobilize-Solas Mercer-mobilize'),
     ).toEqual({
       pickedSacrifice: 'supplies',
-      supplies: 35,
-      eCells: 5,
-      civitates: 15,
+      supplies: 46,
+      eCells: 7,
+      civitates: 8,
       targetSubsectorID: 'Jakarta, Indonesia',
     })
     ;[newState, error] = mobilizeRefuse({
@@ -192,7 +195,7 @@ describe('action.bridge.command.mobilize', () => {
     })
     expect(newState).toBeNull()
     expect(error?.message).toBe(
-      `${INVALID_MOBILIZE_NOT_ENOUGH_RESOURCES} - Requested: supplies with amount 35`,
+      `${INVALID_MOBILIZE_NOT_ENOUGH_RESOURCES} - Requested: supplies with amount 46`,
     )
   })
 })

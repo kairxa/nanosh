@@ -1,13 +1,15 @@
-import { describe, expect, it, setSystemTime } from 'bun:test'
+import { describe, expect, it } from 'bun:test'
+import seedrandom from 'seedrandom'
 import { GetRandomArray } from './getRandomArray'
 import { SupersectorNamesCollection } from './initialState/sectors'
 
 describe('getRandomArray', () => {
   it('should randomize array', () => {
-    setSystemTime(new Date(2024, 4, 14))
+    const prng = seedrandom('randomize-array-test')
     const randomizedSupersectorCollection = GetRandomArray(
       SupersectorNamesCollection,
       SupersectorNamesCollection.length,
+      prng,
     )
 
     expect(randomizedSupersectorCollection[0]).not.toBe(

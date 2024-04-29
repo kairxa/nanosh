@@ -1,14 +1,10 @@
 import seedrandom from 'seedrandom'
-import { uuidv7 } from 'uuidv7'
 
 export function GetRandomArray(
   array: unknown[],
   retrievedTotal: number,
-  gameID: string = uuidv7(),
-  invokeTime: number = new Date().getTime(),
+  prng: seedrandom.PRNG,
 ): unknown[] {
-  const prng = seedrandom(`${gameID}-${invokeTime}`)
-
   const arr = structuredClone(array)
   let currentIndex = arr.length
   while (currentIndex != 0) {
@@ -26,10 +22,9 @@ export function GetRandomArray(
 export function GetRandomSet(
   set: Set<unknown>,
   retrievedTotal: number,
-  gameID: string = uuidv7(),
-  invokeTime: number = new Date().getTime(),
+  prng: seedrandom.PRNG,
 ): Set<unknown> {
   const arr = Array.from(set)
 
-  return new Set(GetRandomArray(arr, retrievedTotal, gameID, invokeTime))
+  return new Set(GetRandomArray(arr, retrievedTotal, prng))
 }

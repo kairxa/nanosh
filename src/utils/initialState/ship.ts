@@ -1,5 +1,5 @@
 import type { ModifierTracker, ModifiersShip } from '@nanosh/types/modifiers'
-import type { Ship, ShipTypes } from '../../types/ship'
+import { type Ship, type ShipCargo, type ShipTypes } from '../../types/ship'
 import { GetInitialExpoCrafts, GetInitialFighterCrafts } from './aircrafts'
 import { GetInitialShipRooms } from './rooms'
 
@@ -13,8 +13,8 @@ export const GetInitialShip = (
     type,
     health: 0,
     maxHealth: 0,
-    cargo: 0,
-    maxCargo: 0,
+    cargo: new Set<ShipCargo>(),
+    maxCargoSize: 0,
     eCells: 0,
     supplies: 0,
     rations: 0,
@@ -30,8 +30,7 @@ export const GetInitialShip = (
     case 'griffin':
       ship.health = 200
       ship.maxHealth = 300
-      ship.cargo = 0
-      ship.maxCargo = 800
+      ship.maxCargoSize = 800
       ship.eCells = 120
       ship.supplies = 240
       ship.rations = 100
