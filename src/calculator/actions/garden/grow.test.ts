@@ -22,7 +22,7 @@ describe('action.bridge.comms.garden', () => {
 
     const newGass = newState?.characters.get('X7-Gastronia "Gass" Petalnova')
     expect(newGass?.ap).toBe(6)
-    expect(newGass?.cycleActions.get(12345)).toBe('action.bridge.garden.grow')
+    expect(newGass?.cycleActions.get(12345)).toBe('action.garden.grow')
 
     expect(
       newState?.ship.modifiers.get('ship.day-change.garden.grow'),

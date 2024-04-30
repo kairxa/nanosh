@@ -7,7 +7,7 @@ import type { ModifiersShip } from '@nanosh/types/modifiers'
 import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
 
-interface BridgeGardenGrowParams
+interface GardenGrowParams
   extends Pick<
     GenericCalculatorParams,
     'state' | 'characterID' | 'invokeTime'
@@ -23,7 +23,7 @@ export default function ({
   state,
   characterID,
   invokeTime,
-}: BridgeGardenGrowParams): DefaultCalculatorReturnType {
+}: GardenGrowParams): DefaultCalculatorReturnType {
   const stateCopy = structuredClone(state)
 
   const character = stateCopy.characters.get(characterID)
@@ -41,7 +41,7 @@ export default function ({
     expiry: { day: stateCopy.day, cycle: MAX_CYCLE_PER_DAY },
   })
   stateCopy.ship.supplies -= GROW_RESOURCE_TAKEN
-  character?.cycleActions.set(invokeTime, 'action.bridge.garden.grow')
+  character?.cycleActions.set(invokeTime, 'action.garden.grow')
   character!.ap -= apUsed
 
   return [stateCopy, null]

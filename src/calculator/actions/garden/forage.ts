@@ -9,7 +9,7 @@ import getAPUsage from '@nanosh/utils/getAPUsage'
 import getRandomNumber from '@nanosh/utils/getRandomNumber'
 import seedrandom from 'seedrandom'
 
-interface BridgeGardenForageParams
+interface GardenForageParams
   extends Pick<
     GenericCalculatorParams,
     'state' | 'gameID' | 'characterID' | 'invokeTime'
@@ -27,7 +27,7 @@ export default function ({
   gameID,
   characterID,
   invokeTime,
-}: BridgeGardenForageParams): DefaultCalculatorReturnType {
+}: GardenForageParams): DefaultCalculatorReturnType {
   const stateCopy = structuredClone(state)
 
   const character = stateCopy.characters.get(characterID)
@@ -52,7 +52,7 @@ export default function ({
     expiry: { day: stateCopy.day, cycle: MAX_CYCLE_PER_DAY },
   })
   stateCopy.ship.supplies += givenAmount
-  character?.cycleActions.set(invokeTime, 'action.bridge.garden.forage')
+  character?.cycleActions.set(invokeTime, 'action.garden.forage')
   character!.ap -= apUsed
 
   return [stateCopy, null]
