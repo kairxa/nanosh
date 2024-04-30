@@ -71,12 +71,6 @@ export const GetInitialGame = (
   nanoshOutposts.forEach((outpost) => {
     ;(sectors.get(outpost) as Subsector).hp = HP_NANOSH_OUTPOST
   })
-  console.log(
-    nanoshMainBase,
-    nanoshAuxBaseInitial,
-    nanoshOutposts,
-    randomizedSupersectorNames,
-  )
 
   const initialGame: Game = {
     id: gameID,
