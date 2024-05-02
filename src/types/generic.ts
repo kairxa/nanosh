@@ -21,6 +21,9 @@ export const HP_NANOSH_MAIN_BASE = 50
 export const HP_NANOSH_AUX_BASE = 25
 export const HP_NANOSH_OUTPOST = 10
 
+export const CANNON_DEFAULT_MIN_DAMAGE = 5
+export const CANNON_DEFAULT_MAX_DAMAGE = 8
+
 export type BrokenTypes = 'broken' | 'fixed'
 
 export interface Point {

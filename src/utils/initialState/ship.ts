@@ -1,7 +1,10 @@
+import { CANNON_DEFAULT_MAX_DAMAGE, CANNON_DEFAULT_MIN_DAMAGE } from '@nanosh/types/generic'
 import type { ModifierTracker, ModifiersShip } from '@nanosh/types/modifiers'
+import type { ProjectNames } from '@nanosh/types/projects'
 import { type Ship, type ShipCargo, type ShipTypes } from '../../types/ship'
 import { GetInitialExpoCrafts, GetInitialFighterCrafts } from './aircrafts'
 import { GetInitialShipRooms } from './rooms'
+import type {ActionDamage, Actions} from '@nanosh/types/actions'
 
 export interface GetInitialShipParams {
   type: ShipTypes
@@ -24,6 +27,13 @@ export const GetInitialShip = (
     fighterCrafts: GetInitialFighterCrafts({ shipType: type }),
     expoCrafts: GetInitialExpoCrafts({ shipType: type }),
     modifiers: new Map<ModifiersShip, ModifierTracker>(),
+    projects: {
+      queued: new Map<number, ProjectNames>(),
+      done: new Set<ProjectNames>(),
+    },
+    damage: new Map<Actions, ActionDamage>([
+      ['action.bridge.command.cannon', { min: CANNON_DEFAULT_MIN_DAMAGE, max: CANNON_DEFAULT_MAX_DAMAGE }]
+    ]),
   }
 
   switch (type) {

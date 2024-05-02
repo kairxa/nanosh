@@ -18,3 +18,8 @@ export type Actions =
   | 'action.private-quarters.sleep'
   | 'action.private-quarters.seggs'
   | 'action.private-quarters.shower'
+
+export interface ActionDamage {
+  min: number
+  max: number
+}

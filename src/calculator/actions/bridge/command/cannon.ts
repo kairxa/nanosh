@@ -27,8 +27,6 @@ interface BridgeCommandCannonParams
 
 const CANNON_DEFAULT_AP_USAGE = 2
 const CANNON_DEFAULT_ECELLS_USAGE = 10
-const CANNON_MIN_DAMAGE = 5
-const CANNON_MAX_DAMAGE = 8
 const MODIFIER_ENGINE_OPTIMIZED_ECELLS_USAGE_MULTIPLIER = 0.5
 
 export default function ({
@@ -87,7 +85,12 @@ export default function ({
   }
 
   const prng = seedrandom(`${gameID}-${invokeTime}`)
-  const damage = getRandomNumber(CANNON_MIN_DAMAGE, CANNON_MAX_DAMAGE, prng)
+  const cannonDamageState = stateCopy.ship.damage.get('action.bridge.command.cannon')
+  const damage = getRandomNumber(
+    cannonDamageState!.min,
+    cannonDamageState!.max,
+    prng,
+  )
 
   const sectorTarget = stateCopy.sectors.get(targetID)! // all guards have been written above.
 

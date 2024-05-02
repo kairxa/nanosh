@@ -1,6 +1,8 @@
+import type {ActionDamage, Actions} from './actions'
 import type { BrokenTypes } from './generic'
 import type { ItemName } from './item'
 import type { ModifierTracker, ModifiersShip } from './modifiers'
+import type { ProjectNames } from './projects'
 
 export type FighterCraftTypes = 'buzzard'
 export type ExpoCraftTypes = 'blitzhopper' | 'forthopper'
@@ -171,4 +173,10 @@ export interface Ship {
   fighterCrafts: Map<number, FighterCraft>
   expoCrafts: Map<number, ExpoCraft>
   modifiers: Map<ModifiersShip, ModifierTracker>
+  projects: {
+    queued: Map<number, ProjectNames>
+    done: Set<ProjectNames>
+  }
+  // Actually actions damage. For cannon action inside bridge or gun actions during CBD
+  damage: Map<Actions, ActionDamage>
 }
