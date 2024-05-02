@@ -17,6 +17,7 @@ describe('action.bridge.comms.garden', () => {
       state: gameState!,
       invokeTime: 12345,
       characterID: 'X7-Gastronia "Gass" Petalnova',
+      gameID: 'grow-test',
     })
     expect(error).toBeNull()
 
@@ -42,8 +43,28 @@ describe('action.bridge.comms.garden', () => {
       state: gameState!,
       invokeTime: 12345,
       characterID: 'Alisa Huang',
+      gameID: 'grow-test',
     })
     expect(error?.message).toBe(INVALID_NOT_ENOUGH_AP)
     expect(newState).toBeNull()
+  })
+
+  it('should calculate dirtiness', () => {
+    let newState: Game | null
+    let error: Error | null
+    newState = structuredClone(gameState)
+    newState!.characters.get('Alisa Huang')!.ap = 7
+    ;[newState, error] = grow({
+      state: newState!,
+      invokeTime: 1235,
+      gameID: 'grow-test-dirty',
+      characterID: 'Alisa Huang',
+    })
+    expect(error).toBeNull()
+    expect(
+      newState?.characters
+        .get('Alisa Huang')
+        ?.modifiers.has('character.cycle.dirty'),
+    ).toBeTrue()
   })
 })

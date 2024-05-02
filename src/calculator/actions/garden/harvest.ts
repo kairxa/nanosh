@@ -4,8 +4,10 @@ import type {
 } from '@nanosh/types/generic'
 import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
+import getRandomBool from '@nanosh/utils/getRandomBool'
 import getRandomNumber from '@nanosh/utils/getRandomNumber'
 import seedrandom from 'seedrandom'
+import { DIRTY_FORBID_TRAITS } from './skillModifiers'
 
 interface GardenHarvestParams
   extends Pick<
@@ -56,6 +58,23 @@ export default function ({
   stateCopy.ship.modifiers.delete('ship.persistent.garden.bountiful')
   stateCopy.ship.modifiers.delete('ship.persistent.garden.sapped')
   stateCopy.ship.rations += givenRation
+  if (character!.trait.intersection(DIRTY_FORBID_TRAITS).size <= 0) {
+    const charaterWillDirty = getRandomBool(prng)
+
+    if (charaterWillDirty) {
+      character?.modifiers.set('character.cycle.dirty', {
+        amount: 1,
+        start: {
+          day: stateCopy.day,
+          cycle: stateCopy.cycle,
+        },
+        expiry: {
+          day: -1,
+          cycle: -1,
+        },
+      })
+    }
+  }
   character!.cycleActions.set(invokeTime, 'action.garden.harvest')
   character!.ap -= apUsed
 

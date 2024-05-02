@@ -6,8 +6,10 @@ import {
 import type { ModifiersShip } from '@nanosh/types/modifiers'
 import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
+import getRandomBool from '@nanosh/utils/getRandomBool'
 import getRandomNumber from '@nanosh/utils/getRandomNumber'
 import seedrandom from 'seedrandom'
+import { DIRTY_FORBID_TRAITS } from './skillModifiers'
 
 interface GardenForageParams
   extends Pick<
@@ -52,6 +54,23 @@ export default function ({
     expiry: { day: stateCopy.day, cycle: MAX_CYCLE_PER_DAY },
   })
   stateCopy.ship.supplies += givenAmount
+  if (character!.trait.intersection(DIRTY_FORBID_TRAITS).size <= 0) {
+    const charaterWillDirty = getRandomBool(prng)
+
+    if (charaterWillDirty) {
+      character?.modifiers.set('character.cycle.dirty', {
+        amount: 1,
+        start: {
+          day: stateCopy.day,
+          cycle: stateCopy.cycle,
+        },
+        expiry: {
+          day: -1,
+          cycle: -1,
+        },
+      })
+    }
+  }
   character?.cycleActions.set(invokeTime, 'action.garden.forage')
   character!.ap -= apUsed
 

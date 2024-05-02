@@ -108,4 +108,23 @@ describe('action.garden.harvest', () => {
     expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_NOT_ENOUGH_AP)
   })
+
+  it('should calculate dirtiness', () => {
+    let newState: Game | null
+    let error: Error | null
+    newState = structuredClone(gameState)
+    newState!.characters.get('Alisa Huang')!.ap = 7
+    ;[newState, error] = harvest({
+      state: newState!,
+      invokeTime: 1234,
+      gameID: 'harvest-test-dirty',
+      characterID: 'Alisa Huang',
+    })
+    expect(error).toBeNull()
+    expect(
+      newState?.characters
+        .get('Alisa Huang')
+        ?.modifiers.has('character.cycle.dirty'),
+    ).toBeTrue()
+  })
 })
