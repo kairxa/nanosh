@@ -6,7 +6,7 @@ import {
 import type { ModifiersShip } from '@nanosh/types/modifiers'
 import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
-import getRandomBool from '@nanosh/utils/getRandomBool'
+import GetRandomBool from '@nanosh/utils/getRandomBool'
 import getRandomNumber from '@nanosh/utils/getRandomNumber'
 import seedrandom from 'seedrandom'
 import { DIRTY_FORBID_TRAITS } from './skillModifiers'
@@ -55,7 +55,7 @@ export default function ({
   })
   stateCopy.ship.supplies += givenAmount
   if (character!.trait.intersection(DIRTY_FORBID_TRAITS).size <= 0) {
-    const charaterWillDirty = getRandomBool(prng)
+    const charaterWillDirty = GetRandomBool(prng)
 
     if (charaterWillDirty) {
       character?.modifiers.set('character.cycle.dirty', {

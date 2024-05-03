@@ -37,9 +37,9 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
         dead: false,
         trait: new Set<Traits>(['trait.defender']),
         skills: new Set<Skills>([
-          'skill.shooter',
+          'skill.infantry',
           'skill.protector',
-          'skill.cqc',
+          'skill.triarii',
           'skill.stalwart',
         ]),
         wounds: [],
@@ -134,7 +134,7 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
         skills: new Set<Skills>([
           'skill.botanist',
           'skill.cook',
-          'skill.cqc',
+          'skill.engineer',
           'skill.demolition',
         ]),
         wounds: [],

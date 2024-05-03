@@ -1,4 +1,4 @@
-import { INVALID_PROJECT_QUEUE_MAX_REACHED } from '@nanosh/messages/errors'
+import { INVALID_REVIEW_PROJECT_QUEUE_MAX_REACHED } from '@nanosh/messages/errors'
 import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
 import { Projects } from '@nanosh/utils/initialState/projects'
@@ -63,6 +63,6 @@ describe('action.rnd.review', () => {
     })
 
     expect(newState).toBeNull()
-    expect(error?.message).toBe(INVALID_PROJECT_QUEUE_MAX_REACHED)
+    expect(error?.message).toBe(INVALID_REVIEW_PROJECT_QUEUE_MAX_REACHED)
   })
 })

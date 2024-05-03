@@ -24,6 +24,8 @@ export const HP_NANOSH_OUTPOST = 10
 export const CANNON_DEFAULT_MIN_DAMAGE = 5
 export const CANNON_DEFAULT_MAX_DAMAGE = 8
 
+export const PROJECT_QUEUE_MAX_SIZE = 3
+
 export type BrokenTypes = 'broken' | 'fixed'
 
 export interface Point {

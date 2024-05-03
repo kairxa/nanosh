@@ -11,6 +11,7 @@ export const INVALID_PLAYER_MISMATCH = 'Player - Character Mismatch'
 export const INVALID_MAX_ACTIONS_PER_CYCLE_REACHED =
   'Maximum Actions per Cycle Reached'
 export const INVALID_CHARACTER_DEAD = 'Character is Dead'
+export const INVALID_CHARACTER_DIRTY = 'Excessive filth detected.'
 
 // Generic Errors
 export const INVALID_NOT_ENOUGH_AP = 'Not Enough AP'
@@ -47,5 +48,11 @@ export const FATAL_LIBERATE_REDUCE_ADVANCE_SUBSECTOR_NAME_MISMATCH =
 export const INVALID_ANALYZE_NOT_ENOUGH_BASIC_INTEL = 'Not enough basic intel.'
 
 // action.rnd.review Errors
-export const INVALID_PROJECT_QUEUE_MAX_REACHED =
+export const INVALID_REVIEW_PROJECT_QUEUE_MAX_REACHED =
   'Maximum project queue reached.'
+
+// action.rnd.research Errors
+export const INVALID_RESEARCH_QUEUE_ID_MISMATCH =
+  'Queue ID does not match any project.'
+export const FATAL_RESEARCH_PROJECT_NAME_NOT_FOUND =
+  'Invalid project name inside selected queue ID'
