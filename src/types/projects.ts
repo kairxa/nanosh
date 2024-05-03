@@ -1,3 +1,6 @@
+import type { Game } from './game'
+import type { DefaultCalculatorReturnType } from './generic'
+
 export type ProjectNames =
   | 'File G11 - Apex Bio Enhancement'
   | 'File 128 - Finesse Protocol'
@@ -25,6 +28,7 @@ export type ProjectTypes = 'Bio' | 'TechGi'
 export interface ProjectDetails {
   type: Set<ProjectTypes>
   progressNeeded: number
+  completedCallback: (state: Game) => DefaultCalculatorReturnType
 }
 
 export interface ProjectProgress {
