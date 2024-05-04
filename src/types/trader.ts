@@ -1,4 +1,4 @@
-import type { ItemName } from './item'
+import type { ItemNames } from './item'
 
 export type TraderResources = 'supplies' | 'rations' | 'eCells' // needs to match key in Ship interface
 export interface Trader {
@@ -12,7 +12,7 @@ export interface Trader {
   items?: Set<{
     minGiven: number
     maxGiven: number
-    itemName: ItemName
+    itemName: ItemNames
   }>
 }
 
@@ -22,7 +22,7 @@ export interface TraderShowGiveTake {
 }
 
 export interface TraderShowItem {
-  itemName: ItemName
+  itemName: ItemNames
   given: number
 }
 export interface TraderShow {

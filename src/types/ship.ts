@@ -1,6 +1,6 @@
 import type { ActionDamage, Actions } from './actions'
 import type { BrokenTypes } from './generic'
-import type { ItemName } from './item'
+import type { ItemNames } from './item'
 import type { ModifierTracker, ModifiersShip } from './modifiers'
 import type { ProjectNames, ProjectProgress } from './projects'
 
@@ -155,7 +155,7 @@ export const ShipNames = new Map<ShipTypes, string>([
 
 export interface ShipCargo {
   id: string
-  itemName: ItemName
+  itemName: ItemNames
 }
 
 export interface Ship {

@@ -8,6 +8,7 @@ import {
   MAX_MORALE,
   MAX_NANOSH_SYMPATHY,
 } from '@nanosh/types/generic'
+import type { ItemNames } from '@nanosh/types/item'
 import type {
   Subsector,
   SubsectorNames,
@@ -97,11 +98,13 @@ export const GetInitialGame = (
         outposts: new Set<SubsectorNames>(),
         auxBase: new Set<SupersectorNames>(),
       },
+      assimilateEnabled: false,
     },
     subsectors: {
       empty: new Set<SubsectorNames>(randomizedSubsectorNames.slice(3)),
     },
     sectors,
+    craftable: new Set<ItemNames>(),
     anyMap: new Map(),
   }
 

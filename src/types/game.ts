@@ -1,4 +1,5 @@
 import type { Character, CharacterNames } from './character'
+import type { ItemNames } from './item'
 import type {
   Subsector,
   SubsectorNames,
@@ -32,10 +33,12 @@ export interface Game {
       outposts: Set<SubsectorNames>
       auxBase: Set<SupersectorNames>
     }
+    assimilateEnabled: boolean
   }
   subsectors: {
     empty: Set<SubsectorNames>
   }
   sectors: Map<SupersectorNames | SubsectorNames, Supersector | Subsector>
+  craftable: Set<ItemNames>
   anyMap: Map<any, any> // For anything that needs to be stored temporarily, e.g. action.bridge.command.mobilize before confirm
 }
