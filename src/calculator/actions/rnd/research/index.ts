@@ -110,7 +110,7 @@ export function researchProgress({
   }
 
   currentProject.progressCurrent += progressGiven
-  if (currentProject.progressCurrent === projectDetail.progressNeeded) {
+  if (currentProject.progressCurrent >= projectDetail.progressNeeded) {
     stateCopy.ship.projects.queued.delete(selectedProjectName)
     stateCopy.ship.projects.done.add(selectedProjectName)
     ;[stateCopy, error] = projectDetail.completedCallback(stateCopy)

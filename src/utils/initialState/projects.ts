@@ -1,6 +1,10 @@
+import { supportBpRecoA } from '@nanosh/calculator/actions/rnd/research/files/100'
+import { supportBpRecoB } from '@nanosh/calculator/actions/rnd/research/files/101'
 import { finesseProtocol } from '@nanosh/calculator/actions/rnd/research/files/128'
 import { equilibrium } from '@nanosh/calculator/actions/rnd/research/files/129'
+import { hyperhealAmpoule } from '@nanosh/calculator/actions/rnd/research/files/252'
 import { apexBioEnhancement } from '@nanosh/calculator/actions/rnd/research/files/G11'
+import { nanoshAssimilationProtocol } from '@nanosh/calculator/actions/rnd/research/files/NAP'
 import { placeholder } from '@nanosh/calculator/actions/rnd/research/files/placeholder'
 import {
   type ProjectDetails,
@@ -41,8 +45,7 @@ export const Projects: Map<ProjectNames, ProjectDetails> = new Map<
     {
       type: new Set<ProjectTypes>(['Bio']),
       progressNeeded: 8,
-      // TODO: CHANGE COMPLETED CALLBACK
-      completedCallback: placeholder,
+      completedCallback: hyperhealAmpoule,
     },
   ],
   [
@@ -86,8 +89,7 @@ export const Projects: Map<ProjectNames, ProjectDetails> = new Map<
     {
       type: new Set<ProjectTypes>(['TechGi']),
       progressNeeded: 8,
-      // TODO: CHANGE COMPLETED CALLBACK
-      completedCallback: placeholder,
+      completedCallback: supportBpRecoA,
     },
   ],
   [
@@ -95,8 +97,7 @@ export const Projects: Map<ProjectNames, ProjectDetails> = new Map<
     {
       type: new Set<ProjectTypes>(['TechGi']),
       progressNeeded: 8,
-      // TODO: CHANGE COMPLETED CALLBACK
-      completedCallback: placeholder,
+      completedCallback: supportBpRecoB,
     },
   ],
   [
@@ -185,8 +186,7 @@ export const Projects: Map<ProjectNames, ProjectDetails> = new Map<
     {
       type: new Set<ProjectTypes>(['TechGi']),
       progressNeeded: 25,
-      // TODO: CHANGE COMPLETED CALLBACK
-      completedCallback: placeholder,
+      completedCallback: nanoshAssimilationProtocol,
     },
   ],
 ])

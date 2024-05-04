@@ -189,6 +189,7 @@ describe('action.rnd.research', () => {
     let newState: Game | null = structuredClone(gameState)
     let error: Error | null
     newState?.ship.projects.queued.clear()
+    newState?.ship.projects.pool.delete('File 129 - Equilibrium Drive')
     newState?.ship.projects.queued.set('File 129 - Equilibrium Drive', {
       progressCurrent: 16,
     })
@@ -216,5 +217,160 @@ describe('action.rnd.research', () => {
       min: CANNON_DEFAULT_MAX_DAMAGE,
       max: CANNON_DEFAULT_MAX_DAMAGE,
     })
+  })
+
+  it('should implement File 100 - Support Blueprints Recovery A properly', () => {
+    let newState: Game | null = structuredClone(gameState)
+    let error: Error | null
+    newState?.ship.projects.queued.clear()
+    newState?.ship.projects.pool.delete(
+      'File 100 - Support Blueprints Recovery A',
+    )
+    newState?.ship.projects.queued.set(
+      'File 100 - Support Blueprints Recovery A',
+      {
+        progressCurrent: 7,
+      },
+    )
+    ;[newState, error] = researchProgress({
+      state: newState!,
+      queueID: 1,
+      invokeTime: 1234,
+      gameID: 'research-test',
+      characterID: 'Momo Tzigane',
+    })
+    expect(error).toBeNull()
+    expect(
+      newState?.ship.projects.queued.has(
+        'File 100 - Support Blueprints Recovery A',
+      ),
+    ).toBeFalse()
+    expect(
+      newState?.ship.projects.done.has(
+        'File 100 - Support Blueprints Recovery A',
+      ),
+    ).toBeTrue()
+    expect(
+      newState?.ship.projects.pool.has(
+        'File 100 - Support Blueprints Recovery A',
+      ),
+    ).toBeFalse()
+    expect(newState?.craftable.has('eq.body.heavy.lorica')).toBeTrue()
+    expect(newState?.craftable.has('weapon.guns.pugio')).toBeTrue()
+    expect(newState?.craftable.has('weapon.guns.principes')).toBeTrue()
+    expect(newState?.craftable.has('weapon.guns.rondel')).toBeTrue()
+    expect(newState?.craftable.has('weapon.guns.heavy.cyclone')).toBeTrue()
+    expect(newState?.craftable.has('acc.force-deflector-shield')).toBeTrue()
+  })
+
+  it('should implement File 101 - Support Blueprints Recovery B', () => {
+    let newState: Game | null = structuredClone(gameState)
+    let error: Error | null
+    newState?.ship.projects.queued.clear()
+    newState?.ship.projects.pool.delete(
+      'File 101 - Support Blueprints Recovery B',
+    )
+    newState?.ship.projects.queued.set(
+      'File 101 - Support Blueprints Recovery B',
+      {
+        progressCurrent: 7,
+      },
+    )
+    ;[newState, error] = researchProgress({
+      state: newState!,
+      queueID: 1,
+      invokeTime: 1234,
+      gameID: 'research-test',
+      characterID: 'Momo Tzigane',
+    })
+    expect(error).toBeNull()
+    expect(
+      newState?.ship.projects.queued.has(
+        'File 101 - Support Blueprints Recovery B',
+      ),
+    ).toBeFalse()
+    expect(
+      newState?.ship.projects.done.has(
+        'File 101 - Support Blueprints Recovery B',
+      ),
+    ).toBeTrue()
+    expect(
+      newState?.ship.projects.pool.has(
+        'File 101 - Support Blueprints Recovery B',
+      ),
+    ).toBeFalse()
+    expect(newState?.craftable.has('eq.body.swiftmesh')).toBeTrue()
+    expect(newState?.craftable.has('weapon.unique.vigiles-45')).toBeTrue()
+    expect(newState?.craftable.has('acc.omni-converter')).toBeTrue()
+    expect(newState?.craftable.has('weapon.heavy.arcus-driver')).toBeTrue()
+    expect(newState?.craftable.has('item.grenade')).toBeTrue()
+  })
+
+  it('should implement File NAP - Nanosh Assimilation Protocol properly', () => {
+    let newState: Game | null = structuredClone(gameState)
+    let error: Error | null
+    newState?.ship.projects.queued.clear()
+    newState?.ship.projects.pool.delete(
+      'File NAP - Nanosh Assimilation Protocol',
+    )
+    newState?.ship.projects.queued.set(
+      'File NAP - Nanosh Assimilation Protocol',
+      {
+        progressCurrent: 24,
+      },
+    )
+    expect(newState?.nanosh.assimilateEnabled).toBeFalse()
+    ;[newState, error] = researchProgress({
+      state: newState!,
+      queueID: 1,
+      invokeTime: 1234,
+      gameID: 'research-test',
+      characterID: 'Momo Tzigane',
+    })
+    expect(error).toBeNull()
+    expect(
+      newState?.ship.projects.queued.has(
+        'File NAP - Nanosh Assimilation Protocol',
+      ),
+    ).toBeFalse()
+    expect(
+      newState?.ship.projects.done.has(
+        'File NAP - Nanosh Assimilation Protocol',
+      ),
+    ).toBeTrue()
+    expect(
+      newState?.ship.projects.pool.has(
+        'File NAP - Nanosh Assimilation Protocol',
+      ),
+    ).toBeFalse()
+    expect(newState?.nanosh.assimilateEnabled).toBeTrue()
+  })
+
+  it('should implement File 252 - Hyperheal Ampoule properly', () => {
+    let newState: Game | null = structuredClone(gameState)
+    let error: Error | null
+    newState?.ship.projects.queued.clear()
+    newState?.ship.projects.pool.delete('File 252 - HyperHeal Ampoule')
+    newState?.ship.projects.queued.set('File 252 - HyperHeal Ampoule', {
+      progressCurrent: 7,
+    })
+    ;[newState, error] = researchProgress({
+      state: newState!,
+      queueID: 1,
+      invokeTime: 1234,
+      gameID: 'research-test',
+      characterID: 'Momo Tzigane',
+    })
+    expect(error).toBeNull()
+    expect(
+      newState?.ship.projects.queued.has('File 252 - HyperHeal Ampoule'),
+    ).toBeFalse()
+    expect(
+      newState?.ship.projects.done.has('File 252 - HyperHeal Ampoule'),
+    ).toBeTrue()
+    expect(
+      newState?.ship.projects.pool.has('File 252 - HyperHeal Ampoule'),
+    ).toBeFalse()
+    expect(newState?.craftable.has('item.hyperheal-ampoule')).toBeTrue()
   })
 })
