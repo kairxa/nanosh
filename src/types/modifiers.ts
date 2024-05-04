@@ -219,6 +219,11 @@ export type ModifiersCharacter =
   //   battle:
   //     TODO: add fatigue card to character battle deck, 1 per stack
   | 'character.persistent.sick'
+  | 'character.persistent.attrition'
+  | 'character.wound.light'
+  | 'character.wound.critical'
+  | 'character.wound.stabilized.light'
+  | 'character.wound.stabilized.critical'
 
 export interface ModifierTracker {
   amount: number

@@ -21,7 +21,6 @@ export interface Character {
   playerID: string
   ap: number
   maxAP: number
-  wounds: Wounds[]
   modifiers: Map<ModifiersCharacter, ModifierTracker>
   dead: boolean
   skills: Set<Skills>
