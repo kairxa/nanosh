@@ -5,7 +5,7 @@ import GetRandomBool from './getRandomBool'
 export const DIRTY_FORBID_TRAITS = new Set<Traits>(['trait.droid'])
 
 export function GetWillDirty(
-  traits: Set<Traits>,
+  traits: Set<Traits> = new Set<Traits>(),
   prng: seedrandom.PRNG,
 ): boolean {
   return (

@@ -56,3 +56,9 @@ export const INVALID_RESEARCH_QUEUE_ID_MISMATCH =
   'Queue ID does not match any project.'
 export const FATAL_RESEARCH_PROJECT_NAME_NOT_FOUND =
   'Invalid project name inside selected queue ID'
+
+// action.rnd.build Errors
+export const INVALID_BUILD_NOT_ENOUGH_RESOURCES =
+  'Not enough resources to build.'
+export const INVALID_BUILD_ITEM_NAME_NOT_CRAFTABLE =
+  'Item is not craftable. Yet. Maybe.'
