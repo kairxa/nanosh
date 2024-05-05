@@ -6,9 +6,8 @@ import {
 import type { ModifiersShip } from '@nanosh/types/modifiers'
 import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
-import GetRandomBool from '@nanosh/utils/getRandomBool'
+import { GetWillDirty } from '@nanosh/utils/getWillDirty'
 import seedrandom from 'seedrandom'
-import { DIRTY_FORBID_TRAITS } from './skillModifiers'
 
 interface GardenGrowParams
   extends Pick<
@@ -45,23 +44,22 @@ export default function ({
     expiry: { day: stateCopy.day, cycle: MAX_CYCLE_PER_DAY },
   })
   stateCopy.ship.supplies -= GROW_RESOURCE_TAKEN
-  if (character!.trait.intersection(DIRTY_FORBID_TRAITS).size <= 0) {
-    const prng = seedrandom(`${gameID}-${invokeTime}`)
-    const charaterWillDirty = GetRandomBool(prng)
 
-    if (charaterWillDirty) {
-      character?.modifiers.set('character.cycle.dirty', {
-        amount: 1,
-        start: {
-          day: stateCopy.day,
-          cycle: stateCopy.cycle,
-        },
-        expiry: {
-          day: -1,
-          cycle: -1,
-        },
-      })
-    }
+  const prng = seedrandom(`${gameID}-${invokeTime}`)
+  const characterWillDirty = GetWillDirty(character!.trait, prng)
+
+  if (characterWillDirty) {
+    character?.modifiers.set('character.cycle.dirty', {
+      amount: 1,
+      start: {
+        day: stateCopy.day,
+        cycle: stateCopy.cycle,
+      },
+      expiry: {
+        day: -1,
+        cycle: -1,
+      },
+    })
   }
   character?.cycleActions.set(invokeTime, 'action.garden.grow')
   character!.ap -= apUsed
