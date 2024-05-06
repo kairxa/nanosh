@@ -1,14 +1,18 @@
 import {
   INVALID_BUILD_ITEM_NAME_NOT_CRAFTABLE,
+  INVALID_BUILD_NOT_ENOUGH_INVENTORY_SPACE,
   INVALID_BUILD_NOT_ENOUGH_RESOURCES,
 } from '@nanosh/messages/errors'
-import type {
-  DefaultCalculatorReturnType,
-  GenericCalculatorParams,
+import {
+  ITEM_ID_LENGTH,
+  type DefaultCalculatorReturnType,
+  type GenericCalculatorParams,
 } from '@nanosh/types/generic'
 import type { ItemNames } from '@nanosh/types/item'
 import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
+import GetInventoryEmptySize from '@nanosh/utils/getInventoryEmptySize'
+import GetRandomString from '@nanosh/utils/getRandomString'
 import { GetWillDirty } from '@nanosh/utils/getWillDirty'
 import { ItemBuilds } from '@nanosh/utils/initialState/items'
 import seedrandom from 'seedrandom'
@@ -48,6 +52,14 @@ export default function rndbuild({
     BUILD_SKILL_MODIFIER_AP_REDUCE,
   )
   if (error !== null) return [null, error]
+
+  const inventoryEmptySize = GetInventoryEmptySize(
+    character!.inventory.size,
+    character!.skills,
+  )
+  if (inventoryEmptySize <= 0) {
+    return [null, new Error(INVALID_BUILD_NOT_ENOUGH_INVENTORY_SPACE)]
+  }
 
   const itemBuildData = ItemBuilds.get(itemName)! // will always be found since we limit things inside stateCopy.craftable
   const resourcesUsage = {
@@ -119,6 +131,10 @@ export default function rndbuild({
     })
   }
 
+  character?.inventory.add({
+    id: GetRandomString(ITEM_ID_LENGTH, prng),
+    itemName,
+  })
   character?.cycleActions.set(invokeTime, 'action.rnd.build')
   character!.ap -= apUsed
 

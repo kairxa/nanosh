@@ -86,7 +86,7 @@ export const GetInitialGame = (
       basic: 0,
       critical: 0,
     },
-    characters: GetInitialCharacters(),
+    characters: GetInitialCharacters(gameID, invokeTime),
     shipLocation: randomizedSupersectorNames[0],
     nanosh: {
       mainBase: nanoshMainBase,

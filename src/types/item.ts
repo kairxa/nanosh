@@ -32,6 +32,7 @@ export type ItemNames =
   | 'weapon.guns.heavy.cyclone'
   | 'weapon.guns.pugio'
   | 'weapon.guns.principes'
+  | 'weapon.guns.p2075'
   | 'weapon.guns.rondel'
   | 'weapon.heavy.arcus-driver'
   | 'weapon.unique.vigiles-45'

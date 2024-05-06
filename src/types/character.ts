@@ -1,5 +1,6 @@
 import type { Actions } from './actions'
 import type { ModifierTracker, ModifiersCharacter } from './modifiers'
+import type { ShipCargo } from './ship'
 import type { Skills } from './skills'
 import type { Traits } from './traits'
 
@@ -14,8 +15,11 @@ export type CharacterNames =
   | `Tee'elise "Teal" Qing`
   | 'X7-Gastronia "Gass" Petalnova'
   | 'Ysara Mercer'
+  | 'Zedius Windsor'
+  | 'Viero Alden'
   | 'Soren Koda'
   | 'Alisa Huang'
+  | 'Rina Mikami'
 
 export interface Character {
   playerID: string
@@ -26,4 +30,5 @@ export interface Character {
   skills: Set<Skills>
   trait: Set<Traits>
   cycleActions: Map<number, Actions> // invokeTime, Actions
+  inventory: Set<ShipCargo>
 }

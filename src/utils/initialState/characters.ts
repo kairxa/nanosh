@@ -1,14 +1,22 @@
 import type { Actions } from '@nanosh/types/actions'
 import type { Character, CharacterNames } from '@nanosh/types/character'
-import { MAX_AP } from '@nanosh/types/generic'
+import { ITEM_ID_LENGTH, MAX_AP } from '@nanosh/types/generic'
 import type {
   ModifierTracker,
   ModifiersCharacter,
 } from '@nanosh/types/modifiers'
+import type { ShipCargo } from '@nanosh/types/ship'
 import type { Skills } from '@nanosh/types/skills'
 import type { Traits } from '@nanosh/types/traits'
+import seedrandom from 'seedrandom'
+import GetRandomString from '../getRandomString'
 
-export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
+export const GetInitialCharacters = (
+  gameID: string,
+  invokeTime: number,
+): Map<CharacterNames, Character> => {
+  const prng = seedrandom(`${gameID}-${invokeTime}`)
+
   return new Map<CharacterNames, Character>([
     [
       'Solas Mercer',
@@ -26,6 +34,16 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'weapon.guns.p2075',
+          },
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.voxlink',
+          },
+        ]),
       },
     ],
     [
@@ -44,6 +62,20 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'weapon.guns.principes',
+          },
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'eq.body.heavy.lorica',
+          },
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.voxlink',
+          },
+        ]),
       },
     ],
     [
@@ -62,6 +94,16 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'weapon.unique.vigiles-45',
+          },
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.omni-converter',
+          },
+        ]),
       },
     ],
     [
@@ -80,6 +122,16 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'weapon.guns.rondel',
+          },
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.voxlink',
+          },
+        ]),
       },
     ],
     [
@@ -98,6 +150,16 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'meds.vigorisk',
+          },
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.voxlink',
+          },
+        ]),
       },
     ],
     [
@@ -116,6 +178,20 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'weapon.guns.rondel',
+          },
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'meds.somnoxa',
+          },
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.voxlink',
+          },
+        ]),
       },
     ],
     [
@@ -134,6 +210,12 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.voxlink',
+          },
+        ]),
       },
     ],
     [
@@ -152,24 +234,68 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'weapon.guns.pugio',
+          },
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.voxlink',
+          },
+        ]),
       },
     ],
     [
-      'Alisa Huang',
+      'Zedius Windsor',
       {
         ap: 0,
         maxAP: MAX_AP,
         dead: false,
-        trait: new Set<Traits>(['trait.popular']),
+        trait: new Set<Traits>(['trait.calm']),
         skills: new Set<Skills>([
-          'skill.comms-savvy',
-          'skill.persuasion',
-          'skill.logistician',
-          'skill.cook',
+          'skill.technician',
+          'skill.protector',
+          'skill.mechpilot',
+          'skill.stalwart',
         ]),
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.voxlink',
+          },
+        ]),
+      },
+    ],
+    [
+      'Viero Alden',
+      {
+        ap: 0,
+        maxAP: MAX_AP,
+        dead: false,
+        trait: new Set<Traits>(['trait.ace']),
+        skills: new Set<Skills>([
+          'skill.aviator',
+          'skill.guns-fundamental',
+          'skill.stalwart',
+          'skill.visionary',
+        ]),
+        modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
+        playerID: '',
+        cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'weapon.guns.pugio',
+          },
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.voxlink',
+          },
+        ]),
       },
     ],
     [
@@ -188,6 +314,64 @@ export const GetInitialCharacters = (): Map<CharacterNames, Character> => {
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'weapon.guns.pugio',
+          },
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.voxlink',
+          },
+        ]),
+      },
+    ],
+    [
+      'Alisa Huang',
+      {
+        ap: 0,
+        maxAP: MAX_AP,
+        dead: false,
+        trait: new Set<Traits>(['trait.popular']),
+        skills: new Set<Skills>([
+          'skill.comms-savvy',
+          'skill.persuasion',
+          'skill.logistician',
+          'skill.cook',
+        ]),
+        modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
+        playerID: '',
+        cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.voxlink',
+          },
+        ]),
+      },
+    ],
+    [
+      'Rina Mikami',
+      {
+        ap: 0,
+        maxAP: MAX_AP,
+        dead: false,
+        trait: new Set<Traits>(['trait.regenesis']),
+        skills: new Set<Skills>([
+          'skill.silver',
+          'skill.adaptable',
+          'skill.savant',
+          'skill.visionary',
+        ]),
+        modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
+        playerID: '',
+        cycleActions: new Map<number, Actions>(),
+        inventory: new Set<ShipCargo>([
+          {
+            id: GetRandomString(ITEM_ID_LENGTH, prng),
+            itemName: 'acc.voxlink',
+          },
+        ]),
       },
     ],
   ])

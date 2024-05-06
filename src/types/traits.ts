@@ -1,5 +1,7 @@
 export type Traits =
+  | 'trait.ace'
   | 'trait.amorous'
+  | 'trait.calm'
   | 'trait.defender'
   | 'trait.driven'
   | 'trait.droid'
@@ -9,3 +11,4 @@ export type Traits =
   | 'trait.legatus-legionis'
   | 'trait.meticulous'
   | 'trait.popular'
+  | 'trait.regenesis'

@@ -62,3 +62,4 @@ export const INVALID_BUILD_NOT_ENOUGH_RESOURCES =
   'Not enough resources to build.'
 export const INVALID_BUILD_ITEM_NAME_NOT_CRAFTABLE =
   'Item is not craftable. Yet. Maybe.'
+export const INVALID_BUILD_NOT_ENOUGH_INVENTORY_SPACE = 'Inventory is full.'
