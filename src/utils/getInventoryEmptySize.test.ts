@@ -5,7 +5,7 @@ import GetInventoryEmptySize from './getInventoryEmptySize'
 describe('GetInventoryEmptySize', () => {
   it('should return how many spaces are left in inventory', () => {
     const result = GetInventoryEmptySize(
-      3,
+      1,
       new Set<Skills>([
         'skill.cook',
         'skill.pirate',
@@ -19,7 +19,7 @@ describe('GetInventoryEmptySize', () => {
 
   it('should return how many spaces left if character is a sniper', () => {
     const result = GetInventoryEmptySize(
-      3,
+      1,
       new Set<Skills>([
         'skill.sniper',
         'skill.pirate',

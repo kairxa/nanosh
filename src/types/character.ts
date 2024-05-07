@@ -21,6 +21,8 @@ export type CharacterNames =
   | 'Alisa Huang'
   | 'Rina Mikami'
 
+export type CharacterEquipmentSlots = 'weapon' | 'body' | 'acc-1' | 'acc-2'
+
 export interface Character {
   playerID: string
   ap: number
@@ -31,4 +33,5 @@ export interface Character {
   trait: Set<Traits>
   cycleActions: Map<number, Actions> // invokeTime, Actions
   inventory: Set<ShipCargo>
+  equipment: Map<CharacterEquipmentSlots, ShipCargo>
 }

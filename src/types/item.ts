@@ -24,15 +24,15 @@ export type ItemNames =
   | 'acc.lifewater-locket'
   | 'acc.omni-converter'
   | 'acc.voxlink'
-  | 'eq.body.heavy.lorica'
-  | 'eq.body.swiftmesh'
+  | 'body.heavy.lorica'
+  | 'body.swiftmesh'
   | 'item.grenade'
   | 'item.hyperheal-ampoule'
   | 'item.madsegar-vanilla-essence'
   | 'weapon.guns.heavy.cyclone'
   | 'weapon.guns.pugio'
   | 'weapon.guns.principes'
-  | 'weapon.guns.p2075'
+  | 'weapon.unique.guns.p2075'
   | 'weapon.guns.rondel'
   | 'weapon.heavy.arcus-driver'
   | 'weapon.unique.vigiles-45'
@@ -46,4 +46,8 @@ export interface ItemBuildResources {
   eCells: number
   supplies: number
   rations: number
+}
+
+export interface ItemBreakableData {
+  breakChance: number // percentage
 }

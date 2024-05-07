@@ -1,6 +1,6 @@
 import {
   INVALID_BUILD_ITEM_NAME_NOT_CRAFTABLE,
-  INVALID_BUILD_NOT_ENOUGH_INVENTORY_SPACE,
+  INVALID_INVENTORY_FULL,
   INVALID_BUILD_NOT_ENOUGH_RESOURCES,
 } from '@nanosh/messages/errors'
 import {
@@ -58,7 +58,7 @@ export default function rndbuild({
     character!.skills,
   )
   if (inventoryEmptySize <= 0) {
-    return [null, new Error(INVALID_BUILD_NOT_ENOUGH_INVENTORY_SPACE)]
+    return [null, new Error(INVALID_INVENTORY_FULL)]
   }
 
   const itemBuildData = ItemBuilds.get(itemName)! // will always be found since we limit things inside stateCopy.craftable

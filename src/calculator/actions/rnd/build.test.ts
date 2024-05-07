@@ -1,7 +1,7 @@
 import {
   INVALID_BUILD_ITEM_NAME_NOT_CRAFTABLE,
-  INVALID_BUILD_NOT_ENOUGH_INVENTORY_SPACE,
   INVALID_BUILD_NOT_ENOUGH_RESOURCES,
+  INVALID_INVENTORY_FULL,
 } from '@nanosh/messages/errors'
 import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
@@ -43,8 +43,8 @@ describe('action.rnd.build', () => {
     expect(val?.modifiers.get('character.cycle.deprived')?.amount).toBe(5)
     expect(val?.cycleActions.get(1234)).toBe('action.rnd.build')
     expect(val?.modifiers.has('character.cycle.dirty')).toBeTrue()
-    expect(gameState?.characters.get('Val')?.inventory.size).toBe(2)
-    expect(val?.inventory.size).toBe(3)
+    expect(gameState?.characters.get('Val')?.inventory.size).toBe(0)
+    expect(val?.inventory.size).toBe(1)
 
     expect(newState?.ship.eCells).toBe(gameState!.ship.eCells - 3) // 5 - Math.ceil(5 * 0.3) = 5 - 2 = 3
     expect(newState?.ship.supplies).toBe(gameState!.ship.supplies - 49) // 70 - Math.ceil(70 * 0.3) = 70 - 21 = 49
@@ -75,12 +75,21 @@ describe('action.rnd.build', () => {
   it('should invalidate request because inventory is full', () => {
     let newState: Game | null = structuredClone(gameState)
     let error: Error | null
-    newState?.characters
-      .get('Momo Tzigane')
-      ?.inventory.add({ id: 'freeid01', itemName: 'item.grenade' })
-    newState?.characters
-      .get('Momo Tzigane')
-      ?.inventory.add({ id: 'freeid02', itemName: 'item.grenade' })
+    newState?.characters.get('Momo Tzigane')?.inventory.add({
+      id: 'freeid01',
+      itemName: 'item.grenade',
+      broken: false,
+    })
+    newState?.characters.get('Momo Tzigane')?.inventory.add({
+      id: 'freeid02',
+      itemName: 'item.grenade',
+      broken: false,
+    })
+    newState?.characters.get('Momo Tzigane')?.inventory.add({
+      id: 'freeid03',
+      itemName: 'item.grenade',
+      broken: false,
+    })
     ;[newState, error] = rndbuild({
       state: newState!,
       gameID: 'rnd-build-test',
@@ -90,7 +99,7 @@ describe('action.rnd.build', () => {
     })
 
     expect(newState).toBeNull()
-    expect(error?.message).toBe(INVALID_BUILD_NOT_ENOUGH_INVENTORY_SPACE)
+    expect(error?.message).toBe(INVALID_INVENTORY_FULL)
   })
 
   it('should invalidate request because item is not inside craftable', () => {

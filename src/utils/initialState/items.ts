@@ -1,5 +1,6 @@
 import type {
   ConsumableEffects,
+  ItemBreakableData,
   ItemBuildResources,
   ItemNames,
 } from '@nanosh/types/item'
@@ -212,10 +213,26 @@ export const ItemBuilds = new Map<ItemNames, ItemBuildResources>([
   ['weapon.guns.heavy.cyclone', { eCells: 3, supplies: 60, rations: 0 }],
   ['weapon.heavy.arcus-driver', { eCells: 5, supplies: 70, rations: 0 }],
   ['weapon.unique.vigiles-45', { eCells: 0, supplies: 9, rations: 0 }],
-  ['eq.body.swiftmesh', { eCells: 0, supplies: 22, rations: 0 }],
-  ['eq.body.heavy.lorica', { eCells: 0, supplies: 46, rations: 0 }],
+  ['body.swiftmesh', { eCells: 0, supplies: 22, rations: 0 }],
+  ['body.heavy.lorica', { eCells: 0, supplies: 46, rations: 0 }],
   ['acc.force-deflector-shield', { eCells: 0, supplies: 30, rations: 0 }],
   ['acc.omni-converter', { eCells: 1, supplies: 15, rations: 0 }],
   ['item.grenade', { eCells: 0, supplies: 7, rations: 0 }],
   ['item.hyperheal-ampoule', { eCells: 0, supplies: 15, rations: 0 }],
+])
+
+export const ItemBreakable = new Map<ItemNames, ItemBreakableData>([
+  ['body.swiftmesh', { breakChance: 10 }],
+  ['body.heavy.lorica', { breakChance: 10 }],
+  ['weapon.guns.pugio', { breakChance: 10 }],
+  ['weapon.guns.rondel', { breakChance: 10 }],
+  ['weapon.guns.principes', { breakChance: 10 }],
+  ['weapon.unique.guns.p2075', { breakChance: 5 }],
+  ['weapon.unique.vigiles-45', { breakChance: 25 }],
+  ['weapon.guns.heavy.cyclone', { breakChance: 10 }],
+  ['weapon.heavy.arcus-driver', { breakChance: 0 }],
+  ['acc.voxlink', { breakChance: 10 }],
+  ['acc.omni-converter', { breakChance: 10 }],
+  ['acc.lifewater-locket', { breakChance: 10 }],
+  ['acc.force-deflector-shield', { breakChance: 10 }],
 ])

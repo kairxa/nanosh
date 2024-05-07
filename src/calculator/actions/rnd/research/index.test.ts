@@ -255,7 +255,7 @@ describe('action.rnd.research', () => {
         'File 100 - Support Blueprints Recovery A',
       ),
     ).toBeFalse()
-    expect(newState?.craftable.has('eq.body.heavy.lorica')).toBeTrue()
+    expect(newState?.craftable.has('body.heavy.lorica')).toBeTrue()
     expect(newState?.craftable.has('weapon.guns.pugio')).toBeTrue()
     expect(newState?.craftable.has('weapon.guns.principes')).toBeTrue()
     expect(newState?.craftable.has('weapon.guns.rondel')).toBeTrue()
@@ -299,7 +299,7 @@ describe('action.rnd.research', () => {
         'File 101 - Support Blueprints Recovery B',
       ),
     ).toBeFalse()
-    expect(newState?.craftable.has('eq.body.swiftmesh')).toBeTrue()
+    expect(newState?.craftable.has('body.swiftmesh')).toBeTrue()
     expect(newState?.craftable.has('weapon.unique.vigiles-45')).toBeTrue()
     expect(newState?.craftable.has('acc.omni-converter')).toBeTrue()
     expect(newState?.craftable.has('weapon.heavy.arcus-driver')).toBeTrue()

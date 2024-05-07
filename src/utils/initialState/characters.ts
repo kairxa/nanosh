@@ -1,5 +1,9 @@
 import type { Actions } from '@nanosh/types/actions'
-import type { Character, CharacterNames } from '@nanosh/types/character'
+import type {
+  Character,
+  CharacterEquipmentSlots,
+  CharacterNames,
+} from '@nanosh/types/character'
 import { ITEM_ID_LENGTH, MAX_AP } from '@nanosh/types/generic'
 import type {
   ModifierTracker,
@@ -34,15 +38,24 @@ export const GetInitialCharacters = (
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
-        inventory: new Set<ShipCargo>([
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'weapon.guns.p2075',
-          },
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.voxlink',
-          },
+        inventory: new Set<ShipCargo>(),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'weapon',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'weapon.unique.guns.p2075',
+              broken: false,
+            },
+          ],
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.voxlink',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],
@@ -62,19 +75,32 @@ export const GetInitialCharacters = (
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
-        inventory: new Set<ShipCargo>([
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'weapon.guns.principes',
-          },
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'eq.body.heavy.lorica',
-          },
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.voxlink',
-          },
+        inventory: new Set<ShipCargo>(),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'weapon',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'weapon.guns.principes',
+              broken: false,
+            },
+          ],
+          [
+            'body',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'body.heavy.lorica',
+              broken: false,
+            },
+          ],
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.voxlink',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],
@@ -94,15 +120,24 @@ export const GetInitialCharacters = (
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
-        inventory: new Set<ShipCargo>([
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'weapon.unique.vigiles-45',
-          },
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.omni-converter',
-          },
+        inventory: new Set<ShipCargo>(),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'weapon',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'weapon.unique.vigiles-45',
+              broken: false,
+            },
+          ],
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.omni-converter',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],
@@ -122,15 +157,24 @@ export const GetInitialCharacters = (
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
-        inventory: new Set<ShipCargo>([
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'weapon.guns.rondel',
-          },
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.voxlink',
-          },
+        inventory: new Set<ShipCargo>(),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'weapon',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'weapon.guns.rondel',
+              broken: false,
+            },
+          ],
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.voxlink',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],
@@ -150,15 +194,24 @@ export const GetInitialCharacters = (
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
-        inventory: new Set<ShipCargo>([
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'meds.vigorisk',
-          },
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.voxlink',
-          },
+        inventory: new Set<ShipCargo>(),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'weapon',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'meds.vigorisk',
+              broken: false,
+            },
+          ],
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.voxlink',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],
@@ -181,16 +234,27 @@ export const GetInitialCharacters = (
         inventory: new Set<ShipCargo>([
           {
             id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'weapon.guns.rondel',
-          },
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
             itemName: 'meds.somnoxa',
+            broken: false,
           },
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.voxlink',
-          },
+        ]),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'weapon',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'weapon.guns.rondel',
+              broken: false,
+            },
+          ],
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.voxlink',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],
@@ -210,11 +274,16 @@ export const GetInitialCharacters = (
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
-        inventory: new Set<ShipCargo>([
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.voxlink',
-          },
+        inventory: new Set<ShipCargo>(),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.voxlink',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],
@@ -234,15 +303,24 @@ export const GetInitialCharacters = (
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
-        inventory: new Set<ShipCargo>([
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'weapon.guns.pugio',
-          },
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.voxlink',
-          },
+        inventory: new Set<ShipCargo>(),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'weapon',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'weapon.guns.pugio',
+              broken: false,
+            },
+          ],
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.voxlink',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],
@@ -262,11 +340,16 @@ export const GetInitialCharacters = (
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
-        inventory: new Set<ShipCargo>([
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.voxlink',
-          },
+        inventory: new Set<ShipCargo>(),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.voxlink',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],
@@ -286,15 +369,24 @@ export const GetInitialCharacters = (
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
-        inventory: new Set<ShipCargo>([
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'weapon.guns.pugio',
-          },
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.voxlink',
-          },
+        inventory: new Set<ShipCargo>(),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'weapon',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'weapon.guns.pugio',
+              broken: false,
+            },
+          ],
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.voxlink',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],
@@ -314,15 +406,24 @@ export const GetInitialCharacters = (
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
-        inventory: new Set<ShipCargo>([
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'weapon.guns.pugio',
-          },
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.voxlink',
-          },
+        inventory: new Set<ShipCargo>([]),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'weapon',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'weapon.guns.pugio',
+              broken: false,
+            },
+          ],
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.voxlink',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],
@@ -342,11 +443,16 @@ export const GetInitialCharacters = (
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
-        inventory: new Set<ShipCargo>([
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.voxlink',
-          },
+        inventory: new Set<ShipCargo>(),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.voxlink',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],
@@ -366,11 +472,16 @@ export const GetInitialCharacters = (
         modifiers: new Map<ModifiersCharacter, ModifierTracker>(),
         playerID: '',
         cycleActions: new Map<number, Actions>(),
-        inventory: new Set<ShipCargo>([
-          {
-            id: GetRandomString(ITEM_ID_LENGTH, prng),
-            itemName: 'acc.voxlink',
-          },
+        inventory: new Set<ShipCargo>(),
+        equipment: new Map<CharacterEquipmentSlots, ShipCargo>([
+          [
+            'acc-1',
+            {
+              id: GetRandomString(ITEM_ID_LENGTH, prng),
+              itemName: 'acc.voxlink',
+              broken: false,
+            },
+          ],
         ]),
       },
     ],

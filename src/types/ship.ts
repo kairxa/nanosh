@@ -156,6 +156,7 @@ export const ShipNames = new Map<ShipTypes, string>([
 export interface ShipCargo {
   id: string
   itemName: ItemNames
+  broken: boolean
 }
 
 export interface Ship {

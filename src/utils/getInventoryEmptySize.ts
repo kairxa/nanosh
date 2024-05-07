@@ -1,6 +1,6 @@
 import type { Skills } from '@nanosh/types/skills'
 
-const INVENTORY_MAX_SPACE = 5
+const INVENTORY_MAX_SPACE = 3
 const INVENTORY_SNIPER_SIZE_REDUCE = 2
 
 export default function GetInventoryEmptySize(

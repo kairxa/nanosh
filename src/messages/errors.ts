@@ -18,6 +18,13 @@ export const INVALID_NOT_ENOUGH_AP = 'Not Enough AP'
 export const INVALID_NOT_ENOUGH_ECELLS = 'Not Enough eCells'
 export const FATAL_SHIP_LOCATION_STORE_MISMATCH =
   'Invalid ship location inside stored state.'
+export const INVALID_INVENTORY_FULL = 'Inventory is full.'
+
+// action.generic Errors
+export const INVALID_UNEQUIP_EMPTY_TARGET = 'Nothing is equipped in that slot.'
+export const INVALID_EQUIP_INVENTORY_NOT_FOUND =
+  'Item is not found in inventory.'
+export const INVALID_EQUIP_ITEM_UNEQUIPPABLE = 'Item is not equippable.'
 
 // action.bridge.command.advance Errors
 export const INVALID_SUPERSECTOR_TARGET_ID = 'Invalid Supersector Target ID'
@@ -62,4 +69,3 @@ export const INVALID_BUILD_NOT_ENOUGH_RESOURCES =
   'Not enough resources to build.'
 export const INVALID_BUILD_ITEM_NAME_NOT_CRAFTABLE =
   'Item is not craftable. Yet. Maybe.'
-export const INVALID_BUILD_NOT_ENOUGH_INVENTORY_SPACE = 'Inventory is full.'
