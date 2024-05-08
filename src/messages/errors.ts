@@ -19,11 +19,11 @@ export const INVALID_NOT_ENOUGH_ECELLS = 'Not Enough eCells'
 export const FATAL_SHIP_LOCATION_STORE_MISMATCH =
   'Invalid ship location inside stored state.'
 export const INVALID_INVENTORY_FULL = 'Inventory is full.'
+export const INVALID_INVENTORY_ITEM_NOT_FOUND =
+  'Item is not found in inventory.'
 
 // action.generic Errors
 export const INVALID_UNEQUIP_EMPTY_TARGET = 'Nothing is equipped in that slot.'
-export const INVALID_EQUIP_INVENTORY_NOT_FOUND =
-  'Item is not found in inventory.'
 export const INVALID_EQUIP_ITEM_UNEQUIPPABLE = 'Item is not equippable.'
 
 // action.bridge.command.advance Errors
@@ -69,3 +69,6 @@ export const INVALID_BUILD_NOT_ENOUGH_RESOURCES =
   'Not enough resources to build.'
 export const INVALID_BUILD_ITEM_NAME_NOT_CRAFTABLE =
   'Item is not craftable. Yet. Maybe.'
+
+// action.rnd.repair Errors
+export const INVALID_REPAIR_ITEM_IS_NOT_BROKEN = 'Item is not broken.'

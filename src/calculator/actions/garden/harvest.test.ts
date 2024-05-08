@@ -127,4 +127,30 @@ describe('action.garden.harvest', () => {
         ?.modifiers.has('character.cycle.dirty'),
     ).toBeTrue()
   })
+
+  it('should reduce deprived if the character has dutiful', () => {
+    let newState: Game | null = structuredClone(gameState)
+    let error: Error | null
+    newState!.characters.get('Soren Koda')!.ap = 7
+    newState!.characters
+      .get('Soren Koda')!
+      .modifiers.set('character.cycle.deprived', {
+        start: { day: 1, cycle: 1 },
+        expiry: { day: -1, cycle: -1 },
+        amount: 7,
+      })
+    ;[newState, error] = harvest({
+      state: newState!,
+      invokeTime: 1234,
+      gameID: 'harvest-test-deprived',
+      characterID: 'Soren Koda',
+    })
+
+    expect(error).toBeNull()
+    expect(
+      newState?.characters
+        .get('Soren Koda')
+        ?.modifiers.get('character.cycle.deprived')?.amount,
+    ).toBe(6)
+  })
 })

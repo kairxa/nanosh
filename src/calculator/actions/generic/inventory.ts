@@ -1,5 +1,5 @@
 import {
-  INVALID_EQUIP_INVENTORY_NOT_FOUND,
+  INVALID_INVENTORY_ITEM_NOT_FOUND,
   INVALID_EQUIP_ITEM_UNEQUIPPABLE,
   INVALID_INVENTORY_FULL,
   INVALID_UNEQUIP_EMPTY_TARGET,
@@ -21,7 +21,7 @@ interface GenericInventoryUnequipParams extends GenericInventoryParams {
 }
 
 interface GenericInventoryEquipParams extends GenericInventoryParams {
-  id?: string
+  itemID?: string
   itemName?: ItemNames
 }
 
@@ -55,16 +55,16 @@ export function equip({
   state,
   characterID,
   itemName,
-  id,
+  itemID,
 }: GenericInventoryEquipParams): DefaultCalculatorReturnType {
   let stateCopy: Game | null = structuredClone(state)
 
   const character = stateCopy.characters.get(characterID)
   const inventory = Array.from(character!.inventory.values())
   const item = inventory.find((item) => {
-    return item.itemName === itemName || item.id === id
+    return item.itemName === itemName || item.id === itemID
   })
-  if (!item) return [null, new Error(INVALID_EQUIP_INVENTORY_NOT_FOUND)]
+  if (!item) return [null, new Error(INVALID_INVENTORY_ITEM_NOT_FOUND)]
 
   const itemType = item.itemName.split('.')[0]
   if (itemType !== 'weapon' && itemType !== 'body' && itemType !== 'acc') {

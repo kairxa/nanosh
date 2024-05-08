@@ -5,6 +5,7 @@ import {
 } from '@nanosh/types/generic'
 import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
+import dutifulDeprivedReduce from '../../modifiers/traits/dutiful'
 
 interface BridgeCommsOnairParams
   extends Pick<
@@ -15,7 +16,6 @@ interface BridgeCommsOnairParams
 const ONAIR_AP_USAGE = 2
 const ONAIR_SKILL_MODIFIER: Set<Skills> = new Set<Skills>(['skill.comms-savvy'])
 const ONAIR_SKILL_MODIFIER_AP_REDUCE = 1
-const ONAIR_DEPRIVED_REDUCE = 1
 
 export default function ({
   state,
@@ -44,22 +44,10 @@ export default function ({
       cycle: MAX_CYCLE_PER_DAY,
     },
   })
-  if (character?.trait.has('trait.dutiful')) {
-    const currentDeprived = character.modifiers.get('character.cycle.deprived')
-    character.modifiers.set('character.cycle.deprived', {
-      start: {
-        day: currentDeprived?.start.day || 1,
-        cycle: currentDeprived?.start.cycle || 1,
-      },
-      expiry: {
-        day: currentDeprived?.expiry.day || -1,
-        cycle: currentDeprived?.expiry.cycle || -1,
-      },
-      amount: (currentDeprived?.amount || 0) - ONAIR_DEPRIVED_REDUCE,
-    })
-  }
+
   character!.cycleActions.set(invokeTime, 'action.bridge.comms.onair')
   character!.ap -= apUsed
+  const [newState, _] = dutifulDeprivedReduce({ state: stateCopy, characterID })
 
-  return [stateCopy, null]
+  return [newState, null]
 }
