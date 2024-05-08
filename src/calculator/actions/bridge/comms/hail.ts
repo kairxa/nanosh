@@ -126,6 +126,7 @@ export default function hailAccept({
           stateCopy.ship.cargo.add({
             id: GetRandomString(ITEM_ID_LENGTH, itemIDPrng),
             itemName: item.itemName,
+            broken: false,
           })
         }
       }

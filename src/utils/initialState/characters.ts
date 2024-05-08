@@ -221,7 +221,7 @@ export const GetInitialCharacters = (
         ap: 0,
         maxAP: MAX_AP,
         dead: false,
-        trait: new Set<Traits>(['trait.amorous', 'trait.popular']),
+        trait: new Set<Traits>(['trait.amorous']),
         skills: new Set<Skills>([
           'skill.technician',
           'skill.engineer',
