@@ -1,7 +1,7 @@
 import {
   INVALID_BUILD_ITEM_NAME_NOT_CRAFTABLE,
-  INVALID_INVENTORY_FULL,
   INVALID_BUILD_NOT_ENOUGH_RESOURCES,
+  INVALID_INVENTORY_FULL,
 } from '@nanosh/messages/errors'
 import {
   ITEM_ID_LENGTH,
@@ -134,6 +134,7 @@ export default function rndbuild({
   character?.inventory.add({
     id: GetRandomString(ITEM_ID_LENGTH, prng),
     itemName,
+    broken: false,
   })
   character?.cycleActions.set(invokeTime, 'action.rnd.build')
   character!.ap -= apUsed

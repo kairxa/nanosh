@@ -72,3 +72,6 @@ export const INVALID_BUILD_ITEM_NAME_NOT_CRAFTABLE =
 
 // action.rnd.repair Errors
 export const INVALID_REPAIR_ITEM_IS_NOT_BROKEN = 'Item is not broken.'
+
+// action.medlab.compound Errors
+export const INVALID_COMPOUND_MEDS_NAME = 'Invalid meds name.'

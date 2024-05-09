@@ -221,6 +221,16 @@ export const ItemBuilds = new Map<ItemNames, ItemBuildResources>([
   ['item.hyperheal-ampoule', { eCells: 0, supplies: 15, rations: 0 }],
 ])
 
+export const MedsCompound = new Map<ItemNames, ItemBuildResources>([
+  ['meds.solacil', { eCells: 0, supplies: 4, rations: 0 }],
+  ['meds.duarin', { eCells: 0, supplies: 8, rations: 0 }],
+  ['meds.trivagex', { eCells: 0, supplies: 12, rations: 0 }],
+  ['meds.vigorisk', { eCells: 0, supplies: 13, rations: 0 }],
+  ['meds.blissbloom', { eCells: 0, supplies: 2, rations: 0 }],
+  ['meds.somnoxa', { eCells: 0, supplies: 2, rations: 0 }],
+  ['meds.lucidix', { eCells: 0, supplies: 8, rations: 0 }],
+])
+
 export const ItemBreakable = new Map<ItemNames, ItemBreakableData>([
   ['body.swiftmesh', { breakChance: 10 }],
   ['body.heavy.lorica', { breakChance: 10 }],

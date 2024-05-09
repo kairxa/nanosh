@@ -49,6 +49,7 @@ describe('action.rnd.repair', () => {
       itemID: 'soren-koda-item-01',
       invokeTime: 123,
       characterID: 'Soren Koda',
+      gameID: 'repair-test',
     })
 
     expect(error).toBeNull()
@@ -68,6 +69,11 @@ describe('action.rnd.repair', () => {
     expect(newState?.characters.get('Soren Koda')?.cycleActions.get(123)).toBe(
       'action.rnd.repair',
     )
+    expect(
+      newState?.characters
+        .get('Soren Koda')
+        ?.modifiers.has('character.cycle.dirty'),
+    ).toBeTrue()
   })
 
   it('should repair item and does not reduce deprived', () => {
@@ -76,8 +82,9 @@ describe('action.rnd.repair', () => {
     ;[newState, error] = repair({
       state: gameState!,
       itemName: 'body.heavy.lorica',
-      invokeTime: 123,
+      invokeTime: 12344,
       characterID: 'Alisa Huang',
+      gameID: 'repair-test',
     })
 
     expect(error).toBeNull()
@@ -94,9 +101,14 @@ describe('action.rnd.repair', () => {
         ?.modifiers.get('character.cycle.deprived')?.amount,
     ).toBe(7)
     expect(newState?.characters.get('Alisa Huang')?.ap).toBe(5)
-    expect(newState?.characters.get('Alisa Huang')?.cycleActions.get(123)).toBe(
-      'action.rnd.repair',
-    )
+    expect(
+      newState?.characters.get('Alisa Huang')?.cycleActions.get(12344),
+    ).toBe('action.rnd.repair')
+    expect(
+      newState?.characters
+        .get('Alisa Huang')
+        ?.modifiers.has('character.cycle.dirty'),
+    ).toBeFalse()
   })
 
   it('should invalidate request due to item not in inventory', () => {
@@ -107,6 +119,7 @@ describe('action.rnd.repair', () => {
       itemName: 'acc.voxlink',
       invokeTime: 123,
       characterID: 'Alisa Huang',
+      gameID: 'repair-test',
     })
 
     expect(newState).toBeNull()
@@ -121,6 +134,7 @@ describe('action.rnd.repair', () => {
       itemName: 'weapon.heavy.arcus-driver',
       invokeTime: 123,
       characterID: 'Alisa Huang',
+      gameID: 'repair-test',
     })
 
     expect(newState).toBeNull()

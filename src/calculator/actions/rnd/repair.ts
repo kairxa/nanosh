@@ -9,12 +9,14 @@ import type {
 import type { ItemNames } from '@nanosh/types/item'
 import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
+import { GetWillDirty } from '@nanosh/utils/getWillDirty'
+import seedrandom from 'seedrandom'
 import dutifulDeprivedReduce from '../modifiers/traits/dutiful'
 
 interface RndRepairParams
   extends Pick<
     GenericCalculatorParams,
-    'state' | 'invokeTime' | 'characterID'
+    'state' | 'invokeTime' | 'characterID' | 'gameID'
   > {
   itemName?: ItemNames
   itemID?: string
@@ -33,6 +35,7 @@ export default function ({
   invokeTime,
   itemName,
   itemID,
+  gameID,
 }: RndRepairParams): DefaultCalculatorReturnType {
   const stateCopy = structuredClone(state)
 
@@ -54,6 +57,23 @@ export default function ({
   if (error !== null) return [null, error]
 
   item.broken = false
+
+  const prng = seedrandom(`${gameID}-${invokeTime}`)
+  const characterWillDirty = GetWillDirty(character!.trait, prng)
+
+  if (characterWillDirty) {
+    character?.modifiers.set('character.cycle.dirty', {
+      start: {
+        day: stateCopy.day,
+        cycle: stateCopy.cycle,
+      },
+      expiry: {
+        day: -1,
+        cycle: -1,
+      },
+      amount: 1,
+    })
+  }
 
   character!.cycleActions.set(invokeTime, 'action.rnd.repair')
   character!.ap -= apUsed
