@@ -57,6 +57,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
     [
@@ -102,6 +103,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
     [
@@ -139,6 +141,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
     [
@@ -176,6 +179,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
     [
@@ -213,6 +217,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
     [
@@ -256,6 +261,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
     [
@@ -285,6 +291,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
     [
@@ -322,6 +329,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
     [
@@ -351,6 +359,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
     [
@@ -388,6 +397,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
     [
@@ -425,6 +435,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
     [
@@ -454,6 +465,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
     [
@@ -483,6 +495,7 @@ export const GetInitialCharacters = (
             },
           ],
         ]),
+        location: 'dorms',
       },
     ],
   ])

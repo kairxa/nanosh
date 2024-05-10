@@ -1,6 +1,6 @@
 import type { Actions } from './actions'
 import type { ModifierTracker, ModifiersCharacter } from './modifiers'
-import type { ShipCargo } from './ship'
+import type { RoomTypes, ShipCargo } from './ship'
 import type { Skills } from './skills'
 import type { Traits } from './traits'
 
@@ -34,4 +34,5 @@ export interface Character {
   cycleActions: Map<number, Actions> // invokeTime, Actions
   inventory: Set<ShipCargo>
   equipment: Map<CharacterEquipmentSlots, ShipCargo>
+  location: RoomTypes
 }
