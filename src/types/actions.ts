@@ -18,13 +18,13 @@ export type Actions =
   | 'action.garden.forage'
   | 'action.garden.grow'
   | 'action.garden.harvest'
+  | 'action.generic.shower'
   | 'action.rnd.review'
   | 'action.rnd.research'
   | 'action.rnd.build'
   | 'action.rnd.repair'
   | 'action.private-quarters.sleep'
   | 'action.private-quarters.seggs'
-  | 'action.private-quarters.shower'
 
 export interface ActionDamage {
   min: number

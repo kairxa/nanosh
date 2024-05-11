@@ -1,5 +1,5 @@
 import {
-  INVALID_FIRSTAID_TARGET_NOT_IN_MEDLAB,
+  INVALID_TARGET_LOCATION,
   INVALID_FIRSTAID_TARGET_NOT_WOUNDED,
   INVALID_NOT_ENOUGH_SUPPLIES,
 } from '@nanosh/messages/errors'
@@ -48,7 +48,7 @@ export default function ({
     character?.location !== 'medlab' ||
     character?.location !== target?.location
   ) {
-    return [null, new Error(INVALID_FIRSTAID_TARGET_NOT_IN_MEDLAB)]
+    return [null, new Error(INVALID_TARGET_LOCATION)]
   }
 
   const targetLightWound = target.modifiers.get('character.wound.light')

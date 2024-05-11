@@ -133,6 +133,12 @@ export type ModifiersCharacter =
   //     action.medlab.firstaid
   //     action.medlab.surgery
   | 'character.cycle.dirty'
+  // character.cycle.frustrated
+  //   +1 self: character.cycle.deprived >= 12
+  // remove:
+  //   action.private-quarters.seggs
+  //   character.cycle.deprived amount < 12
+  | 'character.cycle.frustrated'
   // character.cycle.hungry
   //   +1 self day change: if character.day-change.eat == 0
   //   cycle change: 5% chance +1 character.persistent.sick

@@ -15,6 +15,7 @@ export const MAX_MORALE = 20
 export const MAX_NANOSH_SYMPATHY = 10
 
 export const LW_CW_CONVERSION_AMOUNT = 3
+export const FRUSTRATED_DEPRIVED_THRESHOLD = 12
 
 export const INITIAL_MORALE = 12
 export const INITIAL_NANOSH_SYMPATHY = 0

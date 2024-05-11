@@ -22,6 +22,7 @@ export const FATAL_SHIP_LOCATION_STORE_MISMATCH =
 export const INVALID_INVENTORY_FULL = 'Inventory is full.'
 export const INVALID_INVENTORY_ITEM_NOT_FOUND =
   'Item is not found in inventory.'
+export const INVALID_TARGET_LOCATION = 'Invalid target location.'
 
 // action.generic Errors
 export const INVALID_UNEQUIP_EMPTY_TARGET = 'Nothing is equipped in that slot.'
@@ -78,6 +79,5 @@ export const INVALID_REPAIR_ITEM_IS_NOT_BROKEN = 'Item is not broken.'
 export const INVALID_COMPOUND_MEDS_NAME = 'Invalid meds name.'
 
 // action.medlab.firstaid Errors
-export const INVALID_FIRSTAID_TARGET_NOT_IN_MEDLAB = 'Invalid target location.'
 export const INVALID_FIRSTAID_TARGET_NOT_WOUNDED =
   'Target has no light wounded.'

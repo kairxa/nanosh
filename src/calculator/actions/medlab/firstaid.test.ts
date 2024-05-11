@@ -1,5 +1,5 @@
 import {
-  INVALID_FIRSTAID_TARGET_NOT_IN_MEDLAB,
+  INVALID_TARGET_LOCATION,
   INVALID_FIRSTAID_TARGET_NOT_WOUNDED,
   INVALID_NOT_ENOUGH_SUPPLIES,
 } from '@nanosh/messages/errors'
@@ -142,7 +142,7 @@ describe('action.medlab.firstaid', () => {
     })
 
     expect(newState).toBeNull()
-    expect(error?.message).toBe(INVALID_FIRSTAID_TARGET_NOT_IN_MEDLAB)
+    expect(error?.message).toBe(INVALID_TARGET_LOCATION)
   })
 
   it('should invalidate request because character is not wounded', () => {
