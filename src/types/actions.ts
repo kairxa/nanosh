@@ -19,6 +19,8 @@ export type Actions =
   | 'action.garden.grow'
   | 'action.garden.harvest'
   | 'action.generic.shower'
+  | 'action.refectory.provision'
+  | 'action.refectory.consume'
   | 'action.rnd.review'
   | 'action.rnd.research'
   | 'action.rnd.build'
