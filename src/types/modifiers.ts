@@ -231,14 +231,13 @@ export type ModifiersCharacter =
   | 'character.wound.stabilized.light'
   | 'character.wound.stabilized.critical'
 
+export interface ModifierTimeDetail {
+  day: number
+  cycle: number
+}
+
 export interface ModifierTracker {
   amount: number
-  start: {
-    day: number
-    cycle: number
-  }
-  expiry: {
-    day: number
-    cycle: number
-  }
+  start: ModifierTimeDetail
+  expiry: ModifierTimeDetail
 }
