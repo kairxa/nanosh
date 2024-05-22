@@ -57,7 +57,7 @@ describe('action.bridge.command.liberate', () => {
 
   it('should liberate outposts', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState!)
     newState.nanosh.outposts.add('Bali, Indonesia')
     newState.nanosh.outposts.add('Pontianak, Indonesia')
@@ -146,7 +146,7 @@ describe('action.bridge.command.liberate', () => {
 
   it('should invalidate request due to ship location', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState!.sectors.delete('SEA Bloc')
     ;[newState, error] = liberate({
@@ -161,7 +161,7 @@ describe('action.bridge.command.liberate', () => {
 
   it('should invalidate request due to no liberation point in supersector', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState!.shipLocation = 'South Asian Network'
     ;[newState, error] = liberate({
@@ -176,7 +176,7 @@ describe('action.bridge.command.liberate', () => {
 
   it('should invalidate request due to not enough AP', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState!.characters.set('Solas Mercer', {
       ...(newState!.characters.get('Solas Mercer') as Character),
@@ -194,7 +194,7 @@ describe('action.bridge.command.liberate', () => {
 
   it('should invalidate request due to invalid subsector during removing advances', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState?.sectors.delete('Singapore, Singapore')
     ;[newState, error] = liberate({

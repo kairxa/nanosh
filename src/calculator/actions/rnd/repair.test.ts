@@ -2,7 +2,6 @@ import {
   INVALID_INVENTORY_ITEM_NOT_FOUND,
   INVALID_REPAIR_ITEM_IS_NOT_BROKEN,
 } from '@nanosh/messages/errors'
-import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
 import { describe, expect, it } from 'bun:test'
 import repair from './repair'
@@ -42,9 +41,7 @@ describe('action.rnd.repair', () => {
   })
 
   it('should repair item and reduce deprived', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = repair({
+    const [newState, error] = repair({
       state: gameState!,
       itemID: 'soren-koda-item-01',
       invokeTime: 123,
@@ -77,9 +74,7 @@ describe('action.rnd.repair', () => {
   })
 
   it('should repair item and does not reduce deprived', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = repair({
+    const [newState, error] = repair({
       state: gameState!,
       itemName: 'body.heavy.lorica',
       invokeTime: 12344,
@@ -112,9 +107,7 @@ describe('action.rnd.repair', () => {
   })
 
   it('should invalidate request due to item not in inventory', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = repair({
+    const [newState, error] = repair({
       state: gameState!,
       itemName: 'acc.voxlink',
       invokeTime: 123,
@@ -127,9 +120,7 @@ describe('action.rnd.repair', () => {
   })
 
   it('should invalidate request because item is not broken', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = repair({
+    const [newState, error] = repair({
       state: gameState!,
       itemName: 'weapon.heavy.arcus-driver',
       invokeTime: 123,

@@ -1,5 +1,4 @@
 import { INVALID_COMPOUND_MEDS_NAME } from '@nanosh/messages/errors'
-import type { Game } from '@nanosh/types/game'
 import type { ItemNames } from '@nanosh/types/item'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
 import { describe, expect, it } from 'bun:test'
@@ -20,9 +19,7 @@ describe('action.medlab.compound', () => {
     ['meds.somnoxa', 1],
     ['meds.lucidix', 4],
   ])('should create %s and reducing %s supplies', (medsName, suppliesUsed) => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = compound({
+    const [newState, error] = compound({
       state: gameState!,
       invokeTime: 1231,
       medsName: medsName as ItemNames,
@@ -46,9 +43,7 @@ describe('action.medlab.compound', () => {
   })
 
   it('should create meds without any special effects', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = compound({
+    const [newState, error] = compound({
       state: gameState!,
       invokeTime: 1231,
       medsName: 'meds.lucidix',
@@ -65,9 +60,7 @@ describe('action.medlab.compound', () => {
   it.each([['meds.non-existant']])(
     'should return error not found meds name',
     (medsName) => {
-      let newState: Game | null
-      let error: Error | null
-      ;[newState, error] = compound({
+      const [newState, error] = compound({
         state: gameState!,
         invokeTime: 1231,
         medsName: medsName as ItemNames,

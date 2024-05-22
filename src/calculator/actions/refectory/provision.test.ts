@@ -32,9 +32,7 @@ describe('action.refectory.provision', () => {
     })
 
   it('should convert supplies to rations with base multiplier', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = provision({
+    const [newState, error] = provision({
       state: gameState!,
       invokeTime: 123,
       characterID: 'Ysara Mercer',
@@ -55,9 +53,7 @@ describe('action.refectory.provision', () => {
   })
 
   it('should convert supplies to rations with adaptable multiplier and reduce deprived from dutiful character', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = provision({
+    const [newState, error] = provision({
       state: gameState!,
       invokeTime: 123,
       characterID: 'Soren Koda',
@@ -78,9 +74,7 @@ describe('action.refectory.provision', () => {
   })
 
   it('should convert supplies to rations with cook multiplier', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = provision({
+    const [newState, error] = provision({
       state: gameState!,
       invokeTime: 123,
       characterID: 'Alisa Huang',
@@ -102,7 +96,7 @@ describe('action.refectory.provision', () => {
 
   it('should invalidate request because character is dirty', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.characters
       .get('Soren Koda')
       ?.modifiers.set('character.cycle.dirty', {

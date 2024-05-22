@@ -16,9 +16,7 @@ describe('action.rnd.review', () => {
   })
 
   it('should review project correctly', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = review({
+    const [newState, error] = review({
       state: gameState!,
       invokeTime: 1234,
       gameID: 'review-test',
@@ -37,7 +35,7 @@ describe('action.rnd.review', () => {
 
   it('should invalidate request because queue size is already 3', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState?.ship.projects.queued.set(
       'File 055 - Hoppers Space Optimization',

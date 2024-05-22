@@ -9,16 +9,16 @@ import { describe, expect, it } from 'bun:test'
 import advance from './advance'
 
 describe('action.bridge.command.advance', () => {
-  const [gameState, _] = GetInitialGame('initial-state-game-test', 1715619600000) as [Game, null]
+  const [gameState, _] = GetInitialGame(
+    'initial-state-game-test',
+    1715619600000,
+  ) as [Game, null]
   const solasMercer = gameState.characters.get('Solas Mercer') as Character
   solasMercer.playerID = 'my-current-player'
   solasMercer.ap = 3
 
-  let newState: Game | null
-  let error: Error | null
-
   it('should advance normally', () => {
-    ;[newState, error] = advance({
+    const [newState, error] = advance({
       state: gameState,
       characterID: 'Solas Mercer',
       targetSupersectorID: 'European Federation',
@@ -35,7 +35,7 @@ describe('action.bridge.command.advance', () => {
 
   it('should not advance because not enough eCells', () => {
     gameState.ship.eCells = 10
-    ;[newState, error] = advance({
+    const [newState, error] = advance({
       state: gameState,
       characterID: 'Solas Mercer',
       targetSupersectorID: 'Oceanian Front',
@@ -47,7 +47,7 @@ describe('action.bridge.command.advance', () => {
 
   it('should not advance because not enough AP', () => {
     solasMercer.ap = 0
-    ;[newState, error] = advance({
+    const [newState, error] = advance({
       state: gameState,
       characterID: 'Solas Mercer',
       targetSupersectorID: 'Oceanian Front',

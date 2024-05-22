@@ -49,7 +49,7 @@ describe('action.generic.inventory', () => {
 
   it('should switch equipped item', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.characters.get('Val')?.inventory.add({
       id: 'freeid01',
       itemName: 'weapon.heavy.arcus-driver',
@@ -74,7 +74,7 @@ describe('action.generic.inventory', () => {
 
   it('should invalidate unequip due to inventory full', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.characters.get('Val')?.inventory.add({
       id: 'freeid01',
       itemName: 'item.grenade',
@@ -101,7 +101,7 @@ describe('action.generic.inventory', () => {
 
   it('should invalidate equip due to invalid item type', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.characters.get('Val')?.inventory.add({
       id: 'freeid01',
       itemName: 'item.grenade',

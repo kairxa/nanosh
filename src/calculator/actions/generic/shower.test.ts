@@ -32,9 +32,7 @@ describe('action.generic.shower', () => {
     })
 
   it('should remove dirty and reduce deprived for Teal', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = shower({
+    const [newState, error] = shower({
       state: gameState!,
       characterID: 'Tee\'elise "Teal" Qing',
       invokeTime: 123,
@@ -53,7 +51,7 @@ describe('action.generic.shower', () => {
 
   it('should invalidate request because Teal is not in shower rooms', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState!.characters.get('Tee\'elise "Teal" Qing')!.location = 'garden'
     ;[newState, error] = shower({
       state: newState!,

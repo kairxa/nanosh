@@ -30,9 +30,7 @@ describe('action.bridge.command.analyze', () => {
   gameState!.intel.basic = 8
 
   it('should analyze properly', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = analyze({
+    const [newState, error] = analyze({
       invokeTime: 123,
       characterID: 'Solas Mercer',
       state: gameState!,
@@ -45,9 +43,7 @@ describe('action.bridge.command.analyze', () => {
   })
 
   it('should calculate skill.savant', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = analyze({
+    const [newState, error] = analyze({
       invokeTime: 123,
       characterID: 'Niral Pierce',
       state: gameState!,
@@ -66,7 +62,7 @@ describe('action.bridge.command.analyze', () => {
 
   it('should invalidate request due to not enough basic intel', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState!.intel.basic = 3
     ;[newState, error] = analyze({
@@ -79,9 +75,7 @@ describe('action.bridge.command.analyze', () => {
   })
 
   it('should invalidate request due to not enough AP', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = analyze({
+    const [newState, error] = analyze({
       invokeTime: 123,
       characterID: 'Tee\'elise "Teal" Qing',
       state: gameState!,

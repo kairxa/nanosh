@@ -1,4 +1,3 @@
-import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
 import { describe, expect, it } from 'bun:test'
 import dutifulDeprivedReduce from './dutiful'
@@ -23,9 +22,7 @@ describe('actions.modifiers.traits.dutiful', () => {
   gameState!.characters.get('Alisa Huang')!.ap = 7
 
   it('should reduce deprived correctly if the character has it', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = dutifulDeprivedReduce({
+    const [newState, error] = dutifulDeprivedReduce({
       state: gameState!,
       characterID: 'Soren Koda',
     })
@@ -39,9 +36,7 @@ describe('actions.modifiers.traits.dutiful', () => {
   })
 
   it('should not reduce deprived if the character does not have it', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = dutifulDeprivedReduce({
+    const [newState, error] = dutifulDeprivedReduce({
       state: gameState!,
       characterID: 'Alisa Huang',
     })

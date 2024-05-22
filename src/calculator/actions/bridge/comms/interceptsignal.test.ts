@@ -11,9 +11,7 @@ describe('action.bridge.comms.interceptsignal', () => {
   gameState!.intel.basic = 5
 
   it('should interceptsignal properly', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = interceptsignal({
+    const [newState, error] = interceptsignal({
       invokeTime: 123,
       state: gameState!,
       characterID: 'Alisa Huang',
@@ -31,7 +29,7 @@ describe('action.bridge.comms.interceptsignal', () => {
 
   it('should invalidate request due to not enough AP', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState!.characters.get('Alisa Huang')!.ap = 0
     ;[newState, error] = interceptsignal({

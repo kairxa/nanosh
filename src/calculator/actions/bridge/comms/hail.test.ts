@@ -1,4 +1,3 @@
-import type { Game } from '@nanosh/types/game'
 import { type TraderShow, type TraderShowItem } from '@nanosh/types/trader'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
 import { describe, expect, it } from 'bun:test'
@@ -32,9 +31,7 @@ describe('action.bridge.comms.hail', () => {
   })
 
   it('should hail properly', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = hailAccept({
+    const [newState, error] = hailAccept({
       state: gameState!,
       gameID: 'hail-test',
       invokeTime: 123,

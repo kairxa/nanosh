@@ -1,4 +1,3 @@
-import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
 import { describe, expect, it } from 'bun:test'
 import onair from './onair'
@@ -25,9 +24,7 @@ describe('action.bridge.comms.onair', () => {
   gameState!.morale = 2
 
   it('should add onair modifier to ship', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = onair({
+    const [newState, error] = onair({
       state: gameState!,
       invokeTime: 123,
       characterID: 'Alisa Huang',
@@ -55,9 +52,7 @@ describe('action.bridge.comms.onair', () => {
   })
 
   it('should also reduce deprived', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = onair({
+    const [newState, error] = onair({
       state: gameState!,
       invokeTime: 123,
       characterID: 'Soren Koda',

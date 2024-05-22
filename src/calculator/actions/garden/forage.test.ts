@@ -11,9 +11,7 @@ describe('action.bridge.comms.garden', () => {
   gameState!.cycle = 3
 
   it('should forage', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = forage({
+    const [newState, error] = forage({
       state: gameState!,
       invokeTime: 12345,
       gameID: 'garden-forage',
@@ -37,9 +35,7 @@ describe('action.bridge.comms.garden', () => {
   })
 
   it('should invalidate request due to not enough AP', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = forage({
+    const [newState, error] = forage({
       state: gameState!,
       invokeTime: 12345,
       gameID: 'garden-forage',
@@ -51,7 +47,7 @@ describe('action.bridge.comms.garden', () => {
 
   it('should calculate dirtiness', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState!.characters.get('Alisa Huang')!.ap = 7
     ;[newState, error] = forage({

@@ -12,9 +12,7 @@ describe('action.bridge.comms.rally', () => {
   gameState!.cycle = 3
 
   it('should rally properly', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = rally({
+    const [newState, error] = rally({
       state: gameState!,
       invokeTime: 123,
       characterID: 'Tee\'elise "Teal" Qing',
@@ -45,7 +43,7 @@ describe('action.bridge.comms.rally', () => {
 
   it('should invalidate request due to not enough AP', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState!.characters.get('Tee\'elise "Teal" Qing')!.ap = 0
     ;[newState, error] = rally({

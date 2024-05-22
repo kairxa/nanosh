@@ -1,4 +1,3 @@
-import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
 import { describe, expect, it } from 'bun:test'
 import music from './music'
@@ -10,9 +9,7 @@ describe('action.bridge.comms.music', () => {
   gameState!.morale = 2
 
   it('should add crew morale', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = music({
+    const [newState, error] = music({
       state: gameState!,
       invokeTime: 123,
       characterID: 'Alisa Huang',

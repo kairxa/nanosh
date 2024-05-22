@@ -68,9 +68,7 @@ describe('action.bridge.command.mobilize', () => {
   })
 
   it('should validate ship location', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = mobilize({
+    const [newState, error] = mobilize({
       state: gameState!,
       gameID: 'testing-mobilize',
       invokeTime: 123,

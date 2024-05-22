@@ -1,4 +1,3 @@
-import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
 import { describe, expect, it } from 'bun:test'
 import propa from './propa'
@@ -10,9 +9,7 @@ describe('action.bridge.comms.propa', () => {
   gameState!.nanoshSympathy = 5
 
   it('should reduce nanosh sympathy token', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = propa({
+    const [newState, error] = propa({
       state: gameState!,
       invokeTime: 123,
       characterID: 'Alisa Huang',

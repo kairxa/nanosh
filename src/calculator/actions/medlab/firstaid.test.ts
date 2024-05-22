@@ -1,7 +1,7 @@
 import {
-  INVALID_TARGET_LOCATION,
   INVALID_FIRSTAID_TARGET_NOT_WOUNDED,
   INVALID_NOT_ENOUGH_SUPPLIES,
+  INVALID_TARGET_LOCATION,
 } from '@nanosh/messages/errors'
 import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
@@ -30,9 +30,7 @@ describe('action.medlab.firstaid', () => {
     })
 
   it("should reduce Alisa's light wound by two", () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = firstaid({
+    const [newState, error] = firstaid({
       state: gameState!,
       invokeTime: 123,
       targetID: 'Alisa Huang',
@@ -60,9 +58,7 @@ describe('action.medlab.firstaid', () => {
   })
 
   it("should reduce Niral's light wound by one", () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = firstaid({
+    const [newState, error] = firstaid({
       state: gameState!,
       invokeTime: 123,
       targetID: 'Niral Pierce',
@@ -89,7 +85,7 @@ describe('action.medlab.firstaid', () => {
 
   it('should invalidate request due to not enough supplies', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState!.ship.supplies = 1
     ;[newState, error] = firstaid({
       state: newState!,
@@ -104,7 +100,7 @@ describe('action.medlab.firstaid', () => {
 
   it('should only reduce one existing LW despite having physician', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState!.characters
       .get('Niral Pierce')
       ?.modifiers.set('character.wound.light', {
@@ -132,7 +128,7 @@ describe('action.medlab.firstaid', () => {
 
   it('should invalidate request because one of the characters are not in medlab', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState!.characters.get('Niral Pierce')!.location = 'bridge'
     ;[newState, error] = firstaid({
       state: newState!,
@@ -147,7 +143,7 @@ describe('action.medlab.firstaid', () => {
 
   it('should invalidate request because character is not wounded', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState!.characters
       .get('Niral Pierce')!
       .modifiers.delete('character.wound.light')

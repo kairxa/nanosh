@@ -27,9 +27,7 @@ describe('action.rnd.build', () => {
     })
 
   it('should build with reduced amount', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = rndbuild({
+    const [newState, error] = rndbuild({
       state: gameState!,
       gameID: 'rnd-build-test',
       invokeTime: 1234,
@@ -51,9 +49,7 @@ describe('action.rnd.build', () => {
   })
 
   it('should build with normal amount', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = rndbuild({
+    const [newState, error] = rndbuild({
       state: gameState!,
       gameID: 'rnd-build-test-no-dirty-please',
       invokeTime: 1234,
@@ -74,7 +70,7 @@ describe('action.rnd.build', () => {
 
   it('should invalidate request because inventory is full', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.characters.get('Momo Tzigane')?.inventory.add({
       id: 'freeid01',
       itemName: 'item.grenade',
@@ -103,9 +99,7 @@ describe('action.rnd.build', () => {
   })
 
   it('should invalidate request because item is not inside craftable', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = rndbuild({
+    const [newState, error] = rndbuild({
       state: gameState!,
       gameID: 'rnd-build-test',
       invokeTime: 1234,
@@ -119,7 +113,7 @@ describe('action.rnd.build', () => {
 
   it('should invalidate request because not enough resources', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState!.ship.supplies = 69 //
     ;[newState, error] = rndbuild({
       state: newState!,

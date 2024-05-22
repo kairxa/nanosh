@@ -87,8 +87,9 @@ describe('action.bridge.command.cannon', () => {
       characterID: 'Solas Mercer',
       invokeTime: 122,
       targetID: gameState?.nanosh.mainBase as SupersectorNames,
-    }) as [Game, null]
+    })
 
+    expect(error).toBeNull()
     expect(newState.ship.eCells).toBe(105) // reduced by 10
     expect(
       newState.sectors.get(gameState.nanosh.mainBase as SupersectorNames)?.hp,
@@ -99,7 +100,7 @@ describe('action.bridge.command.cannon', () => {
 
   it('should remove aux base', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState.shipLocation = 'RUSSE-CAN'
     newState.sectors.get('RUSSE-CAN')!.hp = 4
@@ -118,7 +119,7 @@ describe('action.bridge.command.cannon', () => {
 
   it('should remove outpost', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState.shipLocation = 'Oceanian Front'
     newState!.sectors.get('Port Moresby, Papua New Guinea')!.hp = 4

@@ -5,7 +5,10 @@ import { describe, expect, it } from 'bun:test'
 import prime from './prime'
 
 describe('action.bridge.command.prime', () => {
-  const [gameState, _] = GetInitialGame('initial-state-game-test', 1715619600000)
+  const [gameState, _] = GetInitialGame(
+    'initial-state-game-test',
+    1715619600000,
+  )
   const solasMercer = gameState!.characters.get('Solas Mercer')
   solasMercer!.ap = 7
   it('should add cannon-primed modifier and reduce character ap', () => {
@@ -33,7 +36,7 @@ describe('action.bridge.command.prime', () => {
 
   it('should invalidate request due to not enough AP', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState?.characters.set('Solas Mercer', { ...solasMercer!, ap: 0 })
     ;[newState, error] = prime({

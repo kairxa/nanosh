@@ -10,9 +10,7 @@ describe('action.garden.harvest', () => {
   gameState!.ship.rations = 100
 
   it('should harvest', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = harvest({
+    const [newState, error] = harvest({
       state: gameState!,
       gameID: 'harvest-test',
       invokeTime: 123,
@@ -33,7 +31,7 @@ describe('action.garden.harvest', () => {
 
   it('should harvest extra due to bountiful modifier', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState?.ship.modifiers.set('ship.persistent.garden.bountiful', {
       start: { day: 1, cycle: 1 },
@@ -64,7 +62,7 @@ describe('action.garden.harvest', () => {
 
   it('should harvest less due to sapped modifier', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState?.ship.modifiers.set('ship.persistent.garden.sapped', {
       start: { day: 1, cycle: 1 },
@@ -95,7 +93,7 @@ describe('action.garden.harvest', () => {
 
   it('should invalidate request due to not enough AP', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState!.characters.get('X7-Gastronia "Gass" Petalnova')!.ap = 0
     ;[newState, error] = harvest({
@@ -111,7 +109,7 @@ describe('action.garden.harvest', () => {
 
   it('should calculate dirtiness', () => {
     let newState: Game | null
-    let error: Error | null
+    let error: Error | null = null
     newState = structuredClone(gameState)
     newState!.characters.get('Alisa Huang')!.ap = 7
     ;[newState, error] = harvest({
@@ -130,7 +128,7 @@ describe('action.garden.harvest', () => {
 
   it('should reduce deprived if the character has dutiful', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState!.characters.get('Soren Koda')!.ap = 7
     newState!.characters
       .get('Soren Koda')!

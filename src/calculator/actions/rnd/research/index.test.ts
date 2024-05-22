@@ -26,9 +26,7 @@ describe('action.rnd.research', () => {
   })
 
   it('should research', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = researchProgress({
+    const [newState, error] = researchProgress({
       state: gameState!,
       queueID: 1,
       invokeTime: 1234,
@@ -53,9 +51,7 @@ describe('action.rnd.research', () => {
   ])(
     'should invalidate action due to invalid queue ID',
     (queueID, expectNewState, expectErrorMessage) => {
-      let newState: Game | null
-      let error: Error | null
-      ;[newState, error] = researchProgress({
+      const [newState, error] = researchProgress({
         state: gameState!,
         queueID,
         invokeTime: 1234,
@@ -69,7 +65,7 @@ describe('action.rnd.research', () => {
 
   it('should invalidate action due to character dirty', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.characters.get('Val')?.modifiers.set('character.cycle.dirty', {
       start: { day: 1, cycle: 1 },
       expiry: { day: -1, cycle: -1 },
@@ -88,9 +84,7 @@ describe('action.rnd.research', () => {
   })
 
   it('should research bio stuffs', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = researchProgress({
+    const [newState, error] = researchProgress({
       state: gameState!,
       queueID: 2,
       invokeTime: 123455,
@@ -106,9 +100,7 @@ describe('action.rnd.research', () => {
   })
 
   it('should give default progress', () => {
-    let newState: Game | null
-    let error: Error | null
-    ;[newState, error] = researchProgress({
+    const [newState, error] = researchProgress({
       state: gameState!,
       queueID: 2,
       invokeTime: 1234,
@@ -125,7 +117,7 @@ describe('action.rnd.research', () => {
 
   it('should implement File G11 - Apex Bio Enhancement properly', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.ship.projects.queued.set('File G11 - Apex Bio Enhancement', {
       progressCurrent: 11,
     })
@@ -154,7 +146,7 @@ describe('action.rnd.research', () => {
 
   it('should implement File 128 - Finesse Protocol properly', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.ship.projects.queued.clear()
     newState?.ship.projects.queued.set('File 128 - Finesse Protocol', {
       progressCurrent: 13,
@@ -187,7 +179,7 @@ describe('action.rnd.research', () => {
 
   it('should implement File 129 - Equilibrium Drive properly', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.ship.projects.queued.clear()
     newState?.ship.projects.pool.delete('File 129 - Equilibrium Drive')
     newState?.ship.projects.queued.set('File 129 - Equilibrium Drive', {
@@ -221,7 +213,7 @@ describe('action.rnd.research', () => {
 
   it('should implement File 100 - Support Blueprints Recovery A properly', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.ship.projects.queued.clear()
     newState?.ship.projects.pool.delete(
       'File 100 - Support Blueprints Recovery A',
@@ -265,7 +257,7 @@ describe('action.rnd.research', () => {
 
   it('should implement File 101 - Support Blueprints Recovery B', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.ship.projects.queued.clear()
     newState?.ship.projects.pool.delete(
       'File 101 - Support Blueprints Recovery B',
@@ -308,7 +300,7 @@ describe('action.rnd.research', () => {
 
   it('should implement File NAP - Nanosh Assimilation Protocol properly', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.ship.projects.queued.clear()
     newState?.ship.projects.pool.delete(
       'File NAP - Nanosh Assimilation Protocol',
@@ -348,7 +340,7 @@ describe('action.rnd.research', () => {
 
   it('should implement File 252 - Hyperheal Ampoule properly', () => {
     let newState: Game | null = structuredClone(gameState)
-    let error: Error | null
+    let error: Error | null = null
     newState?.ship.projects.queued.clear()
     newState?.ship.projects.pool.delete('File 252 - HyperHeal Ampoule')
     newState?.ship.projects.queued.set('File 252 - HyperHeal Ampoule', {
