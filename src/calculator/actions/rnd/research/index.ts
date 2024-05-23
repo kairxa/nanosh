@@ -57,7 +57,7 @@ export function researchProgress({
     return [null, new Error(INVALID_CHARACTER_DIRTY)]
   }
 
-  let apUsed: number
+  let apUsed: number = RESEARCH_AP_USAGE
   let error: Error | null
   ;[apUsed, error] = getAPUsage(
     character!,
