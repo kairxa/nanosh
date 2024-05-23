@@ -79,5 +79,8 @@ export const INVALID_REPAIR_ITEM_IS_NOT_BROKEN = 'Item is not broken.'
 export const INVALID_COMPOUND_MEDS_NAME = 'Invalid meds name.'
 
 // action.medlab.firstaid Errors
-export const INVALID_FIRSTAID_TARGET_NOT_WOUNDED =
-  'Target has no light wounded.'
+export const INVALID_FIRSTAID_TARGET_NOT_WOUNDED = 'Target has no light wound.'
+
+// action.medlab.surgery Errors
+export const INVALID_SURGERY_TARGET_NOT_WOUNDED =
+  'Target has no critical wound.'
