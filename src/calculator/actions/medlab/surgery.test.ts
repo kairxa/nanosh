@@ -115,6 +115,21 @@ describe('action.medlab.surgery', () => {
     expect(newState?.characters.get('Ysara Mercer')?.ap).toBe(3)
   })
 
+  it('should succeed in surgery, project FILE 253', () => {
+    let newState: Game | null = structuredClone(gameState)
+    let error: Error | null = null
+    newState?.ship.projects.done.add('File 253 - Lifesaver Initiative')
+    ;[newState, error] = surgery({
+      state: newState!,
+      targetID: 'Ysara Mercer',
+      characterID: 'Niral Pierce',
+      invokeTime: 123, // 0.06, surgeon + FILE 253 === 100% -> prng() > 0
+      gameID: 'surgery-test',
+    })
+
+    expect(error).toBeNull()
+  })
+
   it('should succeed in surgery, project FILE 254', () => {
     let newState: Game | null = structuredClone(gameState)
     let error: Error | null = null
@@ -123,7 +138,7 @@ describe('action.medlab.surgery', () => {
       state: newState!,
       targetID: 'Ysara Mercer',
       characterID: 'Niral Pierce',
-      invokeTime: 123, // 0.06, surgeon + FILE 254 === 100% -> prng() > 0
+      invokeTime: 122, // 0.84, surgeon + FILE 254 === 80% -> prng() > 0
       gameID: 'surgery-test',
     })
 

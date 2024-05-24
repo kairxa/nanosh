@@ -32,7 +32,8 @@ const SURGERY_SKILL_MODIFIERS = new Set<Skills>([
 ])
 const SURGERY_SKILL_MODIFIERS_AP_REDUCE = 1
 const SURGERY_SURGEON_BASE_CHANCE = SURGERY_BASE_SUCCESS_CHANCE * 2
-const SURGERY_FILE_254_BASE_CHANCE_ADDITION = 20
+const SURGERY_FILE_253_BASE_CHANCE_ADDITION = 20
+const SURGERY_FILE_254_BASE_CHANCE_MULTIPLIER = 1.5
 const SURGERY_METICULOUS_BASE_CHANCE = 100
 const SURGERY_CW_REDUCE = 1
 const SURGERY_SELF_PENALTY_MULTIPLIER = 2
@@ -72,10 +73,16 @@ export default function ({
   if (character?.skills.has('skill.surgeon')) {
     successChance = SURGERY_SURGEON_BASE_CHANCE
   }
+  if (stateCopy.ship.projects.done.has('File 253 - Lifesaver Initiative')) {
+    successChance += SURGERY_FILE_253_BASE_CHANCE_ADDITION
+  }
   if (
     stateCopy.ship.projects.done.has('File 254 - Operational Surge Paradigm')
   ) {
-    successChance += SURGERY_FILE_254_BASE_CHANCE_ADDITION
+    successChance = Math.min(
+      successChance * SURGERY_FILE_254_BASE_CHANCE_MULTIPLIER,
+      100,
+    )
   }
   if (character?.trait.has('trait.meticulous')) {
     successChance = SURGERY_METICULOUS_BASE_CHANCE
