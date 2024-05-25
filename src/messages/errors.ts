@@ -27,6 +27,8 @@ export const INVALID_TARGET_LOCATION = 'Invalid target location.'
 // action.generic Errors
 export const INVALID_UNEQUIP_EMPTY_TARGET = 'Nothing is equipped in that slot.'
 export const INVALID_EQUIP_ITEM_UNEQUIPPABLE = 'Item is not equippable.'
+export const INVALID_CYCLE_ACTION_NOT_EMPTY =
+  'You have done something else this cycle.'
 
 // action.bridge.command.advance Errors
 export const INVALID_SUPERSECTOR_TARGET_ID = 'Invalid Supersector Target ID'

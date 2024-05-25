@@ -1,7 +1,7 @@
 import {
-  INVALID_INVENTORY_ITEM_NOT_FOUND,
   INVALID_EQUIP_ITEM_UNEQUIPPABLE,
   INVALID_INVENTORY_FULL,
+  INVALID_INVENTORY_ITEM_NOT_FOUND,
   INVALID_UNEQUIP_EMPTY_TARGET,
 } from '@nanosh/messages/errors'
 import type { CharacterEquipmentSlots } from '@nanosh/types/character'
@@ -83,7 +83,7 @@ export function equip({
   }
 
   character!.inventory.delete(item)
-  let error: Error | null
+  let error: Error | null = null
   ;[stateCopy, error] = unequip({
     state: stateCopy,
     characterID,
