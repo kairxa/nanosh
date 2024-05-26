@@ -86,3 +86,7 @@ export const INVALID_FIRSTAID_TARGET_NOT_WOUNDED = 'Target has no light wound.'
 // action.medlab.surgery Errors
 export const INVALID_SURGERY_TARGET_NOT_WOUNDED =
   'Target has no critical wound.'
+
+// action.private-quarters.seggs Errors
+export const INVALID_SEGGS_TARGET_IS_SELF =
+  "This action can't be done solo, yet. Maybe there's a way to do so.."
