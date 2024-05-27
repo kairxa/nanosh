@@ -17,20 +17,17 @@ export default function dutifulDeprivedReduce({
   const character = stateCopy.characters.get(characterID)
 
   if (character?.trait.has('trait.dutiful')) {
-    const currentDeprived = character.modifiers.get('character.cycle.deprived')
+    const currentDeprived = character.modifiers.get(
+      'character.cycle.deprived',
+    ) || {
+      start: { day: stateCopy.day, cycle: stateCopy.cycle },
+      expiry: { day: -1, cycle: -1 },
+      amount: 0,
+    }
     character.modifiers.set('character.cycle.deprived', {
-      start: {
-        day: currentDeprived?.start.day || 1,
-        cycle: currentDeprived?.start.cycle || 1,
-      },
-      expiry: {
-        day: currentDeprived?.expiry.day || -1,
-        cycle: currentDeprived?.expiry.cycle || -1,
-      },
-      amount: Math.max(
-        (currentDeprived?.amount || 0) - DUTIFUL_DEPRIVED_REDUCE,
-        0,
-      ),
+      start: { ...currentDeprived.start },
+      expiry: { ...currentDeprived.expiry },
+      amount: Math.max(currentDeprived.amount - DUTIFUL_DEPRIVED_REDUCE, 0),
     })
   }
 

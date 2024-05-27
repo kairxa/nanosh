@@ -43,12 +43,18 @@ export default function ({
     character.modifiers.has('character.cycle.frustrated') &&
     character.modifiers.has('character.cycle.deprived')
   ) {
-    const currentDeprived = character.modifiers.get('character.cycle.deprived')!
+    const currentDeprived = character.modifiers.get(
+      'character.cycle.deprived',
+    ) || {
+      start: { day: stateCopy.day, cycle: stateCopy.cycle },
+      expiry: { day: -1, cycle: -1 },
+      amount: 0,
+    }
     const targetDeprivedAmount =
-      currentDeprived!.amount - SHOWER_AMOROUS_FRUSTRATED_DEPRIVED_REDUCE
+      currentDeprived.amount - SHOWER_AMOROUS_FRUSTRATED_DEPRIVED_REDUCE
     character.modifiers.set('character.cycle.deprived', {
-      start: { ...currentDeprived!.start },
-      expiry: { ...currentDeprived!.expiry },
+      start: { ...currentDeprived.start },
+      expiry: { ...currentDeprived.expiry },
       amount: Math.max(targetDeprivedAmount, 0),
     })
 
