@@ -5,7 +5,7 @@ import type {
 import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
 
-interface CommonRoomSocializeParams
+interface CommonAreaSocializeParams
   extends Pick<
     GenericCalculatorParams,
     'state' | 'characterID' | 'invokeTime'
@@ -23,7 +23,7 @@ export default function ({
   state,
   characterID,
   invokeTime,
-}: CommonRoomSocializeParams): DefaultCalculatorReturnType {
+}: CommonAreaSocializeParams): DefaultCalculatorReturnType {
   const stateCopy = structuredClone(state)
 
   const character = stateCopy.characters.get(characterID)
@@ -65,7 +65,7 @@ export default function ({
   })
 
   stateCopy.morale = Math.min(stateCopy.morale + moraleAdd, stateCopy.maxMorale)
-  character!.cycleActions.set(invokeTime, 'action.common-room.socialize')
+  character!.cycleActions.set(invokeTime, 'action.common-area.socialize')
   character!.ap -= apUsed
 
   return [stateCopy, null]

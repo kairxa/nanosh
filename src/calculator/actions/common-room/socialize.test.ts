@@ -4,7 +4,7 @@ import { GetInitialGame } from '@nanosh/utils/initialState/game'
 import { describe, expect, it } from 'bun:test'
 import socialize from './socialize'
 
-describe('actions.common-room.socialize', () => {
+describe('actions.common-area.socialize', () => {
   const [gameState, _] = GetInitialGame('socialize-test', 12345)
   gameState!.characters.get('Alisa Huang')!.ap = 7
   gameState!.characters.get('Rina Mikami')!.ap = 7
@@ -29,7 +29,7 @@ describe('actions.common-room.socialize', () => {
     const newAlisa = newState?.characters.get('Alisa Huang')
     expect(newAlisa?.ap).toBe(6)
     expect(newAlisa?.cycleActions.get(1234)).toBe(
-      'action.common-room.socialize',
+      'action.common-area.socialize',
     )
     expect(newAlisa?.modifiers.get('character.cycle.deprived')?.amount).toBe(0)
 
@@ -47,7 +47,7 @@ describe('actions.common-room.socialize', () => {
 
     const newRina = newState?.characters.get('Rina Mikami')
     expect(newRina?.ap).toBe(7)
-    expect(newRina?.cycleActions.get(1234)).toBe('action.common-room.socialize')
+    expect(newRina?.cycleActions.get(1234)).toBe('action.common-area.socialize')
     expect(newRina?.modifiers.get('character.cycle.deprived')?.amount).toBe(3)
 
     expect(newState?.morale).toBe(3)
@@ -73,7 +73,7 @@ describe('actions.common-room.socialize', () => {
 
     const newRina = newState?.characters.get('Rina Mikami')
     expect(newRina?.ap).toBe(7)
-    expect(newRina?.cycleActions.get(1234)).toBe('action.common-room.socialize')
+    expect(newRina?.cycleActions.get(1234)).toBe('action.common-area.socialize')
     expect(newRina?.modifiers.get('character.cycle.deprived')?.amount).toBe(3)
 
     expect(newState?.morale).toBe(2)

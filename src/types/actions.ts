@@ -12,7 +12,7 @@ export type Actions =
   | 'action.bridge.comms.rally'
   | 'action.bridge.comms.hail'
   | 'action.bridge.comms.interceptsignal'
-  | 'action.common-room.socialize'
+  | 'action.common-area.socialize'
   | 'action.engine-room.calibrate'
   | 'action.engine-room.shield'
   | 'action.medlab.compound'
@@ -30,6 +30,7 @@ export type Actions =
   | 'action.rnd.repair'
   | 'action.private-quarters.sleep'
   | 'action.private-quarters.seggs'
+  | 'action.weapon-system.calibrate'
 
 export interface ActionDamage {
   min: number
