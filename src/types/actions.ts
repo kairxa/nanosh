@@ -12,6 +12,7 @@ export type Actions =
   | 'action.bridge.comms.rally'
   | 'action.bridge.comms.hail'
   | 'action.bridge.comms.interceptsignal'
+  | 'action.fightercrafts-bay.calibrate'
   | 'action.common-area.socialize'
   | 'action.engine-room.calibrate'
   | 'action.engine-room.shield'
