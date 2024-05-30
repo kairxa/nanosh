@@ -1,3 +1,4 @@
+import type { CharacterNames } from '@nanosh/types/character'
 import type { Game } from '@nanosh/types/game'
 import {
   HP_NANOSH_AUX_BASE,
@@ -70,7 +71,8 @@ export const GetInitialGame = (
   ;(sectors.get(nanoshMainBase) as Supersector).hp = HP_NANOSH_MAIN_BASE
   ;(sectors.get(nanoshAuxBaseInitial) as Supersector).hp = HP_NANOSH_AUX_BASE
   nanoshOutposts.forEach((outpost) => {
-    ;(sectors.get(outpost) as Subsector).hp = HP_NANOSH_OUTPOST
+    const subsector = sectors.get(outpost) as Subsector
+    subsector.hp = HP_NANOSH_OUTPOST
   })
 
   const initialGame: Game = {
@@ -87,6 +89,7 @@ export const GetInitialGame = (
       critical: 0,
     },
     characters: GetInitialCharacters(gameID, invokeTime),
+    charactersDead: new Set<CharacterNames>(),
     shipLocation: randomizedSupersectorNames[0],
     nanosh: {
       mainBase: nanoshMainBase,

@@ -22,6 +22,7 @@ export interface Game {
     critical: number
   }
   characters: Map<CharacterNames, Character>
+  charactersDead: Set<CharacterNames>
   shipLocation: SupersectorNames
   nanosh: {
     mainBase: SupersectorNames | null

@@ -27,7 +27,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.legatus-legionis']),
         skills: new Set<Skills>([
           'skill.triarii',
@@ -65,7 +64,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.defender']),
         skills: new Set<Skills>([
           'skill.infantry',
@@ -111,7 +109,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.hardworking']),
         skills: new Set<Skills>([
           'skill.technician',
@@ -149,7 +146,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.gung-ho']),
         skills: new Set<Skills>([
           'skill.pirate',
@@ -187,7 +183,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.meticulous']),
         skills: new Set<Skills>([
           'skill.surgeon',
@@ -225,7 +220,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.amorous']),
         skills: new Set<Skills>([
           'skill.technician',
@@ -269,7 +263,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.droid']),
         skills: new Set<Skills>([
           'skill.botanist',
@@ -299,7 +292,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.driven']),
         skills: new Set<Skills>([
           'skill.prodigy-leader',
@@ -337,7 +329,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.calm']),
         skills: new Set<Skills>([
           'skill.technician',
@@ -367,7 +358,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.ace']),
         skills: new Set<Skills>([
           'skill.aviator',
@@ -405,7 +395,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.dutiful']),
         skills: new Set<Skills>([
           'skill.sniper',
@@ -443,7 +432,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.popular']),
         skills: new Set<Skills>([
           'skill.comms-savvy',
@@ -473,7 +461,6 @@ export const GetInitialCharacters = (
       {
         ap: 0,
         maxAP: MAX_AP,
-        dead: false,
         trait: new Set<Traits>(['trait.regenesis']),
         skills: new Set<Skills>([
           'skill.silver',

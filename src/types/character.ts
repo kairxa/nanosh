@@ -28,7 +28,6 @@ export interface Character {
   ap: number
   maxAP: number
   modifiers: Map<ModifiersCharacter, ModifierTracker>
-  dead: boolean
   skills: Set<Skills>
   trait: Set<Traits>
   cycleActions: Map<number, Actions> // invokeTime, Actions
