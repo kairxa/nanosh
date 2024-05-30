@@ -12,10 +12,7 @@ interface ModifiersShipCycleLifeSupportBrokenParams
 const CIVITATES_PRAETORIANS_REDUCTION_PERCENTAGE = 10 / 100
 
 const getReducedAmount = (currentAmount: number): number => {
-  return Math.max(
-    Math.ceil(currentAmount * CIVITATES_PRAETORIANS_REDUCTION_PERCENTAGE),
-    0,
-  )
+  return Math.ceil(currentAmount * CIVITATES_PRAETORIANS_REDUCTION_PERCENTAGE)
 }
 
 export default function ({

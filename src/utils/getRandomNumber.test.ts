@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'bun:test'
 import seedrandom from 'seedrandom'
-import getRandomNumber from './getRandomNumber'
+import GetRandomNumber from './getRandomNumber'
 
-describe('getRandomNumber with min max values', () => {
+describe('GetRandomNumber with min max values', () => {
   const prng = seedrandom('get-random-number')
   it('should generate numbers between min and max values', () => {
     const numbers: number[] = []
     for (let i = 0; i < 100; i++) {
       // assuming we will generate min and max numbers by this iteration
-      numbers.push(getRandomNumber(10, 30, prng))
+      numbers.push(GetRandomNumber(10, 30, prng))
     }
 
     numbers.sort((a, b) => a - b)

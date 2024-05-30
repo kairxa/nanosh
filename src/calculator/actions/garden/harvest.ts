@@ -4,7 +4,7 @@ import type {
 } from '@nanosh/types/generic'
 import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
-import getRandomNumber from '@nanosh/utils/getRandomNumber'
+import GetRandomNumber from '@nanosh/utils/getRandomNumber'
 import { GetWillDirty } from '@nanosh/utils/getWillDirty'
 import seedrandom from 'seedrandom'
 import dutifulDeprivedReduce from '../modifiers/traits/dutiful'
@@ -48,7 +48,7 @@ export default function ({
   }
 
   const prng = seedrandom(`${gameID}-${invokeTime}`)
-  let givenRation = getRandomNumber(
+  let givenRation = GetRandomNumber(
     HARVEST_MIN_RESOURCE,
     HARVEST_MAX_RESOURCE,
     prng,

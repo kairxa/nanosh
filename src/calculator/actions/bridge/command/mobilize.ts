@@ -11,7 +11,7 @@ import type {
 import type { Subsector, SubsectorNames } from '@nanosh/types/sectors'
 import getAPUsage from '@nanosh/utils/getAPUsage'
 import { GetRandomArray } from '@nanosh/utils/getRandomArray'
-import getRandomNumber from '@nanosh/utils/getRandomNumber'
+import GetRandomNumber from '@nanosh/utils/getRandomNumber'
 import seedrandom from 'seedrandom'
 import skillModifiers, { SKILL_AP_REDUCE } from './skillModifiers'
 
@@ -74,17 +74,17 @@ export default function mobilize({
     1,
     prng,
   )[0] as PickedSacrifice
-  const civitates = getRandomNumber(
+  const civitates = GetRandomNumber(
     MOBILIZE_MIN_CIVITATES,
     MOBILIZE_MAX_CIVITATES,
     prng,
   )
-  const supplies = getRandomNumber(
+  const supplies = GetRandomNumber(
     MOBILIZE_MIN_SUPPLIES,
     MOBILIZE_MAX_SUPPLIES,
     prng,
   )
-  const eCells = getRandomNumber(MOBILIZE_MIN_ECELLS, MOBILIZE_MAX_ECELLS, prng)
+  const eCells = GetRandomNumber(MOBILIZE_MIN_ECELLS, MOBILIZE_MAX_ECELLS, prng)
   const savedMobilize = {
     pickedSacrifice,
     civitates,

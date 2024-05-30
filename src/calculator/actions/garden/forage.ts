@@ -6,7 +6,7 @@ import {
 import type { ModifiersShip } from '@nanosh/types/modifiers'
 import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
-import getRandomNumber from '@nanosh/utils/getRandomNumber'
+import GetRandomNumber from '@nanosh/utils/getRandomNumber'
 import { GetWillDirty } from '@nanosh/utils/getWillDirty'
 import seedrandom from 'seedrandom'
 
@@ -41,7 +41,7 @@ export default function ({
   if (error !== null) return [null, error]
 
   const prng = seedrandom(`${gameID}-${invokeTime}`)
-  const givenAmount = getRandomNumber(
+  const givenAmount = GetRandomNumber(
     FORAGE_MIN_RESOURCE,
     FORAGE_MAX_RESOUCE,
     prng,

@@ -8,7 +8,7 @@ import type { Supersector } from '@nanosh/types/sectors'
 import type { Skills } from '@nanosh/types/skills'
 import type { TraderShow, TraderShowItem } from '@nanosh/types/trader'
 import getAPUsage from '@nanosh/utils/getAPUsage'
-import getRandomNumber from '@nanosh/utils/getRandomNumber'
+import GetRandomNumber from '@nanosh/utils/getRandomNumber'
 import GetRandomString from '@nanosh/utils/getRandomString'
 import { Traders } from '@nanosh/utils/initialState/traders'
 import seedrandom from 'seedrandom'
@@ -48,16 +48,16 @@ export function hailCalculate({
   const tradeMultiplier = libPoVicinityTotal * HAIL_LIBPO_PERCENTAGE_ADDITION
 
   const prng = seedrandom(`${gameID}-day-${state.day}`)
-  const chosenTraderIdx = getRandomNumber(0, 1, prng)
+  const chosenTraderIdx = GetRandomNumber(0, 1, prng)
   const chosenTrader = tradersVicinity[chosenTraderIdx]
-  let givenAmount = getRandomNumber(
+  let givenAmount = GetRandomNumber(
     chosenTrader.minGiven,
     chosenTrader.maxGiven,
     prng,
   )
   givenAmount = givenAmount + Math.floor((givenAmount * tradeMultiplier) / 100)
 
-  const takenAmount = getRandomNumber(
+  const takenAmount = GetRandomNumber(
     chosenTrader.minTaken,
     chosenTrader.maxTaken,
     prng,
@@ -66,7 +66,7 @@ export function hailCalculate({
   let items: Set<TraderShowItem> = new Set<TraderShowItem>()
   if (chosenTrader.items) {
     chosenTrader.items.forEach((item) => {
-      let itemGivenAmount = getRandomNumber(item.minGiven, item.maxGiven, prng)
+      let itemGivenAmount = GetRandomNumber(item.minGiven, item.maxGiven, prng)
       itemGivenAmount =
         itemGivenAmount + Math.floor((itemGivenAmount * tradeMultiplier) / 100)
 

@@ -89,6 +89,8 @@ export type ModifiersShip =
   //   action.bridge.command.cannon: No eCells and AP usage
   //   assault.init: Math.floor(prng() * 20) + 11
   | 'ship.combat.bridge.command.cannon-primed'
+  | 'ship.unique.dorms.broken'
+  | 'ship.unique.barracks.broken'
 
 export type ModifiersCharacter =
   // character.cycle.deprived

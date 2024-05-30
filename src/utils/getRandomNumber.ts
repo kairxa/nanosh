@@ -1,6 +1,6 @@
 import type seedrandom from 'seedrandom'
 
-export default function (
+export default function GetRandomNumber(
   min: number = 0,
   max: number = 1,
   prng: seedrandom.PRNG,
