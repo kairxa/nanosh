@@ -90,3 +90,11 @@ export const INVALID_SURGERY_TARGET_NOT_WOUNDED =
 // action.private-quarters.seggs Errors
 export const INVALID_SEGGS_TARGET_IS_SELF =
   "This action can't be done solo, yet. Maybe there's a way to do so.."
+
+// action.expocrafts-bay.ready Errors
+export const INVALID_MAX_EXPO_MEMBERS_REACHED =
+  'Maximum amount of expo members has been reached.'
+
+// action.expocrafts-bay.unready Errors
+export const INVALID_EXPO_CHARACTER_IS_NOT_READY =
+  'Character is not in expo ready list.'

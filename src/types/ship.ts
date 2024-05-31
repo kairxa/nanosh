@@ -1,4 +1,5 @@
 import type { ActionDamage, Actions } from './actions'
+import type { CharacterNames } from './character'
 import type { BrokenTypes } from './generic'
 import type { ItemNames } from './item'
 import type { ModifierTracker, ModifiersShip } from './modifiers'
@@ -159,6 +160,10 @@ export interface ShipCargo {
   broken: boolean
 }
 
+export interface Expo {
+  members: Set<CharacterNames>
+}
+
 export interface Ship {
   type: ShipTypes
   health: number
@@ -173,6 +178,7 @@ export interface Ship {
   rooms: Map<string, Room>
   fighterCrafts: Map<number, FighterCraft>
   expoCrafts: Map<number, ExpoCraft>
+  expo: Expo
   modifiers: Map<ModifiersShip, ModifierTracker>
   projects: {
     queued: Map<ProjectNames, ProjectProgress>

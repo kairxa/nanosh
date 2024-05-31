@@ -1,4 +1,5 @@
 import type { ActionDamage, Actions } from '@nanosh/types/actions'
+import type { CharacterNames } from '@nanosh/types/character'
 import {
   CANNON_DEFAULT_MAX_DAMAGE,
   CANNON_DEFAULT_MIN_DAMAGE,
@@ -29,6 +30,9 @@ export const GetInitialShip = (
     rooms: GetInitialShipRooms({ shipType: type }),
     fighterCrafts: GetInitialFighterCrafts({ shipType: type }),
     expoCrafts: GetInitialExpoCrafts({ shipType: type }),
+    expo: {
+      members: new Set<CharacterNames>(),
+    },
     modifiers: new Map<ModifiersShip, ModifierTracker>(),
     projects: {
       queued: new Map<ProjectNames, ProjectProgress>(),
