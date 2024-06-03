@@ -14,9 +14,10 @@ export const INVALID_CHARACTER_DEAD = 'Character is Dead'
 export const INVALID_CHARACTER_DIRTY = 'Excessive filth detected.'
 
 // Generic Errors
-export const INVALID_NOT_ENOUGH_AP = 'Not Enough AP.'
-export const INVALID_NOT_ENOUGH_ECELLS = 'Not Enough eCells.'
-export const INVALID_NOT_ENOUGH_SUPPLIES = 'Not Enough supplies.'
+export const INVALID_NOT_ENOUGH_AP = 'Not enough AP.'
+export const INVALID_NOT_ENOUGH_ECELLS = 'Not enough eCells.'
+export const INVALID_NOT_ENOUGH_SUPPLIES = 'Not enough supplies.'
+export const INVALID_NOT_ENOUGH_RATIONS = 'Not enough rations.'
 export const FATAL_SHIP_LOCATION_STORE_MISMATCH =
   'Invalid ship location inside stored state.'
 export const INVALID_INVENTORY_FULL = 'Inventory is full.'
