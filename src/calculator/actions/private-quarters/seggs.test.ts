@@ -135,6 +135,35 @@ describe('action.private-quarters.seggs', () => {
     expect(error?.message).toBe(INVALID_CYCLE_ACTION_NOT_EMPTY)
   })
 
+  it('should remove frustrated and add uplifted - different character', () => {
+    let newState: Game | null = structuredClone(gameState)
+    let error: Error | null = null
+    newState!.characters
+      .get('Tee\'elise "Teal" Qing')
+      ?.modifiers.set('character.cycle.frustrated', {
+        start: { day: 1, cycle: 1 },
+        expiry: { day: -1, cycle: -1 },
+        amount: 1,
+      })
+    ;[newState, error] = seggs({
+      state: newState!,
+      invokeTime: 1234,
+      characterID: 'Alisa Huang',
+      targetID: 'Tee\'elise "Teal" Qing',
+    })
+
+    expect(error).toBeNull()
+    const newTeal = newState?.characters.get('Tee\'elise "Teal" Qing')
+    expect(newTeal?.modifiers.has('character.cycle.deprived')).toBeFalse()
+    expect(newTeal?.modifiers.has('character.cycle.frustrated')).toBeFalse()
+    expect(newTeal?.modifiers.has('character.day-change.uplifted')).toBeTrue()
+    expect(newTeal?.cycleActions.size).toBe(3)
+    expect(newTeal?.cycleActions.get(1234)).toBe(
+      'action.private-quarters.seggs',
+    )
+    expect(newTeal?.ap).toBe(6)
+  })
+
   it('should invalidate action, because of not the only action this cycle, target', () => {
     let newState: Game | null = structuredClone(gameState)
     let error: Error | null = null
