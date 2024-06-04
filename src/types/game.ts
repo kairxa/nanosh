@@ -8,6 +8,11 @@ import type {
 } from './sectors'
 import type { Ship } from './ship'
 
+export interface AerialUnits {
+  hornets: number
+  talons: number
+}
+
 export interface Game {
   id: string
   day: number
@@ -35,6 +40,7 @@ export interface Game {
       auxBase: Set<SupersectorNames>
     }
     assimilateEnabled: boolean
+    aerialUnits: AerialUnits
   }
   subsectors: {
     empty: Set<SubsectorNames>

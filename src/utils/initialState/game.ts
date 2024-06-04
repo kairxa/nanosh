@@ -102,6 +102,10 @@ export const GetInitialGame = (
         auxBase: new Set<SupersectorNames>(),
       },
       assimilateEnabled: false,
+      aerialUnits: {
+        hornets: 0,
+        talons: 0,
+      },
     },
     subsectors: {
       empty: new Set<SubsectorNames>(randomizedSubsectorNames.slice(3)),
