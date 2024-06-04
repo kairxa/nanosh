@@ -1,6 +1,5 @@
 import type { ActionDamage, Actions } from './actions'
 import type { CharacterNames } from './character'
-import type { BrokenTypes } from './generic'
 import type { ItemNames } from './item'
 import type { ModifierTracker, ModifiersShip } from './modifiers'
 import type { ProjectNames, ProjectProgress } from './projects'
@@ -18,7 +17,7 @@ export const AircraftNames = new Map<
 
 export interface FighterCraft {
   type: FighterCraftTypes
-  broken: BrokenTypes[]
+  broken: boolean
 }
 
 export interface ExpoCraft {
@@ -53,7 +52,6 @@ export type RoomTypes =
 export interface Room {
   type: RoomTypes
   name: string
-  broken: BrokenTypes[] // ['fixed', 'fixed', 'broken'], so we can track how many times it has been broken in one field.
 }
 
 export interface ShipModifierDetails {
