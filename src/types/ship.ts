@@ -166,6 +166,8 @@ export interface Ship {
   type: ShipTypes
   health: number
   maxHealth: number
+  shield: number
+  maxShield: number
   cargo: Set<ShipCargo>
   maxCargoSize: number
   eCells: number

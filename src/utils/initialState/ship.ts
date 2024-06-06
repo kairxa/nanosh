@@ -20,6 +20,8 @@ export const GetInitialShip = (
     type,
     health: 0,
     maxHealth: 0,
+    shield: 0,
+    maxShield: 0,
     cargo: new Set<ShipCargo>(),
     maxCargoSize: 0,
     eCells: 0,
@@ -72,6 +74,7 @@ export const GetInitialShip = (
     case 'griffin':
       ship.health = 200
       ship.maxHealth = 300
+      ship.maxShield = 50
       ship.maxCargoSize = 800
       ship.eCells = 120
       ship.supplies = 240
