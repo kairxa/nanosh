@@ -5,7 +5,7 @@ import type {
 } from '@nanosh/types/generic'
 import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
-import dutifulDeprivedReduce from '../modifiers/traits/dutiful'
+import DutifulDeprivedReduce from '../modifiers/traits/dutiful'
 
 interface RefectoryProvisionParams
   extends Pick<
@@ -56,7 +56,7 @@ export default function ({
   stateCopy.ship.rations += rationsYield
   character!.cycleActions.set(invokeTime, 'action.refectory.provision')
   character!.ap -= apUsed
-  const [newState, _] = dutifulDeprivedReduce({ state: stateCopy, characterID })
+  const [newState, _] = DutifulDeprivedReduce({ state: stateCopy, characterID })
 
   return [newState, null]
 }

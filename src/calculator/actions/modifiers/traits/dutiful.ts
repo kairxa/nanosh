@@ -8,7 +8,7 @@ interface TraitsDutifulDeprivedReduceParams
 
 const DUTIFUL_DEPRIVED_REDUCE = 1
 
-export default function dutifulDeprivedReduce({
+export default function DutifulDeprivedReduce({
   state,
   characterID,
 }: TraitsDutifulDeprivedReduceParams): DefaultCalculatorReturnType {

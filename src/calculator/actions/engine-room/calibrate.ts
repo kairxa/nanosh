@@ -8,7 +8,7 @@ import getAPUsage from '@nanosh/utils/getAPUsage'
 import GetTargetExpiry from '@nanosh/utils/getTargetExpiry'
 import { GetWillDirty } from '@nanosh/utils/getWillDirty'
 import seedrandom from 'seedrandom'
-import dutifulDeprivedReduce from '../modifiers/traits/dutiful'
+import DutifulDeprivedReduce from '../modifiers/traits/dutiful'
 
 interface EngineRoomCalibrateParams
   extends Pick<
@@ -68,7 +68,7 @@ export default function ({
 
   character!.cycleActions.set(invokeTime, 'action.engine-room.calibrate')
   character!.ap -= apUsed
-  const [newState, _] = dutifulDeprivedReduce({ state: stateCopy, characterID })
+  const [newState, _] = DutifulDeprivedReduce({ state: stateCopy, characterID })
 
   return [newState, null]
 }

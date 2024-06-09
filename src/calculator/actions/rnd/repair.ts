@@ -11,7 +11,7 @@ import type { Skills } from '@nanosh/types/skills'
 import getAPUsage from '@nanosh/utils/getAPUsage'
 import { GetWillDirty } from '@nanosh/utils/getWillDirty'
 import seedrandom from 'seedrandom'
-import dutifulDeprivedReduce from '../modifiers/traits/dutiful'
+import DutifulDeprivedReduce from '../modifiers/traits/dutiful'
 
 interface RndRepairParams
   extends Pick<
@@ -77,7 +77,7 @@ export default function ({
 
   character!.cycleActions.set(invokeTime, 'action.rnd.repair')
   character!.ap -= apUsed
-  const [newState, _] = dutifulDeprivedReduce({ state: stateCopy, characterID })
+  const [newState, _] = DutifulDeprivedReduce({ state: stateCopy, characterID })
 
   return [newState, null]
 }
