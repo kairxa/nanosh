@@ -103,3 +103,7 @@ export const INVALID_EXPO_CHARACTER_IS_NOT_READY =
 // action.fightercrafts-bay.patrolrun Errors
 export const INVALID_FIGHTERCRAFT_BROKEN_NOTFOUND =
   'Fightercraft is either broken or invalid.'
+//
+// action.fightercrafts-bay.repair Errors
+export const INVALID_FIGHTERCRAFT_NOTBROKEN_NOTFOUND =
+  'Fightercraft is either not broken or invalid.'

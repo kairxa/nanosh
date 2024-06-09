@@ -20,6 +20,7 @@ export type Actions =
   | 'action.fightercrafts-bay.calibrate'
   | 'action.fightercrafts-bay.dogfight'
   | 'action.fightercrafts-bay.patrolrun'
+  | 'action.fightercrafts-bay.repair'
   | 'action.flak-turret.shoot'
   | 'action.laser-turret.shoot'
   | 'action.medlab.compound'
