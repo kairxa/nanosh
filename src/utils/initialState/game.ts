@@ -44,6 +44,7 @@ export const GetInitialGame = (
     SubsectorNamesCollection.length + 1,
     prng,
   ) as SubsectorNames[]
+  const emptySubsectorNames = new Set<SubsectorNames>(randomizedSubsectorNames)
 
   const sectors = GetSectors()
   const nanoshMainBase = (
@@ -73,6 +74,7 @@ export const GetInitialGame = (
   nanoshOutposts.forEach((outpost) => {
     const subsector = sectors.get(outpost) as Subsector
     subsector.hp = HP_NANOSH_OUTPOST
+    emptySubsectorNames.delete(outpost)
   })
 
   const initialGame: Game = {
@@ -108,7 +110,7 @@ export const GetInitialGame = (
       },
     },
     subsectors: {
-      empty: new Set<SubsectorNames>(randomizedSubsectorNames.slice(3)),
+      empty: emptySubsectorNames,
     },
     sectors,
     craftable: new Set<ItemNames>(),

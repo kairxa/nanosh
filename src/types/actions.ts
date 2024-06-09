@@ -19,6 +19,7 @@ export type Actions =
   | 'action.expocrafts-bay.unready'
   | 'action.fightercrafts-bay.calibrate'
   | 'action.fightercrafts-bay.dogfight'
+  | 'action.fightercrafts-bay.patrolrun'
   | 'action.flak-turret.shoot'
   | 'action.laser-turret.shoot'
   | 'action.medlab.compound'

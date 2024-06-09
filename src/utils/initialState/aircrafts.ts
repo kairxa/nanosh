@@ -11,11 +11,11 @@ export const GetInitialFighterCrafts = (
 
   switch (shipType) {
     case 'griffin':
-      fighterCrafts.set(1, { type: 'buzzard', broken: [] })
-      fighterCrafts.set(2, { type: 'buzzard', broken: [] })
-      fighterCrafts.set(3, { type: 'buzzard', broken: [] })
-      fighterCrafts.set(4, { type: 'buzzard', broken: [] })
-      fighterCrafts.set(5, { type: 'buzzard', broken: [] })
+      fighterCrafts.set(1, { type: 'buzzard', broken: false })
+      fighterCrafts.set(2, { type: 'buzzard', broken: false })
+      fighterCrafts.set(3, { type: 'buzzard', broken: false })
+      fighterCrafts.set(4, { type: 'buzzard', broken: false })
+      fighterCrafts.set(5, { type: 'buzzard', broken: false })
       break
   }
 

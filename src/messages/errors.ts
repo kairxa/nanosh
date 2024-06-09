@@ -99,3 +99,7 @@ export const INVALID_MAX_EXPO_MEMBERS_REACHED =
 // action.expocrafts-bay.unready Errors
 export const INVALID_EXPO_CHARACTER_IS_NOT_READY =
   'Character is not in expo ready list.'
+
+// action.fightercrafts-bay.patrolrun Errors
+export const INVALID_FIGHTERCRAFT_BROKEN_NOTFOUND =
+  'Fightercraft is either broken or invalid.'

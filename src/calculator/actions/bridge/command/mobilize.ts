@@ -15,11 +15,21 @@ import GetRandomNumber from '@nanosh/utils/getRandomNumber'
 import seedrandom from 'seedrandom'
 import skillModifiers, { SKILL_AP_REDUCE } from './skillModifiers'
 
+type PickedSacrifice = 'civitates' | 'supplies' | 'eCells'
+
 interface BridgeCommandMobilizeParams
   extends Pick<
     GenericCalculatorParams,
     'state' | 'characterID' | 'gameID' | 'invokeTime'
   > {
+  targetSubsectorID: SubsectorNames
+}
+
+interface SavedMobilize {
+  pickedSacrifice: PickedSacrifice
+  civitates: number
+  supplies: number
+  eCells: number
   targetSubsectorID: SubsectorNames
 }
 
@@ -30,13 +40,12 @@ const MOBILIZE_MIN_SUPPLIES = 33
 const MOBILIZE_MAX_SUPPLIES = 67
 const MOBILIZE_MIN_ECELLS = 5
 const MOBILIZE_MAX_ECELLS = 9
-
-type PickedSacrifice = 'civitates' | 'supplies' | 'eCells'
 const collectionPickedSacrifices: PickedSacrifice[] = [
   'civitates',
   'supplies',
   'eCells',
 ]
+
 export default function mobilize({
   state,
   gameID,
@@ -85,7 +94,7 @@ export default function mobilize({
     prng,
   )
   const eCells = GetRandomNumber(MOBILIZE_MIN_ECELLS, MOBILIZE_MAX_ECELLS, prng)
-  const savedMobilize = {
+  const savedMobilize: SavedMobilize = {
     pickedSacrifice,
     civitates,
     supplies,
@@ -125,12 +134,10 @@ export function mobilizeConfirm({
   const stateCopy = structuredClone(state)
 
   const mobilizeID = `${gameID}-${characterID}-mobilize`
-  const mobilizeData = stateCopy.anyMap.get(mobilizeID)
+  const mobilizeData = stateCopy.anyMap.get(mobilizeID) as SavedMobilize
   if (!mobilizeData) return [null, new Error(INVALID_MOBILIZE_CONFIRM)]
 
-  const pickedSacrifice = stateCopy.ship[
-    mobilizeData.pickedSacrifice as PickedSacrifice
-  ] as number
+  const pickedSacrifice = stateCopy.ship[mobilizeData.pickedSacrifice]
   if (pickedSacrifice < mobilizeData[mobilizeData.pickedSacrifice]) {
     return [
       null,
@@ -140,9 +147,8 @@ export function mobilizeConfirm({
     ]
   }
   // Reduce supplies, civitates, etc
-  ;(stateCopy.ship[
-    mobilizeData.pickedSacrifice as PickedSacrifice
-  ] as number) -= mobilizeData[mobilizeData.pickedSacrifice]
+  stateCopy.ship[mobilizeData.pickedSacrifice] -=
+    mobilizeData[mobilizeData.pickedSacrifice]
   // Make targetSubsectorID as liberation point
   stateCopy.nanosh.liberationPoints.add(mobilizeData.targetSubsectorID)
   stateCopy.subsectors.empty.delete(mobilizeData.targetSubsectorID)

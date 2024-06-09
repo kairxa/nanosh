@@ -26,7 +26,7 @@ describe('action.bridge.command.mobilize', () => {
       gameID: 'testing-mobilize',
       invokeTime: 123,
       characterID: 'Solas Mercer',
-      targetSubsectorID: 'Jakarta, Indonesia',
+      targetSubsectorID: 'Manila, Philippines',
     })
     expect(error).toBeNull()
     expect(
@@ -36,7 +36,7 @@ describe('action.bridge.command.mobilize', () => {
       supplies: 46,
       eCells: 7,
       civitates: 8,
-      targetSubsectorID: 'Jakarta, Indonesia',
+      targetSubsectorID: 'Manila, Philippines',
     })
     // expect character cycle actions are added
     let newSolasMercer = newState!.characters.get('Solas Mercer')
@@ -56,9 +56,9 @@ describe('action.bridge.command.mobilize', () => {
     expect(newSolasMercer!.cycleActions.size).toBe(1)
     expect(newSolasMercer!.ap).toBe(6)
     expect(newState?.ship.supplies).toBe(194)
-    expect(newState?.subsectors.empty.has('Jakarta, Indonesia')).toBeFalse()
-    expect(newState?.sectors.get('Jakarta, Indonesia')?.hp).toBe(3)
-    expect(newState?.nanosh.liberationPoints.has('Jakarta, Indonesia')).toBe(
+    expect(newState?.subsectors.empty.has('Manila, Philippines')).toBeFalse()
+    expect(newState?.sectors.get('Manila, Philippines')?.hp).toBe(3)
+    expect(newState?.nanosh.liberationPoints.has('Manila, Philippines')).toBe(
       true,
     )
     // expect saved generated resources has been deleted
@@ -86,13 +86,13 @@ describe('action.bridge.command.mobilize', () => {
       characterID: 'Solas Mercer',
       invokeTime: 121,
       state: gameState!,
-      targetSupersectorID: 'East Asia Enclave',
+      targetSupersectorID: 'SEA Bloc',
     })
     ;[newState, error] = mobilize({
       state: newState!,
       invokeTime: 123,
       characterID: 'Solas Mercer',
-      targetSubsectorID: 'Sapporo, Japan',
+      targetSubsectorID: 'Jakarta, Indonesia',
       gameID: 'testing-mobilize',
     })
 
@@ -152,7 +152,7 @@ describe('action.bridge.command.mobilize', () => {
       gameID: 'testing-mobilize',
       invokeTime: 123,
       characterID: 'Solas Mercer',
-      targetSubsectorID: 'Jakarta, Indonesia',
+      targetSubsectorID: 'Manila, Philippines',
     })
     expect(error).toBeNull()
     expect(
@@ -162,7 +162,7 @@ describe('action.bridge.command.mobilize', () => {
       supplies: 46,
       eCells: 7,
       civitates: 8,
-      targetSubsectorID: 'Jakarta, Indonesia',
+      targetSubsectorID: 'Manila, Philippines',
     })
     ;[newState, error] = mobilizeRefuse({
       state: newState!,
@@ -182,7 +182,7 @@ describe('action.bridge.command.mobilize', () => {
       gameID: 'testing-mobilize',
       invokeTime: 123,
       characterID: 'Solas Mercer',
-      targetSubsectorID: 'Jakarta, Indonesia',
+      targetSubsectorID: 'Manila, Philippines',
     })
     expect(error).toBeNull()
     newState!.ship.supplies = 10
