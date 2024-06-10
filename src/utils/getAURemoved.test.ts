@@ -1,3 +1,4 @@
+import type { AerialUnits } from '@nanosh/types/game'
 import type {
   ModifiersCharacter,
   ModifierTracker,
@@ -6,7 +7,7 @@ import type { ProjectNames } from '@nanosh/types/projects'
 import type { Traits } from '@nanosh/types/traits'
 import { describe, expect, it } from 'bun:test'
 import seedrandom from 'seedrandom'
-import GetAURemoved from './getAURemoved'
+import GetAURemoved, { getRandomizedAUAllocation } from './getAURemoved'
 
 describe('GetAURemoved', () => {
   it('should get au removed detail - flak-turret.shoot', () => {
@@ -15,6 +16,7 @@ describe('GetAURemoved', () => {
       characterTraits: new Set<Traits>(),
       characterModifier: new Map<ModifiersCharacter, ModifierTracker>(),
       projectsDone: new Set<ProjectNames>(),
+      currentAU: { hornets: 2, talons: 0 },
       prng: seedrandom('flak-turret-shoot-12345'),
     })
 
@@ -31,6 +33,7 @@ describe('GetAURemoved', () => {
       characterTraits: new Set<Traits>(),
       characterModifier: new Map<ModifiersCharacter, ModifierTracker>(),
       projectsDone: new Set<ProjectNames>(),
+      currentAU: { hornets: 2, talons: 0 },
       prng: seedrandom('laser-turret-shoot-12345'),
     })
 
@@ -47,6 +50,7 @@ describe('GetAURemoved', () => {
       characterTraits: new Set<Traits>(),
       characterModifier: new Map<ModifiersCharacter, ModifierTracker>(),
       projectsDone: new Set<ProjectNames>(),
+      currentAU: { hornets: 7, talons: 4 },
       prng: seedrandom('fightercrafts-bay-dogfight-12345'),
     })
 
@@ -72,6 +76,7 @@ describe('GetAURemoved', () => {
         ],
       ]),
       projectsDone: new Set<ProjectNames>(),
+      currentAU: { hornets: 5, talons: 3 },
       prng: seedrandom('fightercrafts-bay-dogfight-12345'),
     })
 
@@ -88,6 +93,7 @@ describe('GetAURemoved', () => {
       characterTraits: new Set<Traits>(['trait.ace']),
       characterModifier: new Map<ModifiersCharacter, ModifierTracker>(),
       projectsDone: new Set<ProjectNames>(),
+      currentAU: { hornets: 8, talons: 8 },
       prng: seedrandom('fightercrafts-bay-dogfight-12345'),
     })
 
@@ -106,6 +112,7 @@ describe('GetAURemoved', () => {
       projectsDone: new Set<ProjectNames>([
         'File 010 - M22 "Buzzard" Precision Upgrade',
       ]),
+      currentAU: { hornets: 2, talons: 0 },
       prng: seedrandom('fightercrafts-bay-dogfight-1231'),
     })
 
@@ -124,6 +131,7 @@ describe('GetAURemoved', () => {
       projectsDone: new Set<ProjectNames>([
         'File 011 - M22 "Buzzard" Strike Optimization',
       ]),
+      currentAU: { hornets: 9, talons: 0 },
       prng: seedrandom('fightercrafts-bay-dogfight-1235'),
     })
 
@@ -140,6 +148,7 @@ describe('GetAURemoved', () => {
       characterTraits: new Set<Traits>(),
       characterModifier: new Map<ModifiersCharacter, ModifierTracker>(),
       projectsDone: new Set<ProjectNames>(),
+      currentAU: { hornets: 2, talons: 0 },
       prng: seedrandom('random-action-12345'),
     })
 
@@ -149,4 +158,22 @@ describe('GetAURemoved', () => {
       diceResult: 0,
     })
   })
+})
+
+describe('getRandomizedAUAllocation', () => {
+  it.each([
+    [{ hornets: 4, talons: 4 }, 9, { hornets: 4, talons: 4 }],
+    [{ hornets: 4, talons: 5 }, 9, { hornets: 4, talons: 5 }],
+    [{ hornets: 3, talons: 9 }, 9, { hornets: 3, talons: 6 }],
+    [{ hornets: 9, talons: 9 }, 9, { hornets: 4, talons: 5 }],
+    [{ hornets: 8, talons: 1 }, 9, { hornets: 8, talons: 1 }],
+  ])(
+    'should randomize considering current hornets and talons amount',
+    (currentAU: AerialUnits, auRemoved: number, finalResult: AerialUnits) => {
+      const prng = seedrandom('get-randomized-au-allocation')
+      const calculated = getRandomizedAUAllocation(currentAU, auRemoved, prng)
+
+      expect(calculated).toStrictEqual(finalResult)
+    },
+  )
 })

@@ -10,12 +10,23 @@ import type seedrandom from 'seedrandom'
 import GetRandomNumber from './getRandomNumber'
 import { DICE_1D10, DICE_1D6, DICE_2D6 } from './initialState/dice'
 
-const getRandomizedAUAllocation = (
+// exported for testing
+export const getRandomizedAUAllocation = (
+  currentAU: AerialUnits,
   auRemoved: number,
   prng: seedrandom.PRNG,
 ): AerialUnits => {
-  const hornets = GetRandomNumber(0, auRemoved, prng)
-  const talons = auRemoved - hornets
+  let hornets = Math.min(currentAU.hornets, GetRandomNumber(0, auRemoved, prng))
+  const talons = Math.min(currentAU.talons, auRemoved - hornets)
+  // if total removed from above is still less than auRemoved
+  // and currentAU sum is greater than auRemoved
+  if (
+    hornets + talons < auRemoved &&
+    currentAU.hornets + currentAU.talons >= auRemoved
+  ) {
+    // then put leftovers into hornets, since if talons are > hornets this won't be needed
+    hornets = hornets + auRemoved - hornets - talons
+  }
   return { hornets, talons }
 }
 
@@ -31,7 +42,7 @@ const FLAK_TURRET_SHOOT_TABLE = [0, 0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
 const LASER_TURRET_SHOOT_TABLE = [0, 1, 1, 2, 2, 2]
 const BUZZARD_BAY_DOGFIGHT_TABLE = [8, 0, 1, 2, 3, 4, 5, 6, 6, 0]
 const DICE_ACE_RESULT = 1
-const DOGFIGHT_AU_ADD = 1
+const DOGFIGHT_AU_ACE_BASE_ADD = 1
 const DOGFIGHT_AU_ACE_ADD_MIN = 2
 const DOGFIGHT_AU_ACE_ADD_MAX = 3
 
@@ -40,12 +51,14 @@ export default function GetAURemoved({
   characterTraits,
   characterModifier,
   projectsDone,
+  currentAU,
   prng,
 }: {
   actionName: Actions
   characterTraits: Set<Traits>
   characterModifier: Map<ModifiersCharacter, ModifierTracker>
   projectsDone: Set<ProjectNames>
+  currentAU: AerialUnits
   prng: seedrandom.PRNG
 }): AerialUnitsWithDiceResult {
   let diceResult: number
@@ -68,7 +81,7 @@ export default function GetAURemoved({
       baseAURemoved = BUZZARD_BAY_DOGFIGHT_TABLE[randomIndex]
 
       if (characterTraits.has('trait.ace')) {
-        baseAURemoved += DOGFIGHT_AU_ADD
+        baseAURemoved += DOGFIGHT_AU_ACE_BASE_ADD
 
         if (diceResult === DICE_ACE_RESULT) {
           baseAURemoved += GetRandomNumber(
@@ -108,7 +121,7 @@ export default function GetAURemoved({
   }
 
   return {
-    ...getRandomizedAUAllocation(baseAURemoved, prng),
+    ...getRandomizedAUAllocation(currentAU, baseAURemoved, prng),
     diceResult,
   }
 }

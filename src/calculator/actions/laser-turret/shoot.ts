@@ -50,6 +50,7 @@ export default function ({
     characterModifier: character!.modifiers,
     characterTraits: character!.trait,
     projectsDone: stateCopy.ship.projects.done,
+    currentAU: stateCopy.nanosh.aerialUnits,
     prng,
   })
 

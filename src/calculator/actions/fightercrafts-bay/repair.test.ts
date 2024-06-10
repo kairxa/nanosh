@@ -34,7 +34,7 @@ describe('action.fightercrafts-bay.repair', () => {
       state: gameState!,
       characterID: 'Soren Koda',
       invokeTime: 12345,
-      fightercraftId: 1,
+      fightercraftID: 1,
     })
 
     expect(error).toBeNull()
@@ -56,7 +56,7 @@ describe('action.fightercrafts-bay.repair', () => {
       state: gameState!,
       characterID: 'Val',
       invokeTime: 12345,
-      fightercraftId: 1,
+      fightercraftID: 1,
     })
 
     expect(error).toBeNull()
@@ -78,7 +78,7 @@ describe('action.fightercrafts-bay.repair', () => {
       state: gameState!,
       characterID: 'Ysara Mercer',
       invokeTime: 12345,
-      fightercraftId: 1,
+      fightercraftID: 1,
     })
 
     expect(error).toBeNull()
@@ -90,24 +90,24 @@ describe('action.fightercrafts-bay.repair', () => {
     expect(newState?.ship.fighterCrafts.get(1)?.broken).toBeFalse()
   })
 
-  it('should invalidate request, fightercraftId not broken', () => {
+  it('should invalidate request, fightercraftID not broken', () => {
     const [newState, error] = repair({
       state: gameState!,
       characterID: 'Val',
       invokeTime: 12345,
-      fightercraftId: 5,
+      fightercraftID: 5,
     })
 
     expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_FIGHTERCRAFT_NOTBROKEN_NOTFOUND)
   })
 
-  it('should invalidate request, fightercraftId not found', () => {
+  it('should invalidate request, fightercraftID not found', () => {
     const [newState, error] = repair({
       state: gameState!,
       characterID: 'Val',
       invokeTime: 12345,
-      fightercraftId: 8,
+      fightercraftID: 8,
     })
 
     expect(newState).toBeNull()
@@ -119,7 +119,7 @@ describe('action.fightercrafts-bay.repair', () => {
       state: gameState!,
       characterID: 'Alisa Huang',
       invokeTime: 12345,
-      fightercraftId: 1,
+      fightercraftID: 1,
     })
 
     expect(newState).toBeNull()
@@ -134,7 +134,7 @@ describe('action.fightercrafts-bay.repair', () => {
       state: newState!,
       characterID: 'Alisa Huang',
       invokeTime: 12345,
-      fightercraftId: 1,
+      fightercraftID: 1,
     })
 
     expect(newState).toBeNull()

@@ -15,7 +15,7 @@ interface FighercraftsBayRepairParams
     GenericCalculatorParams,
     'state' | 'invokeTime' | 'characterID'
   > {
-  fightercraftId: number
+  fightercraftID: number
 }
 
 const REPAIR_AP_USAGE = 1
@@ -30,11 +30,11 @@ export default function ({
   state,
   invokeTime,
   characterID,
-  fightercraftId,
+  fightercraftID,
 }: FighercraftsBayRepairParams): DefaultCalculatorReturnType {
   const stateCopy = structuredClone(state)
 
-  const selectedFightercraft = stateCopy.ship.fighterCrafts.get(fightercraftId)
+  const selectedFightercraft = stateCopy.ship.fighterCrafts.get(fightercraftID)
   if (!selectedFightercraft || !selectedFightercraft.broken) {
     return [null, new Error(INVALID_FIGHTERCRAFT_NOTBROKEN_NOTFOUND)]
   }

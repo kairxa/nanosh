@@ -27,7 +27,7 @@ describe('action.fightercrafts-bay.patrolrun', () => {
       invokeTime: 12345,
       subsectorName: 'Jakarta, Indonesia',
       characterID: 'Ysara Mercer',
-      fightercraftId: 1,
+      fightercraftID: 1,
     })
 
     expect(error).toBeNull()
@@ -47,7 +47,7 @@ describe('action.fightercrafts-bay.patrolrun', () => {
       invokeTime: 12345,
       subsectorName: 'Jakarta, Indonesia',
       characterID: 'Alisa Huang',
-      fightercraftId: 1,
+      fightercraftID: 1,
     })
 
     expect(error).toBeNull()
@@ -67,33 +67,33 @@ describe('action.fightercrafts-bay.patrolrun', () => {
       invokeTime: 12345,
       subsectorName: 'New York City, United States',
       characterID: 'Ysara Mercer',
-      fightercraftId: 1,
+      fightercraftID: 1,
     })
 
     expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_TARGET_LOCATION)
   })
 
-  it('should invalidate request, invalid fightercraftId', () => {
+  it('should invalidate request, invalid fightercraftID', () => {
     const [newState, error] = patrolrun({
       state: gameState!,
       invokeTime: 12345,
       subsectorName: 'Jakarta, Indonesia',
       characterID: 'Ysara Mercer',
-      fightercraftId: 8,
+      fightercraftID: 8,
     })
 
     expect(newState).toBeNull()
     expect(error?.message).toBe(INVALID_FIGHTERCRAFT_BROKEN_NOTFOUND)
   })
 
-  it('should invalidate request, fightercraftId broken', () => {
+  it('should invalidate request, fightercraftID broken', () => {
     const [newState, error] = patrolrun({
       state: gameState!,
       invokeTime: 12345,
       subsectorName: 'Jakarta, Indonesia',
       characterID: 'Ysara Mercer',
-      fightercraftId: 5,
+      fightercraftID: 5,
     })
 
     expect(newState).toBeNull()
@@ -106,7 +106,7 @@ describe('action.fightercrafts-bay.patrolrun', () => {
       invokeTime: 12345,
       subsectorName: 'Jakarta, Indonesia',
       characterID: 'Val',
-      fightercraftId: 1,
+      fightercraftID: 1,
     })
 
     expect(newState).toBeNull()
@@ -122,7 +122,7 @@ describe('action.fightercrafts-bay.patrolrun', () => {
       invokeTime: 12345,
       subsectorName: 'Jakarta, Indonesia',
       characterID: 'Ysara Mercer',
-      fightercraftId: 1,
+      fightercraftID: 1,
     })
 
     expect(newState).toBeNull()

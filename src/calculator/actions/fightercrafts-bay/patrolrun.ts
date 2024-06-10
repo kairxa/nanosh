@@ -16,7 +16,7 @@ interface FightercraftsBayPatrolunParams
     GenericCalculatorParams,
     'state' | 'invokeTime' | 'characterID'
   > {
-  fightercraftId: number
+  fightercraftID: number
   subsectorName: SubsectorNames
 }
 
@@ -29,7 +29,7 @@ export default function ({
   state,
   invokeTime,
   characterID,
-  fightercraftId,
+  fightercraftID,
   subsectorName,
 }: FightercraftsBayPatrolunParams): DefaultCalculatorReturnType {
   const stateCopy = structuredClone(state)
@@ -42,7 +42,7 @@ export default function ({
     return [null, new Error(INVALID_TARGET_LOCATION)]
   }
 
-  const selectedFightercraft = stateCopy.ship.fighterCrafts.get(fightercraftId)
+  const selectedFightercraft = stateCopy.ship.fighterCrafts.get(fightercraftID)
   if (!selectedFightercraft || selectedFightercraft.broken) {
     return [null, new Error(INVALID_FIGHTERCRAFT_BROKEN_NOTFOUND)]
   }
