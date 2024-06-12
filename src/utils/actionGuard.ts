@@ -32,7 +32,8 @@ export default function ({
   if (!character) return [null, new Error(INVALID_CHARACTER_ID)]
   if (character.playerID !== playerID)
     return [null, new Error(INVALID_PLAYER_MISMATCH)]
-  if (character.dead) return [null, new Error(INVALID_CHARACTER_DEAD)]
+  if (state.charactersDead.has(characterID))
+    return [null, new Error(INVALID_CHARACTER_DEAD)]
   const cycleActions = new Set<Actions>(character.cycleActions.values())
   if (
     cycleActions.size === MAX_ACTIONS_PER_CYCLE ||

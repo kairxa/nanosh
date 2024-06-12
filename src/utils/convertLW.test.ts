@@ -43,7 +43,7 @@ describe('ConvertLW', () => {
     [1, 2, 'Val'],
     [0, 2, 'Niral Pierce'],
   ])(
-    'should calculate %s LW and %s CW if character is %s',
+    'should calculate %p LW and %p CW if character is %p',
     (expectedLW, expectedCW, characterName) => {
       const [newState, error] = ConvertLW({
         state: gameState!,

@@ -18,7 +18,7 @@ describe('action.medlab.compound', () => {
     ['meds.blissbloom', 1],
     ['meds.somnoxa', 1],
     ['meds.lucidix', 4],
-  ])('should create %s and reducing %s supplies', (medsName, suppliesUsed) => {
+  ])('should create %p and reducing %p supplies', (medsName, suppliesUsed) => {
     const [newState, error] = compound({
       state: gameState!,
       invokeTime: 1231,

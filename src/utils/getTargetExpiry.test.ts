@@ -9,7 +9,7 @@ describe('GetTargetExpiry', () => {
     [{ day: 2, cycle: 3 }, 7, { day: 4, cycle: 1 }],
     [{ day: 3, cycle: 4 }, 13, { day: 6, cycle: 4 }],
   ])(
-    'should calculate %s added by %s cycles, will result in %s',
+    'should calculate %p added by %p cycles, will result in %p',
     (start, duration, expiry) => {
       const result = GetTargetExpiry(start, duration)
       expect(result).toMatchObject(expiry)
