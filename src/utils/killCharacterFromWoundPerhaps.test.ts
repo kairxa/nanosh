@@ -18,6 +18,10 @@ describe('killCharacterFromWoundPerhaps', () => {
     [true, 2, 'Rina Mikami', false],
     [true, 3, 'Rina Mikami', true],
     [false, 0, 'Alisa Huang', false],
+    [false, 9, 'X7-Gastronia "Gass" Petalnova', false],
+    [false, 10, 'X7-Gastronia "Gass" Petalnova', true],
+    [true, 8, 'X7-Gastronia "Gass" Petalnova', false],
+    [true, 10, 'X7-Gastronia "Gass" Petalnova', true],
   ])(
     'if isDayChange is %p, and CW is %p, then character %p dead is %p',
     (isDayChange, cwAmount, characterName, expectedDead) => {

@@ -9,6 +9,7 @@ interface KillCharacterFromWoundPerhapsParams
 }
 
 const BASE_CW_DEATH_AMOUNT = 3
+const DROID_TOTAL_WOUND_DEATH_AMOUNT = 10
 const STALWART_CW_DEATH_ADD = 1
 
 export default function KillCharacterFromWoundPerhaps({
@@ -20,6 +21,18 @@ export default function KillCharacterFromWoundPerhaps({
 
   const character = stateCopy.characters.get(characterID)
   if (!character?.modifiers.has('character.wound.critical')) {
+    return [stateCopy, null]
+  }
+
+  if (character.trait.has('trait.droid')) {
+    const cw = character.modifiers.get('character.wound.critical')?.amount || 0
+    const lw = character.modifiers.get('character.wound.light')?.amount || 0
+
+    if (cw + lw >= DROID_TOTAL_WOUND_DEATH_AMOUNT) {
+      stateCopy.characters.delete(characterID)
+      stateCopy.charactersDead.add(characterID)
+    }
+
     return [stateCopy, null]
   }
 
