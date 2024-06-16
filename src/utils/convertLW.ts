@@ -7,6 +7,11 @@ import {
 interface ConvertLWParams
   extends Pick<GenericCalculatorParams, 'state' | 'characterID'> {}
 
+/**
+ * ConvertLW
+ * Will always return null error.
+ * Converts LW to CW by 3 to 1 rate.
+ */
 export default function ConvertLW({
   state,
   characterID,
@@ -29,10 +34,14 @@ export default function ConvertLW({
     }
   }
 
-  character?.modifiers.set('character.wound.light', {
-    ...currentLw,
-    amount: lw,
-  })
+  if (lw > 0) {
+    character?.modifiers.set('character.wound.light', {
+      ...currentLw,
+      amount: lw,
+    })
+  } else {
+    character?.modifiers.delete('character.wound.light')
+  }
   if (cwAdd > 0) {
     character?.modifiers.set('character.wound.critical', {
       ...currentCw,

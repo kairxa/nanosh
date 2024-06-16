@@ -39,9 +39,9 @@ describe('ConvertLW', () => {
 
   it.each([
     [2, 0, 'Ysara Mercer'],
-    [0, 1, 'Alisa Huang'],
+    [undefined, 1, 'Alisa Huang'],
     [1, 2, 'Val'],
-    [0, 2, 'Niral Pierce'],
+    [undefined, 2, 'Niral Pierce'],
   ])(
     'should calculate %p LW and %p CW if character is %p',
     (expectedLW, expectedCW, characterName) => {

@@ -12,6 +12,12 @@ const BASE_CW_DEATH_AMOUNT = 3
 const DROID_TOTAL_WOUND_DEATH_AMOUNT = 10
 const STALWART_CW_DEATH_ADD = 1
 
+/**
+ * Will always return null error.
+ * Kill characters, if they have at least 1 CW on day change,
+ * or anytime when they have >= 3 CW.
+ * If they are droid then total LW and CW needs to be >= 10.
+ */
 export default function KillCharacterFromWoundPerhaps({
   state,
   characterID,
