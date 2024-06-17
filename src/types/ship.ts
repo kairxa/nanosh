@@ -13,6 +13,7 @@ export const AircraftNames = new Map<
 >([
   ['buzzard', 'M-22 "Buzzard"'],
   ['blitzhopper', 'S-11 "Blitzhopper"'],
+  ['forthopper', 'S-09 "Forthopper"'],
 ])
 
 export interface FighterCraft {

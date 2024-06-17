@@ -1,3 +1,4 @@
+import { INVALID_NOT_ENOUGH_AP } from '@nanosh/messages/errors'
 import type { CharacterNames } from '@nanosh/types/character'
 import type { Game } from '@nanosh/types/game'
 import { GetInitialGame } from '@nanosh/utils/initialState/game'
@@ -288,4 +289,19 @@ describe('action.fightercrafts-bay.dogfight', () => {
       }
     },
   )
+
+  it('should invalidate request, not enough AP', () => {
+    gameState!.characters.get('Val')!.ap = 1
+
+    const [newState, error] = dogfight({
+      state: gameState!,
+      invokeTime: 12345,
+      gameID: 'dogfight-test',
+      characterID: 'Val',
+      fightercraftID: 1,
+    })
+
+    expect(newState).toBeNull()
+    expect(error?.message).toBe(INVALID_NOT_ENOUGH_AP)
+  })
 })

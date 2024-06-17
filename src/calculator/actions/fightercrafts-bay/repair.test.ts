@@ -34,6 +34,7 @@ describe('action.fightercrafts-bay.repair', () => {
       state: gameState!,
       characterID: 'Soren Koda',
       invokeTime: 12345,
+      gameID: 'repair-test',
       fightercraftID: 1,
     })
 
@@ -56,6 +57,7 @@ describe('action.fightercrafts-bay.repair', () => {
       state: gameState!,
       characterID: 'Val',
       invokeTime: 12345,
+      gameID: 'repair-test',
       fightercraftID: 1,
     })
 
@@ -70,6 +72,9 @@ describe('action.fightercrafts-bay.repair', () => {
       'action.fightercrafts-bay.repair',
     )
     expect(newState?.characters.get('Val')?.ap).toBe(7)
+    expect(
+      newState?.characters.get('Val')?.modifiers.has('character.cycle.dirty'),
+    ).toBeTrue()
     expect(newState?.ship.fighterCrafts.get(1)?.broken).toBeFalse()
   })
 
@@ -78,6 +83,7 @@ describe('action.fightercrafts-bay.repair', () => {
       state: gameState!,
       characterID: 'Ysara Mercer',
       invokeTime: 12345,
+      gameID: 'repair-test',
       fightercraftID: 1,
     })
 
@@ -95,6 +101,7 @@ describe('action.fightercrafts-bay.repair', () => {
       state: gameState!,
       characterID: 'Val',
       invokeTime: 12345,
+      gameID: 'repair-test',
       fightercraftID: 5,
     })
 
@@ -107,6 +114,7 @@ describe('action.fightercrafts-bay.repair', () => {
       state: gameState!,
       characterID: 'Val',
       invokeTime: 12345,
+      gameID: 'repair-test',
       fightercraftID: 8,
     })
 
@@ -119,6 +127,7 @@ describe('action.fightercrafts-bay.repair', () => {
       state: gameState!,
       characterID: 'Alisa Huang',
       invokeTime: 12345,
+      gameID: 'repair-test',
       fightercraftID: 1,
     })
 
@@ -134,6 +143,7 @@ describe('action.fightercrafts-bay.repair', () => {
       state: newState!,
       characterID: 'Alisa Huang',
       invokeTime: 12345,
+      gameID: 'repair-test',
       fightercraftID: 1,
     })
 

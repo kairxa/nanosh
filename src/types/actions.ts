@@ -17,6 +17,7 @@ export type Actions =
   | 'action.engine-room.shield'
   | 'action.expocrafts-bay.ready'
   | 'action.expocrafts-bay.unready'
+  | 'action.expocrafts-bay.repair'
   | 'action.fightercrafts-bay.calibrate'
   | 'action.fightercrafts-bay.dogfight'
   | 'action.fightercrafts-bay.patrolrun'

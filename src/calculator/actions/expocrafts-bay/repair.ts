@@ -1,5 +1,5 @@
 import {
-  INVALID_FIGHTERCRAFT_NOTBROKEN_NOTFOUND,
+  INVALID_EXPOCRAFT_NOTBROKEN_NOTFOUND,
   INVALID_NOT_ENOUGH_SUPPLIES,
 } from '@nanosh/messages/errors'
 import type {
@@ -12,12 +12,12 @@ import { GetWillDirty } from '@nanosh/utils/getWillDirty'
 import seedrandom from 'seedrandom'
 import DutifulDeprivedReduce from '../modifiers/traits/dutiful'
 
-interface FighercraftsBayRepairParams
+interface ExpocraftsBayRepairParams
   extends Pick<
     GenericCalculatorParams,
-    'state' | 'invokeTime' | 'characterID' | 'gameID'
+    'state' | 'characterID' | 'invokeTime' | 'gameID'
   > {
-  fightercraftID: number
+  expocraftID: number
 }
 
 const REPAIR_AP_USAGE = 1
@@ -26,23 +26,26 @@ const REPAIR_SKILL_MODIFIERS = new Set<Skills>([
   'skill.technician',
 ])
 const REPAIR_SKILL_AP_REDUCE = 1
-const REPAIR_SUPPLIES_USAGE = 40
+const REPAIR_SUPPLIES_USAGE_PER_DMG = 20
 
 export default function ({
   state,
-  invokeTime,
   characterID,
+  invokeTime,
   gameID,
-  fightercraftID,
-}: FighercraftsBayRepairParams): DefaultCalculatorReturnType {
+  expocraftID,
+}: ExpocraftsBayRepairParams): DefaultCalculatorReturnType {
   const stateCopy = structuredClone(state)
 
-  const selectedFightercraft = stateCopy.ship.fighterCrafts.get(fightercraftID)
-  if (!selectedFightercraft || !selectedFightercraft.broken) {
-    return [null, new Error(INVALID_FIGHTERCRAFT_NOTBROKEN_NOTFOUND)]
+  const expocraft = stateCopy.ship.expoCrafts.get(expocraftID)
+  if (!expocraft || expocraft.health >= expocraft.maxHealth) {
+    return [null, new Error(INVALID_EXPOCRAFT_NOTBROKEN_NOTFOUND)]
   }
 
-  if (stateCopy.ship.supplies < REPAIR_SUPPLIES_USAGE) {
+  const healthDiff = expocraft.maxHealth - expocraft.health
+  const suppliesUsed = REPAIR_SUPPLIES_USAGE_PER_DMG * healthDiff
+
+  if (stateCopy.ship.supplies < suppliesUsed) {
     return [null, new Error(INVALID_NOT_ENOUGH_SUPPLIES)]
   }
 
@@ -55,8 +58,8 @@ export default function ({
   )
   if (error !== null) return [null, error]
 
-  stateCopy.ship.supplies -= REPAIR_SUPPLIES_USAGE
-  selectedFightercraft.broken = false
+  stateCopy.ship.supplies -= suppliesUsed
+  expocraft.health = expocraft.maxHealth
   const prng = seedrandom(`${gameID}-${invokeTime}`)
   const characterWillDirty = GetWillDirty(character!.trait, prng)
 
@@ -73,7 +76,7 @@ export default function ({
       },
     })
   }
-  character!.cycleActions.set(invokeTime, 'action.fightercrafts-bay.repair')
+  character!.cycleActions.set(invokeTime, 'action.expocrafts-bay.repair')
   character!.ap -= apUsed
 
   const [newState, _] = DutifulDeprivedReduce({ state: stateCopy, characterID })
