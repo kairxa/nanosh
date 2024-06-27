@@ -24,6 +24,7 @@ export const INVALID_INVENTORY_FULL = 'Inventory is full.'
 export const INVALID_INVENTORY_ITEM_NOT_FOUND =
   'Item is not found in inventory.'
 export const INVALID_TARGET_LOCATION = 'Invalid target location.'
+export const GAME_OVER = 'GAME_OVER'
 
 // action.generic Errors
 export const INVALID_UNEQUIP_EMPTY_TARGET = 'Nothing is equipped in that slot.'
