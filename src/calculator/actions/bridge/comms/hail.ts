@@ -63,7 +63,7 @@ export function hailCalculate({
     prng,
   )
 
-  let items: Set<TraderShowItem> = new Set<TraderShowItem>()
+  const items = new Set<TraderShowItem>()
   if (chosenTrader.items) {
     chosenTrader.items.forEach((item) => {
       let itemGivenAmount = GetRandomNumber(item.minGiven, item.maxGiven, prng)

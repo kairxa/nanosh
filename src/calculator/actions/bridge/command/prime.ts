@@ -36,7 +36,7 @@ export default function ({
   stateCopy.ship.modifiers.set('ship.combat.bridge.command.cannon-primed', {
     start,
     amount: 1,
-    expiry: -1,
+    expiry: { day: -1, cycle: -1 },
   })
   character!.cycleActions.set(invokeTime, 'action.bridge.command.prime')
   character!.ap -= apUsed
